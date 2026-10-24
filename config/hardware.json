@@ -1,0 +1,12 @@
+{
+  "observed_date": "2026-11-02",
+  "prefix": "fd00::/64",
+  "host_ipv6": "fd00::1",
+  "interface_observed": "utun10",
+  "nodes": [
+    {"role":"HAR","node":"node1","application_port":"/dev/cu.usbmodemE914240FC2B51","ipv6":"fd00::f6ce:3614:b5c2:f24","target":"nrf","board":"nrf52840/dongle"},
+    {"role":"feedback","node":"node2","application_port":"/dev/cu.usbmodemE313BC9DEA181","ipv6":"fd00::f6ce:3613:18ea:9dbc","target":"nrf","board":"nrf52840/dongle"},
+    {"role":"border-router","application_port":"/dev/cu.usbmodemFA8130D5146E1","ipv6":"fd00::f6ce:3681:6e14:d530","target":"nrf52840","board":"dongle"}
+  ],
+  "note":"Verify live enumeration before opening ports; do not infer DFU identity from port order."
+}

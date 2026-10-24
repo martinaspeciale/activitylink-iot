@@ -1,0 +1,1 @@
+"""ActivityLink cloud application."""

@@ -1,0 +1,9 @@
+{
+  "sensor": "node1",
+  "actuator": "node2",
+  "broker": "localhost",
+  "port": 1883,
+  "prefix": "activitylink",
+  "stale_seconds": 6,
+  "adaptive": true
+}
