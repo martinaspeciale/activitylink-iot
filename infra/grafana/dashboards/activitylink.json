@@ -1,0 +1,119 @@
+{
+  "uid": "activitylink",
+  "title": "ActivityLink \u2014 stress tests",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "5s",
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Node failures",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "mysql",
+        "uid": "activitylink-mysql"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT FROM_UNIXTIME(time) AS time, sensor_stale, actuator_stale FROM metrics WHERE $__unixEpochFilter(time) AND run_id = ${run_id:sqlstring} ORDER BY time"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "LED command and actual state",
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "mysql",
+        "uid": "activitylink-mysql"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT FROM_UNIXTIME(time) AS time, command_led, reported_led FROM metrics WHERE $__unixEpochFilter(time) AND run_id = ${run_id:sqlstring} ORDER BY time"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "Accepted and duplicate messages",
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "mysql",
+        "uid": "activitylink-mysql"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT FROM_UNIXTIME(time) AS time, accepted, duplicates FROM metrics WHERE $__unixEpochFilter(time) AND run_id = ${run_id:sqlstring} ORDER BY time"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "title": "Invalid, out of order and dropped",
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "mysql",
+        "uid": "activitylink-mysql"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT FROM_UNIXTIME(time) AS time, invalid, out_of_order, queue_drops FROM metrics WHERE $__unixEpochFilter(time) AND run_id = ${run_id:sqlstring} ORDER BY time"
+        }
+      ]
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "run_id",
+        "type": "query",
+        "datasource": {
+          "type": "mysql",
+          "uid": "activitylink-mysql"
+        },
+        "query": "SELECT DISTINCT run_id FROM metrics ORDER BY run_id",
+        "refresh": 1
+      }
+    ]
+  }
+}
