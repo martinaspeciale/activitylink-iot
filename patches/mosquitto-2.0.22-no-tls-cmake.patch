@@ -1,0 +1,26 @@
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -163,7 +163,9 @@
+     set (MOSQ_LIBS ${MOSQ_LIBS} ${DLT_LIBRARIES})
+ endif (WITH_DLT)
+ 
+-set (MOSQ_LIBS ${MOSQ_LIBS} OpenSSL::SSL)
++if(WITH_TLS)
++	set (MOSQ_LIBS ${MOSQ_LIBS} OpenSSL::SSL)
++endif()
+ # Check for getaddrinfo_a
+ include(CheckLibraryExists)
+ check_library_exists(anl getaddrinfo_a  "" HAVE_GETADDRINFO_A)
+--- a/lib/CMakeLists.txt
++++ b/lib/CMakeLists.txt
+@@ -60,7 +60,9 @@
+ 	util_mosq.c util_topic.c util_mosq.h
+ 	will_mosq.c will_mosq.h)
+ 
+-set (LIBRARIES OpenSSL::SSL)
++if(WITH_TLS)
++	set (LIBRARIES OpenSSL::SSL)
++endif()
+ 
+ if (UNIX AND NOT APPLE AND NOT ANDROID)
+ 	find_library(LIBRT rt)
