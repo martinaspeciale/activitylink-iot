@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "real schema creation",
+    "insert",
+    "duplicate identity",
+    "out-of-order rejection",
+    "duplicates do not refresh freshness",
+    "new boot restarts sequence",
+    "next sequence"
+  ],
+  "scope": "temporary SQL schema; no simulated messages sent to hardware broker"
+}
