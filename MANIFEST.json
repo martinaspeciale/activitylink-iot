@@ -1,0 +1,490 @@
+{
+  "project": "ActivityLink IoT 2026",
+  "mode": "individuale",
+  "exam": "2026-11-17",
+  "submission_deadline": "2026-11-13",
+  "generated_at": "2026-11-03T16:06:28.347277+01:00",
+  "report_pages": 8,
+  "report_delivery": "PDF at repository root; submit separately from the source ZIP",
+  "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
+  "author_fields": "user fills separate PDF",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 111,
+      "sha256": "1a8ab2a648d922b8e679ffbadef92286d4361e8160e5c501d3e4b7eebc19edf5"
+    },
+    {
+      "path": "ActivityLink_Report.pdf",
+      "bytes": 620151,
+      "sha256": "5635fe734248f8b8ba17457f3436dfaef5c1aa3eb76fd96bf7a3ddc8d1df5ad4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2739,
+      "sha256": "b4ac01462058ff23ecb1f05ee570931c72c74093fa096fdcb98c29ec9f3c816e"
+    },
+    {
+      "path": "THIRD_PARTY.md",
+      "bytes": 1654,
+      "sha256": "24434c166c2f5b48480b54df4472f2bce73e8a9be3ab43381f870ceabf4ff71b"
+    },
+    {
+      "path": "backend/__init__.py",
+      "bytes": 38,
+      "sha256": "9d407bfb3d319942f98197e940447ea8c23c763b35542dd91bd7b996e8e40747"
+    },
+    {
+      "path": "backend/app.py",
+      "bytes": 7170,
+      "sha256": "5f9c5ee636c988a4908c44559ae3969554f93d498b15d94923f8bbfa8d4b6240"
+    },
+    {
+      "path": "backend/core.py",
+      "bytes": 2093,
+      "sha256": "db20865d95361a829a054d98b12661664a24977740cf183ad6e8ed4af5d83286"
+    },
+    {
+      "path": "config/devices.json",
+      "bytes": 157,
+      "sha256": "79a57845d79d1e2a4d8962e563dee82c95ab047a6a5fcf52edd12823daa19c74"
+    },
+    {
+      "path": "config/hardware.json",
+      "bytes": 720,
+      "sha256": "428d98f21a85e0cd44fd2ca40f21521340532d13d9f2b9d7c702414fe43c38e3"
+    },
+    {
+      "path": "data/ATTRIBUTION.md",
+      "bytes": 1093,
+      "sha256": "1ec72fe3ece85fcf0820d2567474b1274642576ebf63a5b359cb3e96ec14d4aa"
+    },
+    {
+      "path": "data/firmware_samples.json",
+      "bytes": 490,
+      "sha256": "99b8ef68ce7ceff59826f2de9ccabc655078defc92f453cb1d2b88a1084e354b"
+    },
+    {
+      "path": "data/replay.csv",
+      "bytes": 1981865,
+      "sha256": "3cf2471bc34954b06b18110c6d6c00879d59b63e842db6b741890bd44fb8fd09"
+    },
+    {
+      "path": "docs/ML_VALIDATION.md",
+      "bytes": 6173,
+      "sha256": "50343ee2a6ec698c4715f88ede458114d916c4b252938bd8f627a10513ffa281"
+    },
+    {
+      "path": "docs/NATIVE_MAC_STACK.md",
+      "bytes": 1053,
+      "sha256": "0c49e71dcfc0b82c7fb0fa66338132fdccbd0b71076faf660cb068262f7f1200"
+    },
+    {
+      "path": "docs/REPRODUCE.md",
+      "bytes": 4117,
+      "sha256": "ecffa72f7eac3ad83ab4f9f9d7d73f07ee19039086134514025f3074e9d94bab"
+    },
+    {
+      "path": "firmware/node/Makefile",
+      "bytes": 252,
+      "sha256": "629cc16170dfc58009accb503f4bb356f7ec212d51062d992a7bdf7425a42870"
+    },
+    {
+      "path": "firmware/node/activitylink.c",
+      "bytes": 4323,
+      "sha256": "62ba01fa3427388478ffd36d67310d7a1e728dc0156f9e48cca87d2806b96974"
+    },
+    {
+      "path": "firmware/node/model.h",
+      "bytes": 59347,
+      "sha256": "a6f3cb92f267b42e8a58eb564be63787d174f969cb50ca7d023290e361f6a5ec"
+    },
+    {
+      "path": "firmware/node/project-conf.h",
+      "bytes": 162,
+      "sha256": "ec74fd102014e1bf6cd0643cbef1be1a03810fbe1c5b3c089653d5e54399b757"
+    },
+    {
+      "path": "firmware/node/samples.h",
+      "bytes": 226478,
+      "sha256": "cd9c74808c758bb801279e84630f7253ef7f4fa44319551152ab91fa9304bda5"
+    },
+    {
+      "path": "infra/grafana/dashboards/activitylink.json",
+      "bytes": 2895,
+      "sha256": "438729c23639d8e7e6bf77b20d39b91dacb418c6407fb86ee4d143ee7b2f77d5"
+    },
+    {
+      "path": "infra/grafana/provisioning/dashboards/default.yaml",
+      "bytes": 116,
+      "sha256": "be94fcd652c14a6915b15008eea6523fd313210e8ecd7247542e98963d76189f"
+    },
+    {
+      "path": "infra/grafana/provisioning/datasources/mysql.yaml",
+      "bytes": 282,
+      "sha256": "12deb36af9cb35bcea4d111cf8d676c97c9318efec41bbbc393d00aad73a2cb1"
+    },
+    {
+      "path": "infra/mosquitto.conf",
+      "bytes": 70,
+      "sha256": "2a804ff488a8e71b768695456d823dc87ff98ec87fbb94651d4c1b4786bbfa44"
+    },
+    {
+      "path": "ml/ActivityLink_SVM561_Reproduce.ipynb",
+      "bytes": 22944,
+      "sha256": "d33d140976c0fa80dfac0e702ff64ad2956d3120fde9a700b10a3866453eb1c2"
+    },
+    {
+      "path": "ml/evaluate_historical.py",
+      "bytes": 2611,
+      "sha256": "16c5d7f43673a79b81908937c775cabb40df644d37d6622db7b21700462a06c3"
+    },
+    {
+      "path": "ml/retrain.py",
+      "bytes": 6391,
+      "sha256": "5b3f3c02430ce6b79fb2fc4c7f7976dd8632ba139a66fe29d62f3f2ae6044462"
+    },
+    {
+      "path": "ml/tests/test_training_isolation.py",
+      "bytes": 2836,
+      "sha256": "c929ba211ef95503dfdfd5bc7635384fce008262a7434c76895cfbf01d683672"
+    },
+    {
+      "path": "models/svm561.json",
+      "bytes": 85732,
+      "sha256": "81628a219bbaf92050b9039213d47772eb62ebc8a62cefd8b5ae08ed02de8bd2"
+    },
+    {
+      "path": "models/svm561_predictor.h",
+      "bytes": 59347,
+      "sha256": "a6f3cb92f267b42e8a58eb564be63787d174f969cb50ca7d023290e361f6a5ec"
+    },
+    {
+      "path": "patches/contiki-v5.1-sw1-pin.patch",
+      "bytes": 676,
+      "sha256": "5de17a626ae9486c9eb7d997a78aba62e852fa326eac8d301136c5ba55682ede"
+    },
+    {
+      "path": "patches/mosquitto-2.0.22-no-tls-cmake.patch",
+      "bytes": 659,
+      "sha256": "8695039d4991d608abba9aae6b5d0d850199cab9eb34442a5a7287a29a6c0f78"
+    },
+    {
+      "path": "requirements-ml.txt",
+      "bytes": 33,
+      "sha256": "917e795d7b2b1fabc1f6c3970077f8582d00133d332f80b8d3d22335eabce4a0"
+    },
+    {
+      "path": "requirements-native.txt",
+      "bytes": 34,
+      "sha256": "745c2233399d277f2d1f50ae55cc7bbdc812daa698843fad9b4f7baf3b2ca222"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 53,
+      "sha256": "2331841d7e22639c65ebfde6f552fc7a6413d7d4d3bf22c9f93a1c7aa8a75e05"
+    },
+    {
+      "path": "results/2026-11-02-final/final-integration/summary.json",
+      "bytes": 3047,
+      "sha256": "a65fa352e5a247e1ea69ce7fb5797c93476f611d045a7a9304242bb2ca69addd"
+    },
+    {
+      "path": "results/2026-11-02-final/firmware/border-router/border-router.hex",
+      "bytes": 225617,
+      "sha256": "b14ce46c33739e326d3108ab22ca4aefeb2ac0e37c9f34c58c339c20a336f366"
+    },
+    {
+      "path": "results/2026-11-02-final/firmware/contiki-commit.txt",
+      "bytes": 41,
+      "sha256": "309009283ee7d1e95ae4645486d584599045dff4ba82bb84854e57d7e3333ad7"
+    },
+    {
+      "path": "results/2026-11-02-final/firmware/node1/activitylink.hex",
+      "bytes": 413512,
+      "sha256": "25a5d3fd5740bc2b47af58c8a69619a3a61e254fb0ebe59025353f98f7fac960"
+    },
+    {
+      "path": "results/2026-11-02-final/firmware/node2/activitylink.hex",
+      "bytes": 223452,
+      "sha256": "4e573390390eae13921887842e46099f0193858e4c3e7df8c58457fa0d94cc7e"
+    },
+    {
+      "path": "results/2026-11-02-final/firmware/platforms.txt",
+      "bytes": 90,
+      "sha256": "1340d0d38d9a8a67cba8bbcef547a7a6ea576ba98bd27bfeb137c77abd237246"
+    },
+    {
+      "path": "results/2026-11-02-final/firmware/summary.json",
+      "bytes": 1838,
+      "sha256": "d713442e23919eea4292b57f3dc27ce6d7fe6b9517387770f4fe49ba64b77cc1"
+    },
+    {
+      "path": "results/2026-11-02-final/inference-timing.json",
+      "bytes": 210,
+      "sha256": "5e72f07f401cea9e268c048a8488f926df4a864680d29338e63436bf51c7c035"
+    },
+    {
+      "path": "results/2026-11-02-final/ml-reproduction/reproduction.json",
+      "bytes": 1383,
+      "sha256": "111ab5549710dd462f83cceac7c6066ed46392cb7dfa5775804baf5019c7e527"
+    },
+    {
+      "path": "results/2026-11-02-final/model-full.json",
+      "bytes": 262,
+      "sha256": "5d884c2bb30f06f3f3817886855ea5256761e617ae7f0cd82ff68eece96f7a65"
+    },
+    {
+      "path": "results/2026-11-02-final/physical-failure/mqtt.jsonl",
+      "bytes": 35924,
+      "sha256": "a91a8c0cb7bb4bd760f6162719c23c23860ab4a7d3ea8b7f50f200d237fdce33"
+    },
+    {
+      "path": "results/2026-11-02-final/physical-failure/summary.json",
+      "bytes": 908,
+      "sha256": "3891715c5774704dffdb11e9d910919fbc7eb06466877fdb9f7f7c8462326fb6"
+    },
+    {
+      "path": "results/2026-11-02-final/service-recovery/mqtt.jsonl",
+      "bytes": 7066,
+      "sha256": "3d3809e542bac59a014c96a9d934051f3fb8fc250d8c19e9a81c6a5ac8e5eb69"
+    },
+    {
+      "path": "results/2026-11-02-final/service-recovery/summary.json",
+      "bytes": 2370,
+      "sha256": "33d09b62a0b8785a445a38509a2ee3d51d13d4d60ea97ed9922c7fa000d4dd96"
+    },
+    {
+      "path": "results/2026-11-02-final/sql-contract.json",
+      "bytes": 316,
+      "sha256": "b6692521af3729e26cafbb5d1b4192f218c342c4666150594e11d1f44a2eb5bd"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/aggregate.json",
+      "bytes": 444,
+      "sha256": "0730394fb235b30a40659ec978bfcba6aa00436992ddb69b630eb5698d6aab8b"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-1-adaptive/metrics.json",
+      "bytes": 11899,
+      "sha256": "1694d397462a08f4e78827a43428b526be54449312861d78f5dfd8f5c45260d5"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-1-adaptive/summary.json",
+      "bytes": 876,
+      "sha256": "42cbac7145200923b3989ba0b7364db6da5305682807f3e9f7a1273e4eb28236"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-1-adaptive/wire.jsonl",
+      "bytes": 23722,
+      "sha256": "b33a3b7244941494e9d7bc278eeb24f80e6a00e516ada665dee67b64501aa490"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-1-baseline/metrics.json",
+      "bytes": 11582,
+      "sha256": "8626d4f988de4efbecf49f913e34f9b0e39adfb56841fa82aae4ce05f0be904d"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-1-baseline/summary.json",
+      "bytes": 870,
+      "sha256": "1e9de736229db5abbf441e58bb259c2a74d18d4701cf0674c35bb9213d667158"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-1-baseline/wire.jsonl",
+      "bytes": 23136,
+      "sha256": "0619009d2da1bd093d909907d8d711474dc7b1fb15b704862be825d73a990b5c"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-2-adaptive/metrics.json",
+      "bytes": 11895,
+      "sha256": "a215e6844a38151cdef505910344ce7149cd47a706a664edb2e22ac78e27c7d6"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-2-adaptive/summary.json",
+      "bytes": 882,
+      "sha256": "c0a30c69a92435393f13df2606d6c984ff889d0259b18bdcfafc05a8336c8a56"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-2-adaptive/wire.jsonl",
+      "bytes": 23489,
+      "sha256": "ea959b4bbf06affe6f6140b97db24403dfb90c73966ddcb55d2989f04908d266"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-2-baseline/metrics.json",
+      "bytes": 11899,
+      "sha256": "bf4bdddb71c56fa9bbe941c93f56844eebba310178ce2d5545a24858c6ae48a0"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-2-baseline/summary.json",
+      "bytes": 880,
+      "sha256": "4cf1ae2bc91dd7bc722c01eee86196ec7000ab8899be996a840bb4f852b6b218"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-2-baseline/wire.jsonl",
+      "bytes": 23234,
+      "sha256": "c40fab7351deda9ec748846ef5017fbdd67d7f446cd76225f8b4ab8c0d7e6598"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-3-adaptive/metrics.json",
+      "bytes": 12211,
+      "sha256": "403b10180fd006e757f3f77b7b81d77cf23ed8a60f1ef9b31c5e7da9fb5e3ef1"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-3-adaptive/summary.json",
+      "bytes": 872,
+      "sha256": "d3c90fc0cede2d5d9e91fcf04b9e30874ba6225f79b8c247506efcf305b0fbf3"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-3-adaptive/wire.jsonl",
+      "bytes": 23583,
+      "sha256": "2f10f5bb02c0363ef21fe5e2f6aad23298c737faac0f908381c2cf47657dcdfe"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-3-baseline/metrics.json",
+      "bytes": 12210,
+      "sha256": "3d73436f3698322ef23c09a1b954b2f9f708dc05e24d0ab381253962550b761a"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-3-baseline/summary.json",
+      "bytes": 877,
+      "sha256": "0abd82083272c13e5a8913e951b6b82742af9319c0518d4cfe64246309634162"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/pair-3-baseline/wire.jsonl",
+      "bytes": 23342,
+      "sha256": "b0442c3f7283bd1c44efd14f7fd476fa5159e77ac8e3281b640176f795e58026"
+    },
+    {
+      "path": "results/2026-11-02-final/stress/summary.json",
+      "bytes": 6320,
+      "sha256": "6970d52436e4da27692b64908378d81395b754a2e452912bfecee8a9280e0a18"
+    },
+    {
+      "path": "results/2026-11-02-ml-isolation/historical-test.json",
+      "bytes": 2241,
+      "sha256": "c67c840e80df24b75701aa52c7863b1489cfa74f1a87033c6ad12240be2d3603"
+    },
+    {
+      "path": "results/2026-11-02-ml-isolation/isolation-tests.log",
+      "bytes": 637,
+      "sha256": "b479e8a2ce6084c3af5bfc324a9553948155c6db3768cb0ea014fa43fa55984c"
+    },
+    {
+      "path": "results/2026-11-02-ml-isolation/protocol.json",
+      "bytes": 229,
+      "sha256": "a49b9dbfd149504b1b2da71cbfadd2bd3cd6f2b53884a2c4abaf950499513e40"
+    },
+    {
+      "path": "results/2026-11-02-ml-isolation/validation.json",
+      "bytes": 5960,
+      "sha256": "4293a5010a2cafefb6a0edd82c02c0e29f4971a7292c84ababab43fdeae3eab8"
+    },
+    {
+      "path": "scripts/build_firmware.sh",
+      "bytes": 1713,
+      "sha256": "6856f1f3852eabd494b73da34926db761c4e6f905f7becf7ea90f6f41b693dbd"
+    },
+    {
+      "path": "scripts/control.py",
+      "bytes": 491,
+      "sha256": "eb16b2c7a152763d7a9243a21fb3ab4ac7b9b58e90f96a370cd49ea2ac04b83a"
+    },
+    {
+      "path": "scripts/execute_notebook.py",
+      "bytes": 1438,
+      "sha256": "feb34f4cce483cad77369d6811ce634733733b41feeb55ef846c59bc101b1bc2"
+    },
+    {
+      "path": "scripts/hardware_mqtt_check.py",
+      "bytes": 8002,
+      "sha256": "83142df7116208c155e44806cd95799254c2b109fabd33df178af3bc15079695"
+    },
+    {
+      "path": "scripts/hardware_stress.py",
+      "bytes": 8056,
+      "sha256": "baf572c7e5fe737285390862ca84bf79942f6d35bd84a891e698d37847f59590"
+    },
+    {
+      "path": "scripts/native_stack.py",
+      "bytes": 8929,
+      "sha256": "244d9dbffc443bff969af7feeaa2e93991c04aa8327aec633fe6bc17c1683103"
+    },
+    {
+      "path": "scripts/native_stack_check.py",
+      "bytes": 5953,
+      "sha256": "91d0c4e414bf9529372957b8347d56a90b62979b32ddca27763d3c661cdeb118"
+    },
+    {
+      "path": "scripts/physical_failure_check.py",
+      "bytes": 2562,
+      "sha256": "46852cb8d3e1dcbac1aefe7cc6e47c7ab98aee72e8e9732306b56de98f44cb77"
+    },
+    {
+      "path": "scripts/service_recovery_check.py",
+      "bytes": 4438,
+      "sha256": "82c40e20a947f0147d00b64adda3fbc4caa577ef6d51725d745c3d4ab125f32d"
+    },
+    {
+      "path": "scripts/setup_contiki.sh",
+      "bytes": 878,
+      "sha256": "2672b73f3832397cea0b3613e6029c7e87b68192965fa6b1f28fe9fe573fa0a6"
+    },
+    {
+      "path": "scripts/setup_mosquitto.sh",
+      "bytes": 1182,
+      "sha256": "a132767b33b2bad5dfe516b799416645f077ca67861325299d0063e0dd740d16"
+    },
+    {
+      "path": "scripts/setup_native_stack.py",
+      "bytes": 2288,
+      "sha256": "27092b9b95c2549f6e008f85db956c1e2ef37681254790ee833613934a37e4ec"
+    },
+    {
+      "path": "scripts/verify_model.py",
+      "bytes": 2097,
+      "sha256": "9f13992949d87639c7e6d0a08dc24d1c0d7369ec0f18c0a710cc0710954a1036"
+    },
+    {
+      "path": "tests/backend_sql_contract.py",
+      "bytes": 2213,
+      "sha256": "b526f32898537fad3278f596d21feab8309af10a4ea9306fc5ec949be02398a1"
+    },
+    {
+      "path": "tests/test_core.py",
+      "bytes": 937,
+      "sha256": "7c3a2a4dc0be00a602d67a6fd98c8eb5a5f6be4cbd9593457c0b197ed6da9465"
+    },
+    {
+      "path": "tests/test_protocol.py",
+      "bytes": 2441,
+      "sha256": "a8abc5112075295eee1c1dfacef26fa3797079ff0e715c891e3ba967c004d0f2"
+    },
+    {
+      "path": "third_party/mosquitto/LICENSE.txt",
+      "bytes": 155,
+      "sha256": "d3c4ccace4e5d3cc89d34cf2a0bc85b8596bfc0a32b815d0d77f9b7c41b5350c"
+    },
+    {
+      "path": "third_party/mosquitto/edl-v10",
+      "bytes": 1568,
+      "sha256": "86fc4a3f97cb769c04e8da557036c1066eb8bb22b2d0a5dd31464990fe84047c"
+    },
+    {
+      "path": "third_party/mosquitto/epl-v20",
+      "bytes": 14197,
+      "sha256": "8c349f80764d0648e645f41ef23772a70c995a0924b5235f735f4a3d09df127c"
+    },
+    {
+      "path": "tools/local-broker/build-no-tls/src/mosquitto",
+      "bytes": 271344,
+      "sha256": "934fff3876f5045620aab40714c4238982fc0baef8e2876f870dce8985623943"
+    },
+    {
+      "path": "tools/local-broker/mosquitto-2.0.22.tar.gz",
+      "bytes": 805967,
+      "sha256": "2f752589ef7db40260b633fbdb536e9a04b446a315138d64a7ff3c14e2de6b68"
+    }
+  ],
+  "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
+  "source_archive_sha256": "444b1a563a7b6d58457ec1dbd5d8e7ca64c093286a538440e55d357bf5515f6e"
+}
