@@ -1,0 +1,170 @@
+{
+  "command_checks": [
+    {
+      "target": "ports",
+      "argv_equivalent": true,
+      "commands": [
+        [
+          "/Users/martina/ActivityLink-IoT-2026/.venv/bin/python",
+          "-m",
+          "serial.tools.list_ports",
+          "-v"
+        ]
+      ]
+    },
+    {
+      "target": "connect-router",
+      "argv_equivalent": true,
+      "commands": [
+        [
+          "test",
+          "-x",
+          "/Users/martina/ActivityLink-IoT-2026/vendor/contiki-ng/tools/serial-io/tunslip6"
+        ],
+        [
+          "sudo",
+          "/Users/martina/ActivityLink-IoT-2026/vendor/contiki-ng/tools/serial-io/tunslip6",
+          "-s",
+          "/dev/cu.usbmodemFA8130D5146E1",
+          "-B",
+          "115200",
+          "-t",
+          "utun10",
+          "-v",
+          "3",
+          "fd00::1/64"
+        ]
+      ]
+    },
+    {
+      "target": "status",
+      "argv_equivalent": true,
+      "commands": [
+        [
+          "/Users/martina/ActivityLink-IoT-2026/.venv/bin/python",
+          "scripts/native_stack.py",
+          "status"
+        ]
+      ]
+    },
+    {
+      "target": "start",
+      "argv_equivalent": true,
+      "commands": [
+        [
+          "/Users/martina/ActivityLink-IoT-2026/.venv/bin/python",
+          "scripts/native_stack.py",
+          "start",
+          "--adaptive",
+          "1",
+          "--run-id",
+          "demo-esame"
+        ]
+      ]
+    },
+    {
+      "target": "stop-cloud",
+      "argv_equivalent": true,
+      "commands": [
+        [
+          "/Users/martina/ActivityLink-IoT-2026/.venv/bin/python",
+          "scripts/native_stack.py",
+          "stop-cloud"
+        ]
+      ]
+    },
+    {
+      "target": "pause",
+      "argv_equivalent": true,
+      "commands": [
+        [
+          "/Users/martina/ActivityLink-IoT-2026/.venv/bin/python",
+          "scripts/control.py",
+          "pause",
+          "--host",
+          "::1"
+        ]
+      ]
+    },
+    {
+      "target": "resume",
+      "argv_equivalent": true,
+      "commands": [
+        [
+          "/Users/martina/ActivityLink-IoT-2026/.venv/bin/python",
+          "scripts/control.py",
+          "resume",
+          "--host",
+          "::1"
+        ]
+      ]
+    },
+    {
+      "target": "dashboard",
+      "argv_equivalent": true,
+      "commands": [
+        [
+          "open",
+          "http://127.0.0.1:3000/d/activitylink"
+        ]
+      ]
+    },
+    {
+      "target": "ports",
+      "live_read_only_output_equal": true
+    },
+    {
+      "target": "status",
+      "live_read_only_output_equal": true
+    }
+  ],
+  "override_checks": 2,
+  "hardware_present": false,
+  "hardware_retest": "not performed at user request",
+  "functional_code_changes": false,
+  "source_makefile_sha256": "4fe79deeb71307fb49448d28904e5bb700598501f25ac8ec447aec8f5348379b",
+  "local_mqtt_equivalence": {
+    "passed": true,
+    "scope": "temporary broker bound only to ::1:1883; no radio nodes, database or controller",
+    "actions": [
+      {
+        "action": "pause",
+        "direct_and_make_equal": true,
+        "observed": [
+          {
+            "topic": "activitylink/node1/command",
+            "payload": "P",
+            "qos": 0,
+            "retained": false
+          },
+          {
+            "topic": "activitylink/node1/command",
+            "payload": "P",
+            "qos": 0,
+            "retained": false
+          }
+        ]
+      },
+      {
+        "action": "resume",
+        "direct_and_make_equal": true,
+        "observed": [
+          {
+            "topic": "activitylink/node1/command",
+            "payload": "R",
+            "qos": 0,
+            "retained": false
+          },
+          {
+            "topic": "activitylink/node1/command",
+            "payload": "R",
+            "qos": 0,
+            "retained": false
+          }
+        ]
+      }
+    ],
+    "temporary_broker_stopped": true
+  },
+  "requested_scope": "command verification only; no hardware rerun"
+}

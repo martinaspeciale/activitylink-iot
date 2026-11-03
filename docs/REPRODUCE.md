@@ -34,7 +34,7 @@ Prima di caricare immagini verificare target, dispositivo DFU e bootloader.
 Enumerare prima le porte; quelle in `config/hardware.json` sono le identità osservate.
 
 ```sh
-.venv/bin/python -m serial.tools.list_ports -v
+make ports
 make connect-router
 ```
 
@@ -47,11 +47,32 @@ Lasciare SLIP attivo e non aprire contemporaneamente la seriale router. In un al
 terminale avviare stack e input utente:
 
 ```sh
-.venv/bin/python scripts/native_stack.py start --run-id demo-esame
-.venv/bin/python scripts/native_stack.py status
-.venv/bin/python scripts/control.py pause --host ::1
-.venv/bin/python scripts/control.py resume --host ::1
+make status
+make stop-cloud
+make start RUN_ID=demo-esame ADAPTIVE=1
+make dashboard
+
+# Durante la demo
+make pause
+make resume
+
+# Al termine, poi Ctrl+C nel terminale SLIP
+make stop-cloud
 ```
+
+I target usano direttamente `.venv/bin/python`: dopo il setup non servono
+attivazione dell'ambiente o `export PYTHONPATH` per questi comandi. `make help`
+elenca le operazioni. `make start` riusa un backend già attivo: fermarlo prima
+consente di applicare con certezza il RUN_ID e la modalità scelti. `make stop-cloud`
+ferma solo il backend, non broker, database e Grafana.
+
+Il laboratorio Righetti mostra il target Contiki `connect-router` (p. 193) e il
+sistema make (p. 75). Gli altri target della root sono scorciatoie del progetto
+che richiamano gli script esistenti: non sono target forniti dal laboratorio.
+
+La verifica in `results/2026-11-03-command-shortcuts/verification.json` confronta
+8 target e gli override. Output ports/status identici; pausa/ripresa equivalenti
+su un broker temporaneo limitato a ::1. Non è un nuovo collaudo sui dongle.
 
 Grafana: http://127.0.0.1:3000/d/activitylink. Utente `admin`, password nel campo
 `grafana_admin` del file locale. I servizi sono descritti in [NATIVE_MAC_STACK.md](NATIVE_MAC_STACK.md).

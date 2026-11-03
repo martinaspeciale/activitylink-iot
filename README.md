@@ -16,9 +16,26 @@ Python/MySQL e Grafana. La [relazione PDF](ActivityLink_Report.pdf) è inclusa n
 Guida: [riproduzione](docs/REPRODUCE.md), [stack Mac](docs/NATIVE_MAC_STACK.md),
 [attribuzioni e componenti](THIRD_PARTY.md).
 
-Dopo il setup, dalla root `make connect-router` avvia il collegamento SLIP.
-Il target richiama il programma Contiki già compilato; per una porta diversa
-usare `make connect-router PORT=/dev/cu.usbmodem...`.
+Dopo il setup, i comandi della demo sono:
+
+```sh
+make ports
+make connect-router
+```
+
+Lasciare SLIP nel primo terminale. Nel secondo, dalla root:
+
+```sh
+make status
+make stop-cloud
+make start RUN_ID=demo-esame ADAPTIVE=1
+make dashboard
+```
+
+Durante la demo: `make pause` e `make resume`. Al termine: `make stop-cloud`,
+poi Ctrl+C nel terminale SLIP. I target usano `.venv/bin/python` già predisposto;
+non richiedono attivazione dell'ambiente. Sono scorciatoie del progetto; solo
+l'operazione connect-router ha il corrispondente target mostrato nel laboratorio.
 
 ## Comportamento
 
