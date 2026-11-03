@@ -35,9 +35,13 @@ Enumerare prima le porte; quelle in `config/hardware.json` sono le identità oss
 
 ```sh
 .venv/bin/python -m serial.tools.list_ports -v
-sudo vendor/contiki-ng/tools/serial-io/tunslip6 \
- -s /dev/cu.usbmodemFA8130D5146E1 -B 115200 -t utun10 -v 3 fd00::1/64
+make connect-router
 ```
+
+Il target `connect-router` del Makefile alla root richiama il `tunslip6` già
+compilato con i parametri collaudati. Non compila né carica firmware. Per una
+porta diversa usare `make connect-router PORT=/dev/cu.usbmodem...`. La porta va
+identificata prima; il nome predefinito è quello osservato nel collaudo.
 
 Lasciare SLIP attivo e non aprire contemporaneamente la seriale router. In un altro
 terminale avviare stack e input utente:

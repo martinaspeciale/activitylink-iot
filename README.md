@@ -16,6 +16,10 @@ Python/MySQL e Grafana. La [relazione PDF](ActivityLink_Report.pdf) è inclusa n
 Guida: [riproduzione](docs/REPRODUCE.md), [stack Mac](docs/NATIVE_MAC_STACK.md),
 [attribuzioni e componenti](THIRD_PARTY.md).
 
+Dopo il setup, dalla root `make connect-router` avvia il collegamento SLIP.
+Il target richiama il programma Contiki già compilato; per una porta diversa
+usare `make connect-router PORT=/dev/cu.usbmodem...`.
+
 ## Comportamento
 
 HAR classifica sul microcontrollore 24 vettori UCI HAR incorporati nella flash:

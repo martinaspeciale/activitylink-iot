@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-03T22:37:37.487287+01:00",
+  "generated_at": "2026-11-03T23:38:47.193012+01:00",
   "report_pages": 8,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -20,9 +20,14 @@
       "sha256": "5635fe734248f8b8ba17457f3436dfaef5c1aa3eb76fd96bf7a3ddc8d1df5ad4"
     },
     {
+      "path": "Makefile",
+      "bytes": 312,
+      "sha256": "28dc53cde9b330216ec2500a3d62c5973b420fda1d1ecac6aa346a26cd6b9b6a"
+    },
+    {
       "path": "README.md",
-      "bytes": 2739,
-      "sha256": "b4ac01462058ff23ecb1f05ee570931c72c74093fa096fdcb98c29ec9f3c816e"
+      "bytes": 2948,
+      "sha256": "085244b5dfaf94feea9da1a87485b8c76b1053f96e1c4f6e3183b8f1206f8b0c"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -81,8 +86,8 @@
     },
     {
       "path": "docs/REPRODUCE.md",
-      "bytes": 11151,
-      "sha256": "872d8cd9e6090a413b4a867f31ae52712190d464516fe414e4934484ec40839a"
+      "bytes": 11363,
+      "sha256": "08e5e46b019a598d15b22dc8a1c6fb630e74a632ab9b54f075c513b956289985"
     },
     {
       "path": "firmware/node/Makefile",
