@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-03T23:47:26.350673+01:00",
+  "generated_at": "2026-11-03T23:54:00.132458+01:00",
   "report_pages": 8,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -20,14 +20,9 @@
       "sha256": "5635fe734248f8b8ba17457f3436dfaef5c1aa3eb76fd96bf7a3ddc8d1df5ad4"
     },
     {
-      "path": "Makefile",
-      "bytes": 1088,
-      "sha256": "4fe79deeb71307fb49448d28904e5bb700598501f25ac8ec447aec8f5348379b"
-    },
-    {
       "path": "README.md",
-      "bytes": 3301,
-      "sha256": "d5625bbc448fe52976210f9abba2140aae9877c994a57d9ea31233fa81327259"
+      "bytes": 5013,
+      "sha256": "9ccda18cff5416d23cb34fee029b2110f507792fdf4aaf59fc4da6e0337771c8"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -86,8 +81,8 @@
     },
     {
       "path": "docs/REPRODUCE.md",
-      "bytes": 12147,
-      "sha256": "bd9a8e952c70ae9ff0e4461c6350a858b6d923f9f7c8b24540d2d9285b64bd47"
+      "bytes": 12776,
+      "sha256": "5d564500f5fe98d947336e054876fa6c4c1a257491d9bc5166c62cd4e51c3047"
     },
     {
       "path": "firmware/node/Makefile",
@@ -385,11 +380,6 @@
       "sha256": "4293a5010a2cafefb6a0edd82c02c0e29f4971a7292c84ababab43fdeae3eab8"
     },
     {
-      "path": "results/2026-11-03-command-shortcuts/verification.json",
-      "bytes": 3929,
-      "sha256": "42c14ad61dc6650ad0174dd84bb70d3e5369cb2287a5c7cccc5e32836e634f95"
-    },
-    {
       "path": "scripts/build_firmware.sh",
       "bytes": 1713,
       "sha256": "6856f1f3852eabd494b73da34926db761c4e6f905f7becf7ea90f6f41b693dbd"
@@ -496,5 +486,5 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "444b1a563a7b6d58457ec1dbd5d8e7ca64c093286a538440e55d357bf5515f6e"
+  "source_archive_sha256": "c78c051ca03252ebcfa39f62602bde0a2155d44b9c8f2efa58f5d82dee3aa782"
 }

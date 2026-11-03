@@ -16,26 +16,60 @@ Python/MySQL e Grafana. La [relazione PDF](ActivityLink_Report.pdf) è inclusa n
 Guida: [riproduzione](docs/REPRODUCE.md), [stack Mac](docs/NATIVE_MAC_STACK.md),
 [attribuzioni e componenti](THIRD_PARTY.md).
 
-Dopo il setup, i comandi della demo sono:
+## Avvio dopo il setup
+
+La procedura usa il target originale Contiki del laboratorio Righetti (p. 193).
+Sul Mac si usa `gmake` e una seriale `/dev/cu.usbmodem...` al posto di `/dev/ttyACM0`.
+Il compilatore ARM deve essere nel PATH anche per leggere questo Makefile.
+Il percorso seguente è quello installato sul Mac verificato: adattarlo su un altro host.
+
+**Terminale 1**, dalla root del progetto, con ambiente già predisposto:
 
 ```sh
-make ports
-make connect-router
+source .venv/bin/activate
+python -m serial.tools.list_ports -v
 ```
 
-Lasciare SLIP nel primo terminale. Nel secondo, dalla root:
+Identificare il border router: il valore PORT sotto è quello del collaudo,
+non una selezione automatica della prima porta disponibile. Poi, sempre dalla root:
 
 ```sh
-make status
-make stop-cloud
-make start RUN_ID=demo-esame ADAPTIVE=1
-make dashboard
+export PATH="/Users/martina/opt/arm-toolchains/arm-gnu-toolchain-12.3.rel1-darwin-x86_64-arm-none-eabi/bin:$PATH"
+cd vendor/contiki-ng/examples/rpl-border-router
+gmake TARGET=nrf52840 BOARD=dongle PORT=/dev/cu.usbmodemFA8130D5146E1 connect-router
 ```
 
-Durante la demo: `make pause` e `make resume`. Al termine: `make stop-cloud`,
-poi Ctrl+C nel terminale SLIP. I target usano `.venv/bin/python` già predisposto;
-non richiedono attivazione dell'ambiente. Sono scorciatoie del progetto; solo
-l'operazione connect-router ha il corrispondente target mostrato nel laboratorio.
+Lasciare il comando attivo. Il target avvia tunslip6; non carica firmware.
+Se manca l'eseguibile tunslip6 può compilarlo. I default locali sono 115200 baud,
+interfaccia utun10 e verbosità 2 (prima era esplicita a 3: cambiano solo i log).
+Non aprire contemporaneamente la stessa seriale con un altro programma.
+
+**Terminale 2**, aperto nella root del progetto:
+
+```sh
+source .venv/bin/activate
+python scripts/native_stack.py status
+python scripts/native_stack.py stop-cloud
+python scripts/native_stack.py start --adaptive 1 --run-id demo-esame
+open http://127.0.0.1:3000/d/activitylink
+```
+
+Gli script Python sono del progetto; non sono comandi forniti dalle slide.
+`start` riusa un backend già attivo: `stop-cloud` prima dell'avvio permette di
+applicare il run_id e la modalità scelti. Non serve esportare PYTHONPATH.
+
+Durante la demo, nel Terminale 2, eseguire separatamente pausa e ripresa:
+
+```sh
+python scripts/control.py pause --host ::1
+python scripts/control.py resume --host ::1
+```
+
+Al termine usare `python scripts/native_stack.py stop-cloud`, poi Ctrl+C nel
+Terminale 1 e scollegare i dongle. stop-cloud ferma solo il backend: broker,
+MySQL e Grafana possono restare attivi. Cambiare la procedura di lancio non
+modifica firmware o modello; è stata verificata la generazione del comando
+Contiki senza ripetere il collaudo sui dongle.
 
 ## Comportamento
 
