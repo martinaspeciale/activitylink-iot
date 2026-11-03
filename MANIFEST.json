@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-03T16:06:28.347277+01:00",
+  "generated_at": "2026-11-03T22:37:37.487287+01:00",
   "report_pages": 8,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -81,8 +81,8 @@
     },
     {
       "path": "docs/REPRODUCE.md",
-      "bytes": 4117,
-      "sha256": "ecffa72f7eac3ad83ab4f9f9d7d73f07ee19039086134514025f3074e9d94bab"
+      "bytes": 11151,
+      "sha256": "872d8cd9e6090a413b4a867f31ae52712190d464516fe414e4934484ec40839a"
     },
     {
       "path": "firmware/node/Makefile",
