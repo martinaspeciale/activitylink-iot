@@ -18,12 +18,14 @@ STATE = ROOT / "runtime/native-stack"
 MYSQL = ROOT / "tools/native-stack/mysql-8.0.31-macos12-x86_64"
 GRAFANA = ROOT / "tools/native-stack/grafana-v11.6.0"
 PYTHON_DEPS = ROOT / "tools/python-deps"
+# The legacy cloud identifier is kept for existing PID files; the process is local backend.app.
 SIGNATURES = {"mysql": str(MYSQL / "bin/mysqld"), "grafana": str(GRAFANA / "bin/grafana"),
               "cloud": "-m backend.app", "broker": "tools/local-broker/build-no-tls/src/mosquitto"}
 
 
 def config():
     STATE.mkdir(parents=True, exist_ok=True, mode=0o700)
+    # Generate credentials only once and keep them outside the distributed source files.
     path = STATE / "credentials.json"
     if not path.exists():
         data = {name: secrets.token_hex(24) for name in ("root", "app", "grafana_db", "grafana_admin")}
@@ -37,16 +39,19 @@ def pid(name):
     if not path.exists():
         return None
     value = int(path.read_text())
+    # Check the command as well as the PID, since the OS can reuse process IDs.
     result = subprocess.run(["ps", "-p", str(value), "-o", "command="], capture_output=True, text=True)
     return value if result.returncode == 0 and SIGNATURES[name] in result.stdout else None
 
 
 def launch(name, command, env=None):
     existing = pid(name)
+    # Reusing a running process does not apply new command-line settings.
     if existing:
         return existing
     stamp = time.strftime("%Y%m%d-%H%M%S")
     with (STATE / f"{name}-{stamp}.log").open("x") as log:
+        # Detach services from the terminal and redirect their output to a local log.
         proc = subprocess.Popen(command, cwd=ROOT, env=env, stdout=log,
                                 stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL,
                                 start_new_session=True)
@@ -135,6 +140,7 @@ def start_mysql(credentials):
 
     with wait_for(ready) as connection:
         with connection.cursor() as cur:
+            # Prepare credentials and separate the application writer from the Grafana reader.
             cur.execute("ALTER USER 'root'@'localhost' IDENTIFIED BY %s", (credentials["root"],))
             cur.execute("CREATE DATABASE IF NOT EXISTS activitylink")
             for user, key in (("activitylink", "app"), ("activitylink_grafana", "grafana_db")):
@@ -144,9 +150,11 @@ def start_mysql(credentials):
 
 
 def start_backend(credentials, adaptive, run_id):
+    # Pass runtime settings to the backend without embedding credentials in its source.
     env = dict(os.environ, PYTHONPATH=os.pathsep.join((str(PYTHON_DEPS), str(ROOT))),
                DB_HOST="127.0.0.1", DB_PORT="13306", DB_PASSWORD=credentials["app"],
                MQTT_HOST="::1", ADAPTIVE=str(adaptive), RUN_ID=run_id, PYTHONUNBUFFERED="1")
+    # Use the interpreter of the active virtual environment for the child process.
     launch("cloud", [sys.executable, "-m", "backend.app"], env)
 
 
@@ -158,6 +166,7 @@ def start_grafana(credentials):
     prov = STATE / "provisioning"
     for kind in ("datasources", "dashboards"):
         (prov / kind).mkdir(parents=True, exist_ok=True)
+    # Grafana reads SQL through its own account; it does not control the nodes.
     source = {"apiVersion": 1, "datasources": [{"name": "ActivityLink MySQL", "uid": "activitylink-mysql",
               "type": "mysql", "url": "127.0.0.1:13306", "user": "activitylink_grafana",
               "jsonData": {"database": "activitylink", "maxOpenConns": 5, "timezone": "+00:00"},
@@ -195,6 +204,7 @@ def main():
         start_broker()
         stop_service("broker")
         start_broker()
+    # Both actions ensure MQTT and SQL are available; only start also launches Grafana.
     elif args.action in ("start", "start-backend"):
         start_broker()
         start_mysql(credentials)

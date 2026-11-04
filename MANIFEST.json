@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T09:29:37.331873+01:00",
+  "generated_at": "2026-11-04T09:34:14.608376+01:00",
   "report_pages": 8,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -36,13 +36,13 @@
     },
     {
       "path": "backend/app.py",
-      "bytes": 7170,
-      "sha256": "5f9c5ee636c988a4908c44559ae3969554f93d498b15d94923f8bbfa8d4b6240"
+      "bytes": 8400,
+      "sha256": "eca5ac3a35c61ddaae1472776a2a21ae699b6e8fad442cf3d3e4a996cb58d724"
     },
     {
       "path": "backend/core.py",
-      "bytes": 2177,
-      "sha256": "3ba9673e2b5b4a58d1244e6fb594e5cd87847677345bab61ec3fe3a4b64b41f8"
+      "bytes": 2875,
+      "sha256": "99d4cd1fc7605443b36f0113a73a878bba4439f92f84e3761db0f9a33688e812"
     },
     {
       "path": "config/devices.json",
@@ -86,13 +86,13 @@
     },
     {
       "path": "firmware/node/Makefile",
-      "bytes": 252,
-      "sha256": "629cc16170dfc58009accb503f4bb356f7ec212d51062d992a7bdf7425a42870"
+      "bytes": 304,
+      "sha256": "8c5a4c0baaa711cdd6aab9145460921923c28c5c0ee86e464f46f111a0c1ba21"
     },
     {
       "path": "firmware/node/activitylink.c",
-      "bytes": 4323,
-      "sha256": "62ba01fa3427388478ffd36d67310d7a1e728dc0156f9e48cca87d2806b96974"
+      "bytes": 5293,
+      "sha256": "7b13ed0cbb098e7d9b6606d37ab1823909b04a0459e128a24a887a7b20db2656"
     },
     {
       "path": "firmware/node/model.h",
@@ -101,8 +101,8 @@
     },
     {
       "path": "firmware/node/project-conf.h",
-      "bytes": 162,
-      "sha256": "ec74fd102014e1bf6cd0643cbef1be1a03810fbe1c5b3c089653d5e54399b757"
+      "bytes": 238,
+      "sha256": "b87863220e4cd4782ddca53329cd38b153824af8115ffc3d3cb612ebb9983085"
     },
     {
       "path": "firmware/node/samples.h",
@@ -136,13 +136,13 @@
     },
     {
       "path": "ml/evaluate_historical.py",
-      "bytes": 2611,
-      "sha256": "16c5d7f43673a79b81908937c775cabb40df644d37d6622db7b21700462a06c3"
+      "bytes": 2854,
+      "sha256": "f343bed006e1943982b5bba3287750070eb7b4d9e3d96b6b0b9b4b9046ab9769"
     },
     {
       "path": "ml/retrain.py",
-      "bytes": 6391,
-      "sha256": "5b3f3c02430ce6b79fb2fc4c7f7976dd8632ba139a66fe29d62f3f2ae6044462"
+      "bytes": 7018,
+      "sha256": "061d8826993f0f25b55b17bfdef64c9595daf7925b2ffa8d9723bc79ff346f1a"
     },
     {
       "path": "ml/tests/test_training_isolation.py",
@@ -381,18 +381,18 @@
     },
     {
       "path": "scripts/build_firmware.sh",
-      "bytes": 1713,
-      "sha256": "6856f1f3852eabd494b73da34926db761c4e6f905f7becf7ea90f6f41b693dbd"
+      "bytes": 1969,
+      "sha256": "a05bc189f08a95b1022a70cb2a1f4eac80226adb82544df6b8c4b3163dc1e901"
     },
     {
       "path": "scripts/control.py",
-      "bytes": 491,
-      "sha256": "eb16b2c7a152763d7a9243a21fb3ab4ac7b9b58e90f96a370cd49ea2ac04b83a"
+      "bytes": 744,
+      "sha256": "116266de76a9901a56657f77e7a04294f93e9a6c6b334e2ccd7205467a16ad7f"
     },
     {
       "path": "scripts/execute_notebook.py",
-      "bytes": 1438,
-      "sha256": "feb34f4cce483cad77369d6811ce634733733b41feeb55ef846c59bc101b1bc2"
+      "bytes": 1583,
+      "sha256": "305f5c4c9585b874f42fa6b131c913a7a4c048890831081c6531382c279406cc"
     },
     {
       "path": "scripts/hardware_mqtt_check.py",
@@ -401,18 +401,18 @@
     },
     {
       "path": "scripts/hardware_stress.py",
-      "bytes": 8064,
-      "sha256": "d9eeb053317f32cd53b1bcfebaf8392d7103b9e3ecf5cc5e89c21edb7ae22c7a"
+      "bytes": 8608,
+      "sha256": "7aad27c21434138d64bdf675a3caae8e50b9472545de408341296f02022ba7e2"
     },
     {
       "path": "scripts/native_stack.py",
-      "bytes": 8945,
-      "sha256": "70cf644eb0537a5a1d0acfa199c31f3281f5eb7d0f862b65eb53e5aa92bfeb6c"
+      "bytes": 9804,
+      "sha256": "fab5e95d8ba77229d497302ccac05c1491715c1cf42a93aaddbda596bc29af23"
     },
     {
       "path": "scripts/native_stack_check.py",
-      "bytes": 5953,
-      "sha256": "91d0c4e414bf9529372957b8347d56a90b62979b32ddca27763d3c661cdeb118"
+      "bytes": 6214,
+      "sha256": "e5aea60f18128fa1ff572b21fe1421c99bd463f7b6734428fab4066588699743"
     },
     {
       "path": "scripts/physical_failure_check.py",
@@ -421,13 +421,13 @@
     },
     {
       "path": "scripts/ports.py",
-      "bytes": 533,
-      "sha256": "6e16ef9b337d03d1805d76287ecca41d09e62ccdfd3a8dacbdfd3283102a9012"
+      "bytes": 806,
+      "sha256": "fda0cac7b4c45d6042a08b4050dbc1748aa0befbf8e8e8df70619f9afe2876a7"
     },
     {
       "path": "scripts/service_recovery_check.py",
-      "bytes": 4438,
-      "sha256": "82c40e20a947f0147d00b64adda3fbc4caa577ef6d51725d745c3d4ab125f32d"
+      "bytes": 4514,
+      "sha256": "d0d6c0c9dca556fb69dc47e995d09c9e89e87775ab06fa5265dc7c0ee8796ce6"
     },
     {
       "path": "scripts/setup_contiki.sh",
@@ -446,8 +446,8 @@
     },
     {
       "path": "scripts/verify_model.py",
-      "bytes": 2097,
-      "sha256": "9f13992949d87639c7e6d0a08dc24d1c0d7369ec0f18c0a710cc0710954a1036"
+      "bytes": 2334,
+      "sha256": "86f1736188bc6ce01492380b9b68f1f3569f2f16bbc5ed052f2e0abc8e79f677"
     },
     {
       "path": "tests/backend_sql_contract.py",
@@ -491,5 +491,5 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "38ef7d678597bcd8d5c6e4b90d4f15784459f186c3b2e9c97429345cf3187e66"
+  "source_archive_sha256": "ea5e383f4a2b8adce826d14600c96927a4ced3fc159a9a88410d7064611b4865"
 }

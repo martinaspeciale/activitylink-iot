@@ -17,10 +17,12 @@ args.out.mkdir(parents=True, exist_ok=False)
 notebook_path = ROOT / "ml/ActivityLink_SVM561_Reproduce.ipynb"
 shutil.copy2(notebook_path, args.out / "notebook-before.ipynb")
 notebook = nbformat.read(notebook_path, as_version=4)
+# Discard old outputs so saved results come from this execution.
 for cell in notebook.cells:
     if cell.cell_type == "code":
         cell.execution_count = None
         cell.outputs = []
+# Keep generated candidates and measurements in the requested output directory.
 os.environ["ACTIVITYLINK_RESULTS_DIR"] = str(args.out.resolve())
 os.environ["ACTIVITYLINK_DATASET"] = str(args.dataset.resolve())
 os.environ["JUPYTER_PATH"] = str(ROOT / "tools/ml-venv/share/jupyter")
