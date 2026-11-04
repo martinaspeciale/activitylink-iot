@@ -16,7 +16,7 @@ import time
 
 import paho.mqtt.client as mqtt
 
-from native_stack import ROOT, STATE, PYTHON_DEPS, config, db, free_port, start_cloud, stop_cloud, wait_for
+from native_stack import ROOT, STATE, PYTHON_DEPS, config, db, free_port, start_backend, stop_backend, wait_for
 
 
 def scenario(out, credentials, adaptive, repeat):
@@ -134,7 +134,7 @@ def main():
     conf = args.out / "relay-broker.conf"
     conf.write_text("listener 18884 127.0.0.1\nallow_anonymous true\npersistence false\n")
     results = []
-    stop_cloud()
+    stop_backend()
     broker = None
     try:
         with (args.out / "relay-broker.log").open("x") as log:
@@ -154,7 +154,7 @@ def main():
         if broker:
             broker.terminate()
             broker.wait(timeout=10)
-        start_cloud(credentials, 1, "hardware-native-post-stress")
+        start_backend(credentials, 1, "hardware-native-post-stress")
     summary = {"scope": "real MQTT/SQL/actuator, host ingress loss, 3 paired trials by default; no physical power failure",
                "runs": results, "passed": all(r["passed"] for r in results)}
     (args.out / "summary.json").write_text(json.dumps(summary, indent=2))

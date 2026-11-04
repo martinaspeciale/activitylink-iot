@@ -143,14 +143,14 @@ def start_mysql(credentials):
             cur.execute("GRANT SELECT ON activitylink.* TO 'activitylink_grafana'@'127.0.0.1'")
 
 
-def start_cloud(credentials, adaptive, run_id):
+def start_backend(credentials, adaptive, run_id):
     env = dict(os.environ, PYTHONPATH=os.pathsep.join((str(PYTHON_DEPS), str(ROOT))),
                DB_HOST="127.0.0.1", DB_PORT="13306", DB_PASSWORD=credentials["app"],
                MQTT_HOST="::1", ADAPTIVE=str(adaptive), RUN_ID=run_id, PYTHONUNBUFFERED="1")
     launch("cloud", [sys.executable, "-m", "backend.app"], env)
 
 
-def stop_cloud():
+def stop_backend():
     stop_service("cloud")
 
 
@@ -181,13 +181,13 @@ def start_grafana(credentials):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action", choices=("start", "status", "stop-cloud", "start-cloud", "restart-mysql", "restart-broker"))
+    parser.add_argument("action", choices=("start", "status", "stop-backend", "start-backend", "restart-mysql", "restart-broker"))
     parser.add_argument("--adaptive", type=int, choices=(0, 1), default=1)
     parser.add_argument("--run-id", default="hardware-native")
     args = parser.parse_args()
     credentials = config()
-    if args.action == "stop-cloud":
-        stop_cloud()
+    if args.action == "stop-backend":
+        stop_backend()
     elif args.action == "restart-mysql":
         stop_service("mysql")
         start_mysql(credentials)
@@ -195,10 +195,10 @@ def main():
         start_broker()
         stop_service("broker")
         start_broker()
-    elif args.action in ("start", "start-cloud"):
+    elif args.action in ("start", "start-backend"):
         start_broker()
         start_mysql(credentials)
-        start_cloud(credentials, args.adaptive, args.run_id)
+        start_backend(credentials, args.adaptive, args.run_id)
         if args.action == "start":
             start_grafana(credentials)
     print(json.dumps({name: pid(name) for name in SIGNATURES}))

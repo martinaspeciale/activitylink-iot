@@ -15,7 +15,7 @@ non eliminarla per un normale riavvio.
 Il backend riconnette MQTT e SQL. Durante l'assenza SQL conserva timestamp e coda
 RAM limitata a1000messaggi; il watchdog del feedback può segnalare rosso.
 Il provisioning Grafana imposta la sessione SQL aUTC per allineare i grafici.
-Per cambiare run_id di un controller già attivo usare stop-cloud/start-cloud.
+Per cambiare run_id di un controller già attivo usare stop-backend/start-backend.
 
 Gli URL ufficiali, i checksum e le versioni dei servizi sono fissati in
 `scripts/setup_native_stack.py`. La procedura completa è in [REPRODUCE.md](REPRODUCE.md).

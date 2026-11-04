@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T08:16:58.385012+01:00",
+  "generated_at": "2026-11-04T08:59:53.573287+01:00",
   "report_pages": 8,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -21,8 +21,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5720,
-      "sha256": "95b3f1688584f64e4fd49d463022453bf728eee52d100c3efc074b30f745fb70"
+      "bytes": 5728,
+      "sha256": "0b417abedd109da417162b34707267d2a9d3574e070c99c64db1e16b7b2451ac"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -76,13 +76,13 @@
     },
     {
       "path": "docs/NATIVE_MAC_STACK.md",
-      "bytes": 1053,
-      "sha256": "0c49e71dcfc0b82c7fb0fa66338132fdccbd0b71076faf660cb068262f7f1200"
+      "bytes": 1057,
+      "sha256": "7e1b0101a040d1e2d1b75b14c8b1a058b33a5991454073e619d2da0c06b867ae"
     },
     {
       "path": "docs/REPRODUCE.md",
-      "bytes": 13483,
-      "sha256": "e6fe7b70beb46964bacaf38d6fdefb1c797e08d415ca4dc57f5fc597551b8ed0"
+      "bytes": 13491,
+      "sha256": "35fe836cba76bb734e76d00d716fff7e2f6b1bceefd1e95cd1fcad5fef95022b"
     },
     {
       "path": "firmware/node/Makefile",
@@ -401,13 +401,13 @@
     },
     {
       "path": "scripts/hardware_stress.py",
-      "bytes": 8056,
-      "sha256": "baf572c7e5fe737285390862ca84bf79942f6d35bd84a891e698d37847f59590"
+      "bytes": 8064,
+      "sha256": "d9eeb053317f32cd53b1bcfebaf8392d7103b9e3ecf5cc5e89c21edb7ae22c7a"
     },
     {
       "path": "scripts/native_stack.py",
-      "bytes": 8929,
-      "sha256": "244d9dbffc443bff969af7feeaa2e93991c04aa8327aec633fe6bc17c1683103"
+      "bytes": 8945,
+      "sha256": "70cf644eb0537a5a1d0acfa199c31f3281f5eb7d0f862b65eb53e5aa92bfeb6c"
     },
     {
       "path": "scripts/native_stack_check.py",
@@ -491,5 +491,5 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "72f306e1e8d5ef0a92881178e09f5f52bb221bfbf0bbf483757141179e0e2ba6"
+  "source_archive_sha256": "b5eedcdb31751893823e622f626bd3243adf40d3b032e29202521ad9b1371b19"
 }
