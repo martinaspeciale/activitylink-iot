@@ -2,13 +2,10 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
-\usepackage[margin=19mm,headheight=14pt,headsep=7mm,footskip=10mm]{geometry}
+\usepackage[margin=23mm,footskip=10mm]{geometry}
 \usepackage{graphicx,xcolor,booktabs,tabularx,array,amsmath,fancyvrb}
 \usepackage[pdfencoding=auto,psdextra]{hyperref}
-\definecolor{ink}{HTML}{183D52}
-\definecolor{accent}{HTML}{216B8B}
-\definecolor{soft}{HTML}{EFF5F7}
-\hypersetup{colorlinks=true,urlcolor=accent,linkcolor=accent,
+\hypersetup{hidelinks,
   pdftitle={ActivityLink: On-device Activity Recognition and Data Availability Feedback},
   pdfsubject={Individual Internet of Things project, examination 17 November 2026},
   pdfauthor={},pdfkeywords={IoT, MQTT, Contiki-NG, nRF52840, human activity recognition}}
@@ -18,33 +15,29 @@
 \setlength{\emergencystretch}{2em}
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.15}
-\setcounter{secnumdepth}{0}
+\setcounter{secnumdepth}{1}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \newcommand{\file}[1]{\nolinkurl{#1}}
-\newcommand{\note}[1]{\par\smallskip\noindent\colorbox{soft}{\parbox{\dimexpr\linewidth-2\fboxsep}{\small #1}}\par\smallskip}
-\newcommand{\reportsection}[1]{\section*{\color{ink}#1}}
-\newcommand{\sub}[1]{\subsection*{\normalsize\color{ink}#1}}
-\DefineVerbatimEnvironment{Code}{Verbatim}{fontsize=\footnotesize,frame=single,rulecolor=\color{accent},framesep=5pt}
-\makeatletter
-\def\ps@activitylink{%
-  \def\@oddhead{\small\color{accent}ACTIVITYLINK\hfill INTERNET OF THINGS / INDIVIDUAL PROJECT}%
-  \let\@evenhead\@oddhead
-  \def\@oddfoot{\small\color{ink}Technical report --- 4 November 2026\hfill\thepage\ / 8}%
-  \let\@evenfoot\@oddfoot}
-\makeatother
-\pagestyle{activitylink}
+\newcommand{\note}[1]{\par\smallskip{\small\itshape #1}\par\smallskip}
+\newcommand{\reportsection}[1]{\section{#1}}
+\newcommand{\sub}[1]{\subsection*{\normalsize #1}}
+\DefineVerbatimEnvironment{Code}{Verbatim}{fontsize=\footnotesize,frame=none,xleftmargin=6pt}
+\pagestyle{plain}
 \begin{document}
 
-{\Huge\bfseries\color{ink}ActivityLink}\par
-{\Large On-device activity recognition and\\data availability feedback}\par
-Smart Health demonstration \hfill Examination: 17 November 2026\par
+\begin{center}
+{\large Internet of Things --- Individual Project}\\[8pt]
+{\LARGE\bfseries ActivityLink}\\[5pt]
+{\large On-device activity recognition and\\data availability feedback}\\[8pt]
+Examination: 17 November 2026
+\end{center}
 \medskip
 \begin{Form}
-Name and surname: \TextField[name=nome\string_cognome,width=95mm,height=5mm,borderwidth=0.5,bordercolor={0.4 0.6 0.7},charsize=10pt]{}\\[5pt]
-Student ID: \TextField[name=matricola,width=48mm,height=5mm,borderwidth=0.5,bordercolor={0.4 0.6 0.7},charsize=10pt]{}
+Name and surname: \TextField[name=nome\string_cognome,width=95mm,height=5mm,borderwidth=0.5,bordercolor={0 0 0},charsize=10pt]{}\\[5pt]
+Student ID: \TextField[name=matricola,width=48mm,height=5mm,borderwidth=0.5,bordercolor={0 0 0},charsize=10pt]{}
 \end{Form}
 
-\sub{Purpose and use case}
+\reportsection{Introduction}
 ActivityLink demonstrates a small IoT system that classifies human activity on a microcontroller and displays both the activity category and the availability of recent data on a separate device. Movement is shown in green, posture in blue, and unavailable data in red. The Smart Health use case is a demonstration of daily activity monitoring; it does not provide clinical diagnoses or validated medical alerts.
 
 Three real nRF52840 dongles implement the HAR node, the feedback actuator and the IPv6 border router. Sensing is simulated using precomputed UCI HAR feature vectors stored in flash. SVM inference and the HAR node's local LED decision run on the microcontroller. Moving the dongle does not change these stored inputs.

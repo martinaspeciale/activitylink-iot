@@ -1,6 +1,8 @@
 # English LaTeX report
 
-`ActivityLink_Report.tex` is the canonical report source. The PDF is generated
+`ActivityLink_Report.tex` is the canonical report source. The layout uses a classic
+academic article style with a centered title, black numbered headings and plain
+page numbers. The PDF is generated
 with pdfLaTeX, not HTML/browser printing. It contains eight A4 pages and two
 fillable author fields on page 1. The complete PDF is delivered separately
 from the source ZIP.

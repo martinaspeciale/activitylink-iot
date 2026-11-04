@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T16:15:51.537800+01:00",
+  "generated_at": "2026-11-04T17:33:40.364001+01:00",
   "report_pages": 8,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 367125,
-      "sha256": "d837c5873034d96312d208dfe08d1c13ef8f52553f8692caf3112b380d7c05c2"
+      "bytes": 390433,
+      "sha256": "7b64677f97b0d2e5f590819969d0c3ebdaef59505d04b531db63b149090f68bf"
     },
     {
       "path": "README.md",
@@ -91,13 +91,13 @@
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 23485,
-      "sha256": "75a678ff33205fae3709d0e7e13c6ce27636f76d0ab848669a67200a42de8211"
+      "bytes": 22954,
+      "sha256": "5b2241f9b755d276b34b9eecb0d7b5977d90fcf02dc88ac00e9dd1ddc4e1b1ae"
     },
     {
       "path": "docs/report/README.md",
-      "bytes": 1373,
-      "sha256": "979a668568c4c09cffd114c217c4aa144352287d60e98d3beaafeff7bb68ca1f"
+      "bytes": 1493,
+      "sha256": "7348cc5e502895d226697ca711c68173ab2fdfe686a0859fc99245feecde2d75"
     },
     {
       "path": "docs/report/assets-en/architecture.pdf",
@@ -566,7 +566,8 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "8f178ce509865eec7d95060a1f1cd5b93dbe7e703b4e6047bed8640a7d96bdf3",
+  "source_archive_sha256": "2fbb59896486f9f6e4020c766a391aec810b4e0ca9b98d744c212a0edc564c26",
   "report_language": "English",
-  "report_source_format": "LaTeX"
+  "report_source_format": "LaTeX",
+  "report_layout": "classic academic article"
 }
