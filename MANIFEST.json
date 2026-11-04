@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T18:54:33.917561+01:00",
+  "generated_at": "2026-11-04T19:05:57.655923+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 525845,
-      "sha256": "746916da6cac65bbcd03955090695d92391ca1efb0facaa5e79bbbb1699a8fa2"
+      "bytes": 893392,
+      "sha256": "3209756732ac6a069093a4f68a4475dbe203f4e476525a7370e1e737bdfe58ed"
     },
     {
       "path": "README.md",
@@ -26,8 +26,8 @@
     },
     {
       "path": "THIRD_PARTY.md",
-      "bytes": 1654,
-      "sha256": "24434c166c2f5b48480b54df4472f2bce73e8a9be3ab43381f870ceabf4ff71b"
+      "bytes": 2044,
+      "sha256": "2aedcd1644afc26e663e689a97fc86652eae91ca5dd5346a3d77920a15428e14"
     },
     {
       "path": "backend/__init__.py",
@@ -91,13 +91,13 @@
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 22165,
-      "sha256": "b6de192a6c1b71b21c276db347968bdd10c6529f71c357e2bf159d5d0a6e3446"
+      "bytes": 23638,
+      "sha256": "16e80c74a0d101cff9296e7e203494c4b9af607d93895631e58c83ed8b7cebbd"
     },
     {
       "path": "docs/report/README.md",
-      "bytes": 3033,
-      "sha256": "3011ffb2adef871e79103cb1ba6e03ce45cdf78cbb7efb7fb8751186e4b86d50"
+      "bytes": 3675,
+      "sha256": "7158ea210c4b6169f6805dcca91079c1e36b012b0536dbd3f21f56f6e5479283"
     },
     {
       "path": "docs/report/assets-en/architecture.pdf",
@@ -128,6 +128,21 @@
       "path": "docs/report/assets-en/stress-comparison.pdf",
       "bytes": 19138,
       "sha256": "596ad54cd12209969d49ff75371a76bdc337ca139277ddac473bcaf89612515b"
+    },
+    {
+      "path": "docs/report/assets-en/unipi-logo.SOURCE.md",
+      "bytes": 798,
+      "sha256": "814cc79b6d51f316f01119e53c541456c5be499d473b55f0717be347882659d3"
+    },
+    {
+      "path": "docs/report/assets-en/unipi-logo.pdf",
+      "bytes": 369183,
+      "sha256": "00dce48b9b1dded62b8e5ca88d5733c1826f788983c36a5ca2218c0dc9e9baa1"
+    },
+    {
+      "path": "docs/report/assets-en/unipi-logo.svg",
+      "bytes": 53144,
+      "sha256": "6c9dd6e8ea5ce640696cc67168d5274ccad20df0e7092c113560c2b923025a77"
     },
     {
       "path": "docs/report/capture_grafana.mjs",
@@ -586,8 +601,8 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "2829c731a5d049d98950acea00b1d84874474ec33b4e492231f1b47572a748d1",
+  "source_archive_sha256": "64e4b172b69f4a7e519727440a10e574d5131b883a49e3b148cb47af16a90597",
   "report_language": "English",
   "report_source_format": "LaTeX",
-  "report_layout": "classic academic article with dedicated title page and table of contents"
+  "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"
 }

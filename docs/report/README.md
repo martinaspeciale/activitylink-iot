@@ -58,3 +58,15 @@ node docs/report/capture_grafana.mjs results/2026-11-02-final/stress/pair-1-base
 The capture tool uses an isolated headless browser and does not alter the
 dashboard, backend or archived measurements. Dongles are unnecessary when
 viewing these preserved runs; new hardware measurements require them.
+
+## Cover and reading order
+
+The cover includes the official University of Pisa horizontal blue logo, with
+original artwork and source details in `assets-en/unipi-logo.SOURCE.md`. The
+provided vector PDF preserves the downloaded SVG proportions and colors.
+
+The body moves from the use case and an operating cycle to devices, machine
+learning, MQTT/JSON choices and the two SQL tables. Experimental design and
+results follow, ending with robustness, limitations and conclusions. Complete
+startup commands remain in the reproduction guides rather than being duplicated
+in the report. The report remains ten pages including cover and contents.
