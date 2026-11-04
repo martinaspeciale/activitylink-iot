@@ -41,26 +41,6 @@ for axis in axes:
 fig.savefig(OUT / "stress-comparison.pdf")
 plt.close(fig)
 
-fig, axes = plt.subplots(2, 1, figsize=(9, 4.1), sharex=True, layout="constrained")
-for axis, name, title in zip(axes, ["pair-1-adaptive", "pair-1-baseline"],
-                            ["Adaptive", "Baseline"]):
-    folder = EVIDENCE / name
-    run = json.loads((folder / "summary.json").read_text())
-    rows = json.loads((folder / "metrics.json").read_text())
-    seconds = [row["time"] - run["start"] for row in rows]
-    axis.axvspan(10, 25, color="#e8c6a4", alpha=.5, label="HAR telemetry withheld")
-    axis.step(seconds, [row["command_led"] for row in rows], where="post",
-              color="#216b8b", label="SQL-based command", linewidth=1.7)
-    axis.plot(seconds, [row["reported_led"] for row in rows], ".",
-              color="#a64636", label="Reported feedback", markersize=4)
-    axis.set(title=title, yticks=[0, 1, 2, 3],
-             yticklabels=["Off", "Green", "Blue", "Red"], ylim=(-.15, 3.3))
-    axis.grid(axis="y", alpha=.18)
-axes[0].legend(loc="lower right", ncols=3, fontsize=8)
-axes[-1].set(xlabel="Time since run start (s)", xlim=(0, 40))
-fig.savefig(OUT / "stress-timeline.pdf")
-plt.close(fig)
-
 fig, axis = plt.subplots(figsize=(10, 2.9), layout="constrained")
 axis.set(xlim=(-0.3, 10), ylim=(-0.15, 3.05))
 axis.axis("off")

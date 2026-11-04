@@ -174,7 +174,7 @@ Fresh movement/posture & Green/blue & Green/blue\\
 \sub{Recovery and separate safeguards}
 MQTT callbacks enqueue arrival timestamps and payloads in a bounded RAM queue of 1,000 messages. The main loop validates and stores them. On SQL connection errors it retains the pending item and retries, preserving arrival time. Without SQL, ordinary command generation stops; the independent feedback watchdog can turn red. Queue overflow increments \texttt{queue\_drops}. The queue is not persistent across process restarts.
 
-Metrics distinguish selected command from recent actuator-reported state; \texttt{reported\_led=-1} means missing/stale feedback, not a physical color. The pseudo-random boot ID is not cryptographic identity. The laboratory broker has no TLS/authentication; MySQL and Grafana bind to localhost. Complete replay protection and loss-free persistence under every failure are outside the implemented scope.
+Grafana reads SQL in UTC; counters are cumulative per backend process. Metrics distinguish selected command from recent actuator-reported state; \texttt{reported\_led=-1} means missing/stale feedback, not a physical color. The pseudo-random boot ID is not cryptographic identity. The laboratory broker has no TLS/authentication; MySQL and Grafana bind to localhost. Complete replay protection and loss-free persistence under every failure are outside the implemented scope.
 
 \clearpage
 \reportsection{Experimental design}
@@ -213,19 +213,15 @@ latest regression: \file{results/2026-11-04-hardware-regression/}.}
 \reportsection{Adaptive/baseline results}
 Across the six runs, adaptive selects red for \textbf{28/28 stale controller samples}; baseline selects red for \textbf{0/27}. In the stabilized actuator window, reported red occurs in \textbf{17/17} adaptive reports versus \textbf{0/17} baseline reports. All six runs recover after forwarding resumes. Final validation and queue-overflow counters remain zero in these trials.
 
-\begin{center}
-\includegraphics[width=0.98\linewidth]{stress-comparison.pdf}
-\end{center}
-{\small\textbf{Figure 1.} Red-command response and detection time. Each dot is one run, not a confidence interval. The dashed line marks the nominal six-second stale threshold.}
+\noindent\makebox[\linewidth][c]{\includegraphics[width=0.90\linewidth,height=37mm,keepaspectratio]{stress-comparison.pdf}}\par
+{\small\textbf{Figure 1.} Aggregate response and detection time. Each dot is one run; the dashed line marks the nominal six-second stale threshold.}
 
-\medskip
-\begin{center}
-\includegraphics[width=0.98\linewidth]{stress-timeline.pdf}
-\end{center}
-{\small\textbf{Figure 2.} First pair: SQL-based commands and actuator-reported LED codes. Shading marks HAR telemetry suppression from +10 to +25 s. Reported state can lag the command because communication and reporting are asynchronous.}
-
-\medskip
-The adaptation improves the meaning of the display: an obsolete activity is replaced by an unavailable-data indication. It does not make failure detection faster than baseline; both modes compute the same stale condition. Grafana visualizes stale flags, command/reported LED codes, accepted/duplicate counts and invalid/out-of-order/queue-drop counts. Its SQL session uses UTC to keep timestamps aligned. Counters are cumulative per backend process; they are not per-second delivery rates.
+\smallskip
+\noindent\textbf{Adaptive: missing telemetry triggers red feedback}\par
+\noindent\includegraphics[width=\linewidth]{grafana-adaptive.png}\par
+\noindent\textbf{Baseline: the last activity remains displayed}\par
+\noindent\includegraphics[width=\linewidth]{grafana-baseline.png}\par
+{\small\textbf{Figure 2.} Real Grafana views captured on 4 November from the 2 November hardware runs. Left: sensor stale rises to 1; actuator stale stays 0. Right: adaptive selects red (3), while baseline retains blue (2); reports can lag commands. Both recover. Codes: 0 off, 1 green, 2 blue, 3 red. Activity sequences differ. Both modes use the same detector; adaptation changes the response. Images and capture metadata are supplied; these are archived measurements, not new experiments.}
 
 \clearpage
 \reportsection{Robustness and latest regression}

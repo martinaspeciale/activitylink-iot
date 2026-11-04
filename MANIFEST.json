@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T17:57:15.278630+01:00",
+  "generated_at": "2026-11-04T18:06:45.075743+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 395155,
-      "sha256": "37146f8195276fe501934ab71224205ffa4505b8d64a40549bc39c12f1a0d585"
+      "bytes": 548023,
+      "sha256": "4445c725f5959c741e382d40cc344832aac60a801ab2c52fbcd8f14bd70a041f"
     },
     {
       "path": "README.md",
@@ -91,13 +91,13 @@
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 23333,
-      "sha256": "b5827160d039929199622c92de9823913c0f63f2b4b6fdd503adfc6dc63764ff"
+      "bytes": 23361,
+      "sha256": "a261873337cc417821a78e9000953393792e452ca9f080b92e8062e60a527bfc"
     },
     {
       "path": "docs/report/README.md",
-      "bytes": 1650,
-      "sha256": "607570a1badeec6f3dc4f368e79520fc9f2c32f9012dc59fab1feb5ee9252ae6"
+      "bytes": 3079,
+      "sha256": "17bf7e7c2631a13479c74ac9f249809b84c7fc6c93b6665c8ae715764c5b9f3c"
     },
     {
       "path": "docs/report/assets-en/architecture.pdf",
@@ -105,19 +105,39 @@
       "sha256": "1ff91e70492a648ca0ffa7ed2be86728a048205a7a749013212622de5bb86418"
     },
     {
+      "path": "docs/report/assets-en/grafana-adaptive.png",
+      "bytes": 89055,
+      "sha256": "cccfdeaf0a768cbab4cc0e3187b14142f29709e2124d3ac834cb91c0b4576cfd"
+    },
+    {
+      "path": "docs/report/assets-en/grafana-adaptive.png.json",
+      "bytes": 625,
+      "sha256": "8f6ea583ffd962acce2b2e5c42de2959c20929fea065a2f7c0652a409b42834e"
+    },
+    {
+      "path": "docs/report/assets-en/grafana-baseline.png",
+      "bytes": 81871,
+      "sha256": "06caf58a1a98bb3bc691068e2277e4a26a10e6797605842dda5352cfef3b90c3"
+    },
+    {
+      "path": "docs/report/assets-en/grafana-baseline.png.json",
+      "bytes": 626,
+      "sha256": "17f9911e914f44c7a10aceda55134ee7bdca0c92716402af7937bb68d8557955"
+    },
+    {
       "path": "docs/report/assets-en/stress-comparison.pdf",
       "bytes": 19138,
       "sha256": "596ad54cd12209969d49ff75371a76bdc337ca139277ddac473bcaf89612515b"
     },
     {
-      "path": "docs/report/assets-en/stress-timeline.pdf",
-      "bytes": 20163,
-      "sha256": "9148a1e01e9dc8d8df63739696575cf3b57adc57c1b3b53f1f5a71998f3b6a4c"
+      "path": "docs/report/capture_grafana.mjs",
+      "bytes": 5368,
+      "sha256": "8562124845075bd1268f383d20fa9b6e3ccbd2b84ad3e2bda3a522d15067d22f"
     },
     {
       "path": "docs/report/make_figures.py",
-      "bytes": 4705,
-      "sha256": "9dc4b0599a91e8c5108e7c3105b03ffb5ca771ffbc902c89af11f1645f75f876"
+      "bytes": 3579,
+      "sha256": "4b61ba011c3855133020afcaa8dbe052b6c80476c1dc00d5c129d2b682c486ba"
     },
     {
       "path": "firmware/node/Makefile",
@@ -566,7 +586,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "07efe063a1d35b70b055d07c92c928c40067f849407f9f113772de6e50e43a15",
+  "source_archive_sha256": "4c5c3e0e7c4adec205b8a7407172297062014b06c05f6a45f3e43fb5861a0987",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with dedicated title page and table of contents"
