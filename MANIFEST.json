@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T18:52:27.410436+01:00",
+  "generated_at": "2026-11-04T18:54:33.917561+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 526780,
-      "sha256": "b99820ca7fab1506d843adee9b8dff9aa40b78d9b7fd6d2cf19705c6186df855"
+      "bytes": 525845,
+      "sha256": "746916da6cac65bbcd03955090695d92391ca1efb0facaa5e79bbbb1699a8fa2"
     },
     {
       "path": "README.md",
@@ -91,8 +91,8 @@
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 23095,
-      "sha256": "b8c708c5608c5516bc147081f2e9f14a10ae7707c86a06fa47aef0785c94243b"
+      "bytes": 22165,
+      "sha256": "b6de192a6c1b71b21c276db347968bdd10c6529f71c357e2bf159d5d0a6e3446"
     },
     {
       "path": "docs/report/README.md",
@@ -586,7 +586,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "256a318d7377a94c9acee7b1e1ec05e34109e36b79930a049b668e8a3f941562",
+  "source_archive_sha256": "2829c731a5d049d98950acea00b1d84874474ec33b4e492231f1b47572a748d1",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with dedicated title page and table of contents"
