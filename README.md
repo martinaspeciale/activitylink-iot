@@ -123,3 +123,9 @@ Questa repository è stata creata il 3 novembre 2026 dallo stato completo del
 progetto. La cronologia è ricostruita per componenti con date convenzionali
 dal 20 ottobre al 3 novembre 2026. Le date dei commit non documentano quando
 le singole parti sono state effettivamente sviluppate o collaudate.
+
+## Relazione in inglese e LaTeX
+
+La relazione PDF è in inglese e deriva da [ActivityLink_Report.tex](docs/report/ActivityLink_Report.tex).
+Sorgente, figure e [istruzioni di compilazione](docs/report/README.md) sono inclusi nel progetto.
+Dalla root: `sh scripts/build_report.sh`. Il PDF compilato viene consegnato separatamente.

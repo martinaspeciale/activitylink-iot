@@ -286,3 +286,9 @@ Nei PDF controllati non è stata trovata una spiegazione dedicata dell'algoritmo
 SHA-256 o della struttura Intel HEX a livello di singolo record. Questi controlli
 approfondiscono e documentano la procedura di build e riproduzione; non vengono
 presentati come esercizi obbligatori aggiuntivi del laboratorio.
+
+## Relazione LaTeX
+
+Il PDF di otto pagine è in inglese. Il [sorgente LaTeX](report/ActivityLink_Report.tex)
+e le [istruzioni di compilazione](report/README.md) sono inclusi.
+Dalla root: `sh scripts/build_report.sh`. Il PDF resta separato dallo ZIP.

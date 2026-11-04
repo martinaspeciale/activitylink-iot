@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T15:48:54.135117+01:00",
+  "generated_at": "2026-11-04T16:15:51.537800+01:00",
   "report_pages": 8,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,13 +16,13 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 620151,
-      "sha256": "5635fe734248f8b8ba17457f3436dfaef5c1aa3eb76fd96bf7a3ddc8d1df5ad4"
+      "bytes": 367125,
+      "sha256": "d837c5873034d96312d208dfe08d1c13ef8f52553f8692caf3112b380d7c05c2"
     },
     {
       "path": "README.md",
-      "bytes": 5728,
-      "sha256": "0b417abedd109da417162b34707267d2a9d3574e070c99c64db1e16b7b2451ac"
+      "bytes": 6058,
+      "sha256": "da71bddb190e12b5a8e856ec987ef16951ed551ef6f0633fb510f03414df9191"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -86,8 +86,38 @@
     },
     {
       "path": "docs/REPRODUCE.md",
-      "bytes": 13698,
-      "sha256": "0b722d00eadeec8f3154d5ebaeedc13a97af2f89ce8a497a5acff67c31bede58"
+      "bytes": 13949,
+      "sha256": "e226d0f426ea8b42b667d8b2edc8fe590c6dbed4a6938b72c81321d7f89a4fe1"
+    },
+    {
+      "path": "docs/report/ActivityLink_Report.tex",
+      "bytes": 23485,
+      "sha256": "75a678ff33205fae3709d0e7e13c6ce27636f76d0ab848669a67200a42de8211"
+    },
+    {
+      "path": "docs/report/README.md",
+      "bytes": 1373,
+      "sha256": "979a668568c4c09cffd114c217c4aa144352287d60e98d3beaafeff7bb68ca1f"
+    },
+    {
+      "path": "docs/report/assets-en/architecture.pdf",
+      "bytes": 22136,
+      "sha256": "593008318c94a751e48f9d078671cce0af319adffd0abd95afcb6b8d164cf42d"
+    },
+    {
+      "path": "docs/report/assets-en/stress-comparison.pdf",
+      "bytes": 19138,
+      "sha256": "6436da499d7f31136be0c306c6deea76596fd468db869631bbfca8ba7bdda894"
+    },
+    {
+      "path": "docs/report/assets-en/stress-timeline.pdf",
+      "bytes": 20163,
+      "sha256": "fcb1a4e5cda6d04fac5656ec3e091644022df79751499882594467dd16c0d441"
+    },
+    {
+      "path": "docs/report/make_figures.py",
+      "bytes": 4657,
+      "sha256": "b45c819e438eeb18aab5164a320060ec3e07bceadf7854cbe80de15341dec313"
     },
     {
       "path": "firmware/node/Makefile",
@@ -183,6 +213,11 @@
       "path": "requirements-native.txt",
       "bytes": 34,
       "sha256": "745c2233399d277f2d1f50ae55cc7bbdc812daa698843fad9b4f7baf3b2ca222"
+    },
+    {
+      "path": "requirements-report.txt",
+      "bytes": 35,
+      "sha256": "cd483e2b403abc8c0d287c4f5d5b8468571953adf9731ac49330a22547c69799"
     },
     {
       "path": "requirements.txt",
@@ -415,6 +450,11 @@
       "sha256": "b7ca26d7e6099ea146d01dff5f43c67ab5db2f93417064a6a0e22ec036e5b0e1"
     },
     {
+      "path": "scripts/build_report.sh",
+      "bytes": 917,
+      "sha256": "d249eaead40cbe9487bb0eb5b8111614986c04bbe5bae593f11705b2061447bb"
+    },
+    {
       "path": "scripts/control.py",
       "bytes": 767,
       "sha256": "db707a553499c31ad256ffeb6337864a3b75fe489545f21f8cba67ad75ef099f"
@@ -526,5 +566,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "cb2efb0281cc707a73b80d5f243ce626f2d309812c9f9f1f9f54ee73b9207a74"
+  "source_archive_sha256": "8f178ce509865eec7d95060a1f1cd5b93dbe7e703b4e6047bed8640a7d96bdf3",
+  "report_language": "English",
+  "report_source_format": "LaTeX"
 }

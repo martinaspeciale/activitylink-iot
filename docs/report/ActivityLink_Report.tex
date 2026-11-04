@@ -1,0 +1,284 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=19mm,headheight=14pt,headsep=7mm,footskip=10mm]{geometry}
+\usepackage{graphicx,xcolor,booktabs,tabularx,array,amsmath,fancyvrb}
+\usepackage[pdfencoding=auto,psdextra]{hyperref}
+\definecolor{ink}{HTML}{183D52}
+\definecolor{accent}{HTML}{216B8B}
+\definecolor{soft}{HTML}{EFF5F7}
+\hypersetup{colorlinks=true,urlcolor=accent,linkcolor=accent,
+  pdftitle={ActivityLink: On-device Activity Recognition and Data Availability Feedback},
+  pdfsubject={Individual Internet of Things project, examination 17 November 2026},
+  pdfauthor={},pdfkeywords={IoT, MQTT, Contiki-NG, nRF52840, human activity recognition}}
+\graphicspath{{assets-en/}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{2em}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.15}
+\setcounter{secnumdepth}{0}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\file}[1]{\nolinkurl{#1}}
+\newcommand{\note}[1]{\par\smallskip\noindent\colorbox{soft}{\parbox{\dimexpr\linewidth-2\fboxsep}{\small #1}}\par\smallskip}
+\newcommand{\reportsection}[1]{\section*{\color{ink}#1}}
+\newcommand{\sub}[1]{\subsection*{\normalsize\color{ink}#1}}
+\DefineVerbatimEnvironment{Code}{Verbatim}{fontsize=\footnotesize,frame=single,rulecolor=\color{accent},framesep=5pt}
+\makeatletter
+\def\ps@activitylink{%
+  \def\@oddhead{\small\color{accent}ACTIVITYLINK\hfill INTERNET OF THINGS / INDIVIDUAL PROJECT}%
+  \let\@evenhead\@oddhead
+  \def\@oddfoot{\small\color{ink}Technical report --- 4 November 2026\hfill\thepage\ / 8}%
+  \let\@evenfoot\@oddfoot}
+\makeatother
+\pagestyle{activitylink}
+\begin{document}
+
+{\Huge\bfseries\color{ink}ActivityLink}\par
+{\Large On-device activity recognition and\\data availability feedback}\par
+Smart Health demonstration \hfill Examination: 17 November 2026\par
+\medskip
+\begin{Form}
+Name and surname: \TextField[name=nome\string_cognome,width=95mm,height=5mm,borderwidth=0.5,bordercolor={0.4 0.6 0.7},charsize=10pt]{}\\[5pt]
+Student ID: \TextField[name=matricola,width=48mm,height=5mm,borderwidth=0.5,bordercolor={0.4 0.6 0.7},charsize=10pt]{}
+\end{Form}
+
+\sub{Purpose and use case}
+ActivityLink demonstrates a small IoT system that classifies human activity on a microcontroller and displays both the activity category and the availability of recent data on a separate device. Movement is shown in green, posture in blue, and unavailable data in red. The Smart Health use case is a demonstration of daily activity monitoring; it does not provide clinical diagnoses or validated medical alerts.
+
+Three real nRF52840 dongles implement the HAR node, the feedback actuator and the IPv6 border router. Sensing is simulated using precomputed UCI HAR feature vectors stored in flash. SVM inference and the HAR node's local LED decision run on the microcontroller. Moving the dongle does not change these stored inputs.
+
+The Mac hosts Mosquitto, a Python backend, MySQL and Grafana. The backend persists validated telemetry and then reads SQL to choose the remote feedback command. This local deployment implements the role called the \emph{Cloud Application} in the project specification; no remote cloud service is used.
+
+\begin{center}
+\includegraphics[width=\linewidth]{architecture.pdf}
+\end{center}
+{\small Communication links connect the radio network, the USB/SLIP border router and the services on the Mac. Grafana has read-only access to application data.}
+
+\sub{Implemented and evaluated system}
+The individual project uses MQTT and a static device inventory. The evaluation includes three paired adaptive/baseline trials with selective sensor-message loss, a separate physical sensor disconnection, service recovery tests and a later hardware regression. Source code, executed notebook, firmware images and selected measurements accompany the submission.
+
+\note{The central adaptation concerns \textbf{data freshness}: the remote display changes from the last activity to red when the sensor's data become stale. It does not change or retrain the SVM.}
+
+\clearpage
+\reportsection{Devices, network and firmware}
+\sub{Three physical roles}
+\begin{tabularx}{\linewidth}{@{}l l Y@{}}
+\toprule
+Role & Observed USB port suffix & IPv6 address\\
+\midrule
+HAR / node1 & \texttt{E914240FC2B51} & \file{fd00::f6ce:3614:b5c2:f24}\\
+Feedback / node2 & \texttt{E313BC9DEA181} & \file{fd00::f6ce:3613:18ea:9dbc}\\
+Border router & \texttt{FA8130D5146E1} & \file{fd00::f6ce:3681:6e14:d530}\\
+\bottomrule
+\end{tabularx}
+
+The border router connects the IEEE 802.15.4/6LoWPAN network to the Mac through SLIP over USB. Contiki's \texttt{tunslip6} configures \texttt{utun10} with \file{fd00::1/64}. Mosquitto listens on port 1883, including IPv6. RPL determines routing; the application design does not require every node to remain a direct radio child of the border router. Port identities are observations, not permanent role discovery.
+
+\sub{Reproducible platform configuration}
+Contiki-NG v5.1 is pinned to commit \file{2b87baf3ebdde3c8e37ca791d2bc84bfd76c49a4}. The application nodes use \texttt{TARGET=nrf BOARD=nrf52840/dongle}; the router uses \texttt{TARGET=nrf52840 BOARD=dongle}, as in the course laboratory. These are different Contiki platform implementations for the same SoC. The SW1 pin correction from P1.16 to P1.06 is included. The tested router uses the Nordic USB driver; an earlier TinyUSB FIFO experiment is not part of the deployed configuration.
+
+The preserved 2 November images were compared with the binaries in the known DFU packages, filling unrecorded flash gaps with \texttt{0xff} where necessary. This is a file comparison, not a readback of device flash. Later source formatting and explicit configuration inclusion were checked by ARM compilation on 4 November; no new firmware was flashed during that regression.
+
+\sub{Memory of the preserved images}
+\begin{tabularx}{\linewidth}{@{}Yrr@{}}
+\toprule
+Role & HEX data bytes & Static RAM: .data + .bss\\
+\midrule
+HAR & 147,000 & 14,076 bytes\\
+Feedback & 79,428 & 14,072 bytes\\
+Border router & 80,192 & 13,840 bytes\\
+\bottomrule
+\end{tabularx}
+
+{\small HEX data bytes exclude address gaps. The linker reserves 16,384 bytes each for stack and heap on application nodes, and 8,192/512 bytes on the router. These are reservations, not measured peak usage. Source: \file{results/2026-11-02-final/firmware/summary.json}.}
+
+\sub{Local interaction and timing}
+SW1 pauses/resumes HAR. During pause, activity and LED are zero but telemetry continues. SW1 on feedback toggles local LED mute while telemetry remains enabled. Button press changes state; release is only logged. A periodic application timer runs approximately every second. Connection attempts are separated by at least five seconds; the MQTT keepalive is 15 seconds and is managed by the MQTT library. Feedback turns red after more than eight seconds without a valid command, unless muted. The router can operate with its LEDs off.
+
+\clearpage
+\reportsection{On-device machine learning}
+\sub{Dataset and subject separation}
+UCI Human Activity Recognition Using Smartphones contains six activities from 30 volunteers [2]. The official split contains 7,352 training windows and 2,947 test windows from disjoint subjects. Each input has 561 precomputed features. Raw-signal acquisition and feature extraction are not implemented on the dongle.
+
+The fixed recipe is \texttt{StandardScaler} followed by \texttt{LinearSVC(C=0.1)}, using six one-versus-rest linear scores. The current trainer reads only the official training files. Five-fold \texttt{GroupKFold} separates people between training and validation. A fresh scaler and classifier are fitted inside each fold; each training row receives one out-of-fold (OOF) prediction. No hyperparameter search or test-based acceptance rule is applied.
+
+\sub{Export and execution}
+After fitting the fixed recipe on training data, standardization is folded into the linear coefficients:
+\[
+ w'_{ji}=\frac{w_{ji}}{\sigma_i},\qquad
+ b'_j=b_j-\sum_i w'_{ji}\mu_i,\qquad
+ \hat y=\operatorname*{arg\,max}_j\left(b'_j+\sum_i w'_{ji}x_i\right).
+\]
+The firmware uses float32 parameters and chooses the largest of six scores. These scores are not probabilities. The 24 demonstration vectors (four per class) cycle through flash at approximately 1 Hz. Classes 1--3 represent movement and map to green; classes 4--6 represent sitting, standing and lying, and map to blue. Only the predicted class and node state are transmitted, not all feature values.
+
+\begin{tabularx}{\linewidth}{@{}Yr@{}}
+\toprule
+Validation or implementation check & Result\\
+\midrule
+\textbf{Training-only subject-grouped OOF macro-F1} & \textbf{93.66\%}\\
+OOF accuracy & 93.77\%\\
+Fold macro-F1 range & 89.09--98.68\%\\
+Fold macro-F1 standard deviation & 4.03 percentage points\\
+Python/C prediction disagreements on 2,947 test inputs & 0\\
+HAR inference observed on 15 device samples & 1.152--1.168 ms\\
+\bottomrule
+\end{tabularx}
+
+The timing measurement covers only inference: 72--73 RTIMER ticks at 62,500 ticks/s. It excludes radio, backend work and feature extraction, and is not a worst-case execution-time bound. Python/C equivalence was checked on the host compiler; it does not mean 100\% classification accuracy or execution of all 2,947 windows on ARM.
+
+\sub{Historical benchmark and limits}
+The already-consulted official test gives historical accuracy 96.1995\% and macro-F1 96.2914\%. It is retained for traceability, not used to select the current candidate. Training isolation does not undo earlier consultation: an independent external confirmation would require previously unseen data. The notebook runs locally with Python 3.13, NumPy 2.3.5 and scikit-learn 1.8.0; hosted Colab execution has not been verified. Firmware export uses the frozen reference; retraining does not automatically replace it. The 24 demonstration vectors are not an accuracy study.
+
+\clearpage
+\reportsection{Messaging, persistence and control}
+\sub{MQTT protocol and application messages}
+MQTT publish/subscribe decouples the devices, persistence and observers. Mosquitto is the broker; Eclipse Paho is the Python client library, and the dongles use Contiki's C client. The application uses MQTT 3.1.1, clean sessions, QoS 0 and non-retained messages. QoS 0 avoids per-message acknowledgment overhead but does not guarantee delivery. Non-retained commands avoid automatically replaying an old command after a subscriber reconnects.
+
+\begin{Code}
+activitylink/node1/telemetry
+{"node":"node1","boot":"0123456789abcdef","seq":12,
+ "uptime":20,"activity":1,"enabled":1,"led":1}
+\end{Code}
+Feedback uses the same schema with \texttt{node2}, activity 0 and enabled 1. HAR receives ASCII \texttt{P}/\texttt{R} on \file{activitylink/node1/command}; feedback receives ASCII \texttt{0}--\texttt{3} on \file{activitylink/node2/command}. Commands are exactly one byte. JSON makes telemetry inspectable; the firmware buffer is 240 bytes and backend validation rejects payloads above 512 bytes.
+
+\sub{Persist first, decide from SQL}
+The backend checks exact fields, types, bounds, node/topic consistency, boot format and activity/LED relationships. It rejects malformed UTF-8/JSON, repeated keys and retained telemetry. MySQL identifies telemetry by \texttt{(node, boot, seq)}. Duplicates and lower sequence numbers do not insert a new observation or refresh its timestamp. A new boot allows sequence numbers to restart.
+
+The controller reads the latest accepted sensor and actuator rows from SQL approximately once per second. Device roles are static in \file{config/devices.json}. Sensor data are stale when missing or more than six seconds old, measured from backend reception. This is not a radio one-way latency measurement.
+
+\begin{tabularx}{\linewidth}{@{}YYY@{}}
+\toprule
+Condition & Adaptive & Baseline\\
+\midrule
+No sensor row & Red & Red\\
+Stale sensor row & Red & Keep last activity or pause\\
+Fresh pause & Off & Off\\
+Fresh movement/posture & Green/blue & Green/blue\\
+\bottomrule
+\end{tabularx}
+
+\sub{Recovery and separate safeguards}
+MQTT callbacks enqueue arrival timestamps and payloads in a bounded RAM queue of 1,000 messages. The main loop validates and stores them. On SQL connection errors it retains the pending item and retries, preserving arrival time. Without SQL, ordinary command generation stops; the independent feedback watchdog can turn red. Queue overflow increments \texttt{queue\_drops}. The queue is not persistent across process restarts.
+
+Metrics distinguish selected command from recent actuator-reported state; \texttt{reported\_led=-1} means missing/stale feedback, not a physical color. The pseudo-random boot ID is not cryptographic identity. The laboratory broker has no TLS/authentication; MySQL and Grafana bind to localhost. Complete replay protection and loss-free persistence under every failure are outside the implemented scope.
+
+\clearpage
+\reportsection{Experimental design}
+\sub{Required individual-project stress scenario}
+The specification requires faulty/intermittent-node evaluation and an adaptive mechanism compared with adaptation disabled [1]. The experiment uses real dongles, IPv6/RPL, Mosquitto, SQL and the feedback actuator. A temporary relay broker on \texttt{localhost:18884} forwards original telemetry and actuator commands, withholding only HAR telemetry during a controlled fault window.
+
+Each run lasts 40 seconds: 10 normal, 15 with selective loss, and 15 of recovery. Three adaptive/baseline pairs alternate execution order. The ordinary backend is stopped during the experiment and restored afterward; no simulator uses the real device IDs concurrently.
+
+\note{Fault injection is at \textbf{backend ingress}. HAR continues classifying and transmitting over the radio. This experiment isolates the control response to missing data; it does not measure radio packet-delivery ratio, radio congestion or a physical power failure. Physical unplug/replug is a separate check.}
+
+\sub{Measurements and traceability}
+\file{wire.jsonl} records observed messages and intentional drops. Per-run \file{metrics.json} stores SQL decisions and counters. Detection time runs from the last forwarded sensor message to the first stale controller sample. Reported LED behavior is evaluated in a stabilized window beginning at +19 s, allowing time for detection, command propagation and reporting.
+
+\begin{tabularx}{\linewidth}{@{}Yrrrrc@{}}
+\toprule
+Mode & Drops & Stale & Red/stale & Detect (s) & Recovery\\
+\midrule
+Adaptive & 15 & 9 & 9/9 & 6.816 & Yes\\
+Baseline & 14 & 9 & 0/9 & 6.381 & Yes\\
+Baseline & 15 & 9 & 0/9 & 6.340 & Yes\\
+Adaptive & 15 & 10 & 10/10 & 6.015 & Yes\\
+Adaptive & 15 & 9 & 9/9 & 6.933 & Yes\\
+Baseline & 15 & 9 & 0/9 & 6.045 & Yes\\
+\bottomrule
+\end{tabularx}
+
+Rows follow execution order. Equal fault durations do not imply identical message counts or activity traces: transmission phase and cyclic inputs differ. The first adaptive run is not paired with an identical sequence of activity changes. No statistical significance or broad deployment generality is claimed from three short pairs.
+
+\sub{Additional acceptance checks}
+A passive hardware capture collected 100 valid JSON messages per node in 100 seconds without observed sequence gaps. Other checks cover pause/resume propagation through SQL, LED commands, physical buttons, watchdog behavior, duplicate/out-of-order handling and recovery. The latest regression on 4 November verifies the renamed backend commands and the readable CLI against real dongles. Evidence from hardware, simulations and mocked unit tests is kept separate.
+
+{\small Sources: \file{results/2026-11-02-final/stress/summary.json} and per-run measurements;\\
+latest regression: \file{results/2026-11-04-hardware-regression/}.}
+
+\clearpage
+\reportsection{Adaptive/baseline results}
+Across the six runs, adaptive selects red for \textbf{28/28 stale controller samples}; baseline selects red for \textbf{0/27}. In the stabilized actuator window, reported red occurs in \textbf{17/17} adaptive reports versus \textbf{0/17} baseline reports. All six runs recover after forwarding resumes. Final validation and queue-overflow counters remain zero in these trials.
+
+\begin{center}
+\includegraphics[width=0.98\linewidth]{stress-comparison.pdf}
+\end{center}
+{\small\textbf{Figure 1.} Red-command response and detection time. Each dot is one run, not a confidence interval. The dashed line marks the nominal six-second stale threshold.}
+
+\medskip
+\begin{center}
+\includegraphics[width=0.98\linewidth]{stress-timeline.pdf}
+\end{center}
+{\small\textbf{Figure 2.} First pair: SQL-based commands and actuator-reported LED codes. Shading marks HAR telemetry suppression from +10 to +25 s. Reported state can lag the command because communication and reporting are asynchronous.}
+
+\medskip
+The adaptation improves the meaning of the display: an obsolete activity is replaced by an unavailable-data indication. It does not make failure detection faster than baseline; both modes compute the same stale condition. Grafana visualizes stale flags, command/reported LED codes, accepted/duplicate counts and invalid/out-of-order/queue-drop counts. Its SQL session uses UTC to keep timestamps aligned. Counters are cumulative per backend process; they are not per-second delivery rates.
+
+\clearpage
+\reportsection{Robustness and latest regression}
+\sub{Physical disconnection and service recovery}
+A separate test unplugged HAR while leaving router and feedback connected. The system recorded sensor stale and red feedback, then accepted a new HAR boot and returned to activity feedback after reconnection. The user confirmed recovery. RPL reconvergence latency is not estimated because the physical reinsertion timestamp was not recorded precisely.
+
+\begin{tabularx}{\linewidth}{@{}lY@{}}
+\toprule
+Check & Verified observation\\
+\midrule
+MySQL unavailable & Local feedback watchdog turns red; backend process survives\\
+MySQL recovery & All 35 messages observed during the outage are later present in SQL\\
+Broker restart & Automatic recovery observed 6.81 s after broker startup\\
+SQL contract & Insert, duplicate, ordering, reboot and freshness checks pass\\
+4 November regression & Real pause/resume, backend stop/restart and four Grafana panel queries pass\\
+Current unit suite & 10 backend/protocol tests and 2 ML-isolation tests pass\\
+\bottomrule
+\end{tabularx}
+
+During SQL failure, buffered messages retain their original receive times. During broker failure, QoS 0 can lose telemetry: the criterion is recovery to fresh data and coherent feedback, not guaranteed replay of every missed packet.
+
+\sub{Additional queue saturation check}
+Saturating the queue is not an explicit individual-project requirement, but the full-queue branch was tested separately. The real backend callback receives a burst of 1,005 valid messages before consumption: 1,000 are queued and five rejected. After one simulated SQL connection error, the processing loop drains the first 1,000 in FIFO order and reports accepted=1,000 and queue drops=5.
+
+MQTT and SQL are replaced by test objects in this check; storage calls are observed rather than written to real MySQL. It verifies queue capacity, overflow counting and recovery of consumption, not radio performance or real SQL throughput. Earlier hardware runs with zero queue drops did not exercise saturation.
+
+\sub{Interpretation and limitations}
+The 4 November hardware regression exercises the current Python CLI and \texttt{stop-backend} and \texttt{start-backend}: stopping the backend leaves broker, SQL and Grafana active, feedback reports watchdog red, and restarting restores control. Reported LED codes are device software observations, not optical measurements. No new flash or retraining was needed.
+
+The evaluation covers one three-dongle setup and short trials. It does not establish energy consumption, peak RAM, radio PDR, congestion behavior, clinical accuracy or long-term reliability. The official ML test is historical; hosted Colab remains unverified. Detailed additional evidence is in \file{docs/QUEUE_SATURATION_CHECK.md} and the dated regression directories.
+
+\clearpage
+\reportsection{Reproduction and submission}
+\sub{Start the prepared Mac deployment}
+Setup instructions are provided in \file{docs/REPRODUCE.md}. The prepared Mac deployment uses Contiki's original \texttt{connect-router} target. GNU Make and the ARM compiler must already be available in PATH. The port helper reads the observed roles from \file{config/hardware.json}; it does not identify new devices automatically.
+
+\begin{Code}
+# Terminal 1, from the project root
+source .venv/bin/activate
+python -m serial.tools.list_ports -v
+source <(python scripts/ports.py)
+cd vendor/contiki-ng/examples/rpl-border-router
+gmake TARGET=nrf52840 BOARD=dongle PORT="$BORDER_ROUTER" connect-router
+\end{Code}
+\begin{Code}
+# Terminal 2, from the project root
+source .venv/bin/activate
+python scripts/native_stack.py stop-backend
+python scripts/native_stack.py start --adaptive 1 --run-id demo-esame
+python scripts/control.py pause --host ::1
+python scripts/control.py resume --host ::1
+\end{Code}
+Grafana: \url{http://127.0.0.1:3000/d/activitylink}. Select the run and a matching time interval. Local credentials are generated under \file{runtime/native-stack/} and are excluded from submission. To finish, stop the backend, interrupt SLIP with Ctrl+C, then unplug the dongles. Closing a terminal does not necessarily stop detached services.
+
+\sub{Delivered artifacts and demonstration}
+The source ZIP contains firmware/backend code, static configuration, Grafana provisioning, the executed canonical notebook, frozen model, attributed samples, build/setup scripts, preserved HEX images, selected evidence and this report's LaTeX source and figures. The compiled report PDF is delivered separately. The manifest records file sizes and SHA-256 values; secrets, runtime databases, virtual environments and vendor checkouts are excluded.
+
+A five-minute demonstration can show roles and simulated sensing, recent SQL telemetry and feedback, HAR pause/resume and feedback mute, stale/recovery behavior and the recorded adaptive/baseline comparison. The individual discussion allows another five minutes for code questions. The specified submission deadline is 13 November 2026 for the 17 November examination; author details and submission remain the student's responsibility.
+
+\sub{References}
+{\footnotesize\raggedright
+[1] Course specification, \emph{IoT Project 2026}, pp. 1--3; \emph{Righetti laboratory slides}, pp. 7, 12, 75, 90 and 193. Local teaching material is not redistributed.\\[3pt]
+[2] Reyes-Ortiz et al., \emph{Human Activity Recognition Using Smartphones}, UCI Machine Learning Repository (2013). \url{https://doi.org/10.24432/C54S4K}. CC BY 4.0; attribution in \file{data/ATTRIBUTION.md}.\\[3pt]
+[3] \href{https://github.com/contiki-ng/contiki-ng}{Contiki-NG source repository}, pinned v5.1 revision; platform definitions and MQTT implementation in the retrieved sources.\\[3pt]
+[4] \href{https://mosquitto.org/}{Eclipse Mosquitto} 2.0.22 and \href{https://eclipse.dev/paho/clients/python/docs/}{Eclipse Paho MQTT Python client}. Component notices are in \file{THIRD_PARTY.md}.\\[3pt]
+[5] \href{https://grafana.com/docs/grafana/latest/datasources/mysql/}{Grafana MySQL datasource documentation}. Tested native versions: Grafana 11.6.0 and MySQL Community 8.0.31 on macOS 12 Intel.
+}
+\end{document}
