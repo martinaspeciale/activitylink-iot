@@ -3,11 +3,11 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T18:06:45.075743+01:00",
+  "generated_at": "2026-11-04T18:52:27.410436+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
-  "author_fields": "Martina Speciale and student ID 603047 prefilled in editable PDF fields",
+  "author_fields": "Martina Speciale and student ID 603047 printed as ordinary cover text",
   "files": [
     {
       "path": ".gitignore",
@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 548023,
-      "sha256": "4445c725f5959c741e382d40cc344832aac60a801ab2c52fbcd8f14bd70a041f"
+      "bytes": 526780,
+      "sha256": "b99820ca7fab1506d843adee9b8dff9aa40b78d9b7fd6d2cf19705c6186df855"
     },
     {
       "path": "README.md",
@@ -91,13 +91,13 @@
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 23361,
-      "sha256": "a261873337cc417821a78e9000953393792e452ca9f080b92e8062e60a527bfc"
+      "bytes": 23095,
+      "sha256": "b8c708c5608c5516bc147081f2e9f14a10ae7707c86a06fa47aef0785c94243b"
     },
     {
       "path": "docs/report/README.md",
-      "bytes": 3079,
-      "sha256": "17bf7e7c2631a13479c74ac9f249809b84c7fc6c93b6665c8ae715764c5b9f3c"
+      "bytes": 3033,
+      "sha256": "3011ffb2adef871e79103cb1ba6e03ce45cdf78cbb7efb7fb8751186e4b86d50"
     },
     {
       "path": "docs/report/assets-en/architecture.pdf",
@@ -586,7 +586,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "4c5c3e0e7c4adec205b8a7407172297062014b06c05f6a45f3e43fb5861a0987",
+  "source_archive_sha256": "256a318d7377a94c9acee7b1e1ec05e34109e36b79930a049b668e8a3f941562",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with dedicated title page and table of contents"
