@@ -52,18 +52,18 @@ source .venv/bin/activate
 python -m serial.tools.list_ports -v
 ```
 
-Le variabili dei ruoli sono già definite in `~/.zshrc` sul Mac operativo.
-Su un altro host impostarle una volta nel terminale, dopo aver verificato le identità:
+Caricare i nomi dei ruoli nel terminale corrente, dalla root del progetto:
 
 ```sh
-export HAR="/dev/cu.usbmodemE914240FC2B51"
-export FEEDBACK="/dev/cu.usbmodemE313BC9DEA181"
-export BORDER_ROUTER="/dev/cu.usbmodemFA8130D5146E1"
+source <(python scripts/ports.py)
 ```
 
-Sono nomi per le porte osservate in `config/hardware.json`, non un rilevamento
-automatico. Se cambiano firmware o enumerazione USB, verificare e aggiornare
-l'associazione. Poi, sempre dalla root:
+Il piccolo `scripts/ports.py` legge le porte osservate in `config/hardware.json`
+e stampa le assegnazioni di HAR, FEEDBACK e BORDER_ROUTER. `source` le applica
+alla shell corrente; `python scripts/ports.py` da solo permette di mostrarle.
+Non sono salvate in `~/.zshrc` e non si rilevano automaticamente nuovi dispositivi.
+Confrontare le porte con l'enumerazione attuale; aggiornare l'inventario e ricaricare
+lo script se un'associazione cambia. Poi, sempre dalla root:
 
 ```sh
 cd vendor/contiki-ng/examples/rpl-border-router

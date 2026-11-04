@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T08:14:31.405441+01:00",
+  "generated_at": "2026-11-04T08:16:58.385012+01:00",
   "report_pages": 8,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -21,8 +21,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5645,
-      "sha256": "cc75c297614cccd123abe0d3646c7f3d596d1189826daea9ef8edaab1b21bc39"
+      "bytes": 5720,
+      "sha256": "95b3f1688584f64e4fd49d463022453bf728eee52d100c3efc074b30f745fb70"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -81,8 +81,8 @@
     },
     {
       "path": "docs/REPRODUCE.md",
-      "bytes": 13408,
-      "sha256": "d351d7ce3414519e39cfe0f4afbfe2286094193b8cb477066ac65ea69b7273f7"
+      "bytes": 13483,
+      "sha256": "e6fe7b70beb46964bacaf38d6fdefb1c797e08d415ca4dc57f5fc597551b8ed0"
     },
     {
       "path": "firmware/node/Makefile",
@@ -420,6 +420,11 @@
       "sha256": "46852cb8d3e1dcbac1aefe7cc6e47c7ab98aee72e8e9732306b56de98f44cb77"
     },
     {
+      "path": "scripts/ports.py",
+      "bytes": 533,
+      "sha256": "6e16ef9b337d03d1805d76287ecca41d09e62ccdfd3a8dacbdfd3283102a9012"
+    },
+    {
       "path": "scripts/service_recovery_check.py",
       "bytes": 4438,
       "sha256": "82c40e20a947f0147d00b64adda3fbc4caa577ef6d51725d745c3d4ab125f32d"
@@ -486,5 +491,5 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "4ef0187df61e1ba7b4ff69c71b8702abbd7adafdbbcee309f88fa9670e99781f"
+  "source_archive_sha256": "72f306e1e8d5ef0a92881178e09f5f52bb221bfbf0bbf483757141179e0e2ba6"
 }
