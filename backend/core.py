@@ -28,6 +28,7 @@ def validate(topic, payload):
         raise ValueError("unknown node/topic")
     if not isinstance(m["boot"], str) or not re.fullmatch("[0-9a-f]{16}", m["boot"]):
         raise ValueError("invalid boot")
+    # Unsigned 32-bit values range up to 2**32 - 1; seq starts at 1, uptime can be 0.
     bounds = {"seq": (1, 2**32 - 1), "uptime": (0, 2**32 - 1),
               "activity": (0, 6), "enabled": (0, 1), "led": (0, 3)}
     for key, (low, high) in bounds.items():
