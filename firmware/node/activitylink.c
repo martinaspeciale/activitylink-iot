@@ -1,3 +1,6 @@
+/* Load the application configuration explicitly before Contiki headers */
+#include "project-conf.h"
+
 #include "contiki.h"
 #include "mqtt.h"
 #include "dev/leds.h"
