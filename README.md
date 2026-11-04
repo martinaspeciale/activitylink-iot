@@ -8,6 +8,7 @@ Python/MySQL e Grafana. La [relazione PDF](ActivityLink_Report.pdf) è inclusa n
 - `firmware/`: HAR con SVM locale, attuatore e configurazione applicativa.
 - `backend/`, `config/`, `infra/`: validazione, controllo da SQL e dashboard.
 - `ml/ActivityLink_SVM561_Reproduce.ipynb`: unico notebook della release, eseguito.
+- `ml/README.md`, `requirements-notebook.txt`: notebook setup and Colab instructions.
 - `models/`, `data/`: modello congelato, campioni e attribuzione UCI HAR.
 - `scripts/`, `tests/`: setup, build, controllo e riproduzione delle verifiche.
 - `results/`: immagini HEX e risultati essenziali citati nella relazione.

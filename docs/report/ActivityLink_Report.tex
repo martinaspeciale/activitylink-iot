@@ -146,7 +146,7 @@ HAR inference observed on 15 device samples & 1.152--1.168 ms\\
 The timing measurement covers only inference: 72--73 RTIMER ticks at 62,500 ticks/s. It excludes radio, backend work and feature extraction, and is not a worst-case execution-time bound. Python/C equivalence was checked on the host compiler; it does not mean 100\% classification accuracy or execution of all 2,947 windows on ARM.
 
 \sub{Historical benchmark and limits}
-The already-consulted official test gives historical accuracy 96.1995\% and macro-F1 96.2914\%. It is retained for traceability, not used to select the current candidate. Training isolation does not undo earlier consultation: an independent external confirmation would require previously unseen data. The notebook runs locally with Python 3.13, NumPy 2.3.5 and scikit-learn 1.8.0; hosted Colab execution has not been verified. Firmware export uses the frozen reference; retraining does not automatically replace it. The 24 demonstration vectors are not an accuracy study.
+The already-consulted official test gives historical accuracy 96.1995\% and macro-F1 96.2914\%. It is retained for traceability, not used to select the current candidate. Training isolation does not undo earlier consultation: independent confirmation requires unseen data. The English notebook exposes training, OOF tables and plots, and separate candidate/reference exports. It runs locally with Python 3.13, NumPy 2.3.5 and scikit-learn 1.8.0; Colab setup is provided but hosted execution remains unverified. Retraining does not replace firmware. The 24 demo vectors are not an accuracy study.
 
 \clearpage
 \reportsection{Messaging, persistence and control}

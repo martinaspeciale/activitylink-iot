@@ -131,9 +131,15 @@ scollegamento fisico, riavvio servizi, contratto SQL, equivalenza ML e memoria.
 
 ## Notebook
 
+English notebook instructions: [ml/README.md](../ml/README.md). Use a separate
+Python 3.11+ environment; the saved run uses Python 3.13.5. Saved outputs include
+two OOF figures and fold/per-class tables. The Colab setup cell requests the
+source ZIP and copies only the required support files. Hosted execution remains
+unverified.
+
 ```sh
 python3.13 -m venv tools/ml-venv
-tools/ml-venv/bin/python -m pip install -r requirements-ml.txt nbclient nbformat ipykernel
+tools/ml-venv/bin/python -m pip install -r requirements-notebook.txt
 tools/ml-venv/bin/python ml/retrain.py --out results/NUOVO-TRAIN
 tools/ml-venv/bin/python scripts/execute_notebook.py \
  --dataset 'results/NUOVO-TRAIN/UCI HAR Dataset' --out results/NUOVO-NOTEBOOK
@@ -289,6 +295,6 @@ presentati come esercizi obbligatori aggiuntivi del laboratorio.
 
 ## Relazione LaTeX
 
-Il PDF di dieci pagine è in inglese. Il [sorgente LaTeX](report/ActivityLink_Report.tex)
-e le [istruzioni di compilazione](report/README.md) sono inclusi.
-Dalla root: `sh scripts/build_report.sh`. Il PDF resta separato dallo ZIP.
+Il PDF di dieci pagine è in inglese. I sorgenti sono in [report/ActivityLink_Report.tex](report/ActivityLink_Report.tex),
+con figure vettoriali e istruzioni di compilazione. Dalla root: `sh scripts/build_report.sh`.
+Il PDF resta separato dallo ZIP; lo ZIP include i sorgenti LaTeX.

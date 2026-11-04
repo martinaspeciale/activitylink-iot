@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T19:05:57.655923+01:00",
+  "generated_at": "2026-11-04T19:40:40.009908+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,13 +16,13 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 893392,
-      "sha256": "3209756732ac6a069093a4f68a4475dbe203f4e476525a7370e1e737bdfe58ed"
+      "bytes": 893435,
+      "sha256": "b7fa3374ef32d86830c10c9c947cebe93ed02785f08e5985ed575a5868b23cc2"
     },
     {
       "path": "README.md",
-      "bytes": 6058,
-      "sha256": "da71bddb190e12b5a8e856ec987ef16951ed551ef6f0633fb510f03414df9191"
+      "bytes": 6144,
+      "sha256": "d14af3ef9b2b81dcee35bd7060dc9796cfb101324ea6ec3a879ed9d1ee23c3a3"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -71,8 +71,8 @@
     },
     {
       "path": "docs/ML_VALIDATION.md",
-      "bytes": 6173,
-      "sha256": "50343ee2a6ec698c4715f88ede458114d916c4b252938bd8f627a10513ffa281"
+      "bytes": 7291,
+      "sha256": "185eb7699a161aae1ff76c4c1996a000489a0dae95cf66ef07352c601efb82ed"
     },
     {
       "path": "docs/NATIVE_MAC_STACK.md",
@@ -86,13 +86,13 @@
     },
     {
       "path": "docs/REPRODUCE.md",
-      "bytes": 13950,
-      "sha256": "1b5c4542df013fa9152bb9ef1a65ab0b09e24c56468df32990822e1ae052e8b5"
+      "bytes": 14311,
+      "sha256": "d78e401d42fbaec6e7bf014217fb3429d7c63f21cb6beec0d856bfc4c14bacc5"
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 23638,
-      "sha256": "16e80c74a0d101cff9296e7e203494c4b9af607d93895631e58c83ed8b7cebbd"
+      "bytes": 23662,
+      "sha256": "bdc996e729ee6dcd9785d058738853cbd20f857c54bc4fbed3ee8cb27490b629"
     },
     {
       "path": "docs/report/README.md",
@@ -201,8 +201,13 @@
     },
     {
       "path": "ml/ActivityLink_SVM561_Reproduce.ipynb",
-      "bytes": 23762,
-      "sha256": "099d62e27975249845c6b3ec41d36c50f155fdb27e6cab4c02228af03dfb4f37"
+      "bytes": 132553,
+      "sha256": "cbd7cb9a54fa71281c4fc0e712a0573ba0cb064c78a5e5daa3e02034776deadf"
+    },
+    {
+      "path": "ml/README.md",
+      "bytes": 3187,
+      "sha256": "590f8dabaaf89a4720a412e20bf7a999a9b6591c3fc7bcaedb14a2955e730746"
     },
     {
       "path": "ml/evaluate_historical.py",
@@ -248,6 +253,11 @@
       "path": "requirements-native.txt",
       "bytes": 34,
       "sha256": "745c2233399d277f2d1f50ae55cc7bbdc812daa698843fad9b4f7baf3b2ca222"
+    },
+    {
+      "path": "requirements-notebook.txt",
+      "bytes": 93,
+      "sha256": "86de89939691f64186897cbd9f47fe29b6e1b3c85e8d503f84f588ad42ef0aa1"
     },
     {
       "path": "requirements-report.txt",
@@ -475,6 +485,16 @@
       "sha256": "7fb19a645c1fea5c02ccf5e2173b96f1321716911ed2a15e870721f0af84087e"
     },
     {
+      "path": "results/2026-11-04-notebook-review/artifacts/execution-summary.json",
+      "bytes": 904,
+      "sha256": "b7ab078d8658a7317e8e3b68c57610b34d81cf967b83ef124a430b5c04a7e775"
+    },
+    {
+      "path": "results/2026-11-04-notebook-review/notebook-validation.json",
+      "bytes": 858,
+      "sha256": "2d6382af80cdb075fec158cf1b7a367382104832bf4a236bb4e35c33d63e0c4c"
+    },
+    {
       "path": "results/2026-11-04-queue-check/summary.json",
       "bytes": 327,
       "sha256": "30df1a4cf4963fe0607f01b9538e5673fdabdf89fb393036318db02c8c5ff5bc"
@@ -496,8 +516,8 @@
     },
     {
       "path": "scripts/execute_notebook.py",
-      "bytes": 1642,
-      "sha256": "7bf23a861a6c34e966954056e49300bba6639a34ad4a7bae195ec1eca7bc2a3d"
+      "bytes": 1888,
+      "sha256": "cc08c840e2e9d919f2fb74c68d63d243686874037dc5df78f8259561e2691230"
     },
     {
       "path": "scripts/hardware_mqtt_check.py",
@@ -601,7 +621,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "64e4b172b69f4a7e519727440a10e574d5131b883a49e3b148cb47af16a90597",
+  "source_archive_sha256": "06d6d8f440399801ce1adba9e27aa34c0bd0f398d40da18c4cc2e4fbd587fbcf",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"

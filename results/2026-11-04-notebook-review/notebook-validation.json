@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "notebook_language": "English",
+  "cells": 23,
+  "executed_code_cells": 12,
+  "embedded_png_figures": 2,
+  "saved_error_outputs": 0,
+  "oof_macro_f1": 0.9366243546508001,
+  "oof_predictions_byte_identical_to_preserved_cli_run": true,
+  "candidate_coefficients_identical_to_preserved_cli_run": true,
+  "all_fold_metrics_identical_to_preserved_cli_run": true,
+  "deployed_model_files_unchanged": true,
+  "ml_isolation_unit_tests": "2 passed",
+  "colab_bootstrap": {
+    "passed": true,
+    "scope": "mocked Colab upload and dependency installation; local temporary directory replaces /content",
+    "hosted_colab_verified": false,
+    "support_files_checked": 6,
+    "zip_files_copied_byte_identically": true
+  },
+  "hosted_colab_verified": false,
+  "notebook_sha256": "cbd7cb9a54fa71281c4fc0e712a0573ba0cb064c78a5e5daa3e02034776deadf"
+}

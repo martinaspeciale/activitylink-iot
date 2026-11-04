@@ -127,3 +127,23 @@ non consultati, con un protocollo fissato prima di acquisirne o valutarne gli es
 
 Fonti metodologiche: [scikit-learn 1.8, leakage e Pipeline](https://scikit-learn.org/1.8/common_pitfalls.html#data-leakage)
 e [validazione con gruppi](https://scikit-learn.org/1.8/modules/cross_validation.html#cross-validation-iterators-for-grouped-data).
+
+## English notebook revision — 4 November 2026
+
+The submission notebook now explains the dataset, labels, subject grouping,
+scaling and score interpretation in English. Validation and final fitting are
+visible directly in its code cells. Executed outputs include class counts,
+fold/per-class metric tables, the OOF fold plot and OOF confusion matrix.
+Candidate JSON/C exports remain separate from the frozen reference.
+
+Setup and Colab-upload instructions are in [ml/README.md](../ml/README.md);
+local execution dependencies are pinned in `requirements-notebook.txt` and
+require a separate Python 3.11+ environment. The saved execution uses a local
+Python 3.13.5 Jupyter kernel. Hosted Colab execution remains unverified; a mocked
+upload/bootstrap check is not a hosted execution.
+
+Evidence: `results/2026-11-04-notebook-review/artifacts/execution-summary.json`
+and `results/2026-11-04-notebook-review/notebook-validation.json`.
+OOF predictions and candidate coefficients were compared with the preserved
+command-line training results. No hyperparameters, shipped model or hardware
+experiment results were changed.

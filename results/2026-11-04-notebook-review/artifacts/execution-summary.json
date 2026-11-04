@@ -1,0 +1,21 @@
+{
+  "completed_at": "2026-11-04T18:37:17.528012+00:00",
+  "runtime": "local Jupyter kernel",
+  "hosted_colab_verified": false,
+  "python": "3.13.5",
+  "numpy": "2.3.5",
+  "sklearn": "1.8.0",
+  "matplotlib": "3.11.2",
+  "official_test_used_for_training_or_selection": false,
+  "historical_test_reported_separately": true,
+  "deployed_model_files_unchanged": true,
+  "reference_sha256": {
+    "models/svm561.json": "81628a219bbaf92050b9039213d47772eb62ebc8a62cefd8b5ae08ed02de8bd2",
+    "models/svm561_predictor.h": "998dd3f949ff30a3fbb0564ec623e837623cc87fc46c84cfa5878c3b72da7f99",
+    "firmware/node/model.h": "998dd3f949ff30a3fbb0564ec623e837623cc87fc46c84cfa5878c3b72da7f99"
+  },
+  "oof_macro_f1": 0.9366243546508001,
+  "oof_accuracy": 0.9377040261153428,
+  "host_c_prediction_mismatches": 0,
+  "output_directory": "/Users/martina/ActivityLink-IoT-2026/results/2026-11-04-notebook-review/artifacts"
+}

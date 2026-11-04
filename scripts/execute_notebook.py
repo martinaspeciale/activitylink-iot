@@ -1,10 +1,11 @@
-"""Execute the ML notebook and save its outputs."""
+"""Execute the submission notebook locally with outputs in a fresh directory."""
 
 import argparse
 import json
 import os
 from pathlib import Path
 import shutil
+import sys
 
 import nbformat
 from nbclient import NotebookClient
@@ -26,9 +27,11 @@ for cell in notebook.cells:
         cell.outputs = []
 
 # Keep generated candidates and measurements in the requested output directory
-os.environ["ACTIVITYLINK_RESULTS_DIR"] = str(args.out.resolve())
+os.environ["ACTIVITYLINK_RESULTS_DIR"] = str((args.out / "artifacts").resolve())
 os.environ["ACTIVITYLINK_DATASET"] = str(args.dataset.resolve())
 os.environ["JUPYTER_PATH"] = str(ROOT / "tools/ml-venv/share/jupyter")
+notebook.metadata["execution_note"] = "Executed sequentially in a local Jupyter kernel via nbclient; not hosted Colab"
+notebook.metadata["language_info"]["version"] = sys.version.split()[0]
 NotebookClient(
     notebook, timeout=600, kernel_name="python3", resources={"metadata": {"path": str(ROOT)}}
 ).execute()
