@@ -28,7 +28,7 @@ def validate(topic, payload):
         raise ValueError("unknown node/topic")
     if not isinstance(m["boot"], str) or not re.fullmatch("[0-9a-f]{16}", m["boot"]):
         raise ValueError("invalid boot")
-    bounds = {"seq": (1, 4294967295), "uptime": (0, 4294967295),
+    bounds = {"seq": (1, 2**32 - 1), "uptime": (0, 2**32 - 1),
               "activity": (0, 6), "enabled": (0, 1), "led": (0, 3)}
     for key, (low, high) in bounds.items():
         if type(m[key]) is not int or not low <= m[key] <= high:

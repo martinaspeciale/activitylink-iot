@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T08:59:53.573287+01:00",
+  "generated_at": "2026-11-04T09:28:52.969554+01:00",
   "report_pages": 8,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -41,8 +41,8 @@
     },
     {
       "path": "backend/core.py",
-      "bytes": 2093,
-      "sha256": "db20865d95361a829a054d98b12661664a24977740cf183ad6e8ed4af5d83286"
+      "bytes": 2091,
+      "sha256": "2a7aea37e6aabc1a5e9f5b67d87c9bcf5bc72fa0ac839a53d70ba0eb8887afce"
     },
     {
       "path": "config/devices.json",
@@ -491,5 +491,5 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "b5eedcdb31751893823e622f626bd3243adf40d3b032e29202521ad9b1371b19"
+  "source_archive_sha256": "e79e5857da87d20235be9a31e60d7341499f898bcb5ccfbc22e44bdf030a85a9"
 }
