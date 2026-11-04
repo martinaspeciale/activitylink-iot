@@ -52,12 +52,22 @@ source .venv/bin/activate
 python -m serial.tools.list_ports -v
 ```
 
-Identificare il border router: il valore PORT sotto è quello del collaudo,
-non una selezione automatica della prima porta disponibile. Poi, sempre dalla root:
+Le variabili dei ruoli sono già definite in `~/.zshrc` sul Mac operativo.
+Su un altro host impostarle una volta nel terminale, dopo aver verificato le identità:
+
+```sh
+export HAR="/dev/cu.usbmodemE914240FC2B51"
+export FEEDBACK="/dev/cu.usbmodemE313BC9DEA181"
+export BORDER_ROUTER="/dev/cu.usbmodemFA8130D5146E1"
+```
+
+Sono nomi per le porte osservate in `config/hardware.json`, non un rilevamento
+automatico. Se cambiano firmware o enumerazione USB, verificare e aggiornare
+l'associazione. Poi, sempre dalla root:
 
 ```sh
 cd vendor/contiki-ng/examples/rpl-border-router
-gmake TARGET=nrf52840 BOARD=dongle PORT=/dev/cu.usbmodemFA8130D5146E1 connect-router
+gmake TARGET=nrf52840 BOARD=dongle PORT="$BORDER_ROUTER" connect-router
 ```
 
 Lasciare il comando attivo. Il target avvia tunslip6; non carica firmware.
