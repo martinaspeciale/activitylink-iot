@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T19:40:40.009908+01:00",
+  "generated_at": "2026-11-04T19:48:48.138021+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -26,8 +26,8 @@
     },
     {
       "path": "THIRD_PARTY.md",
-      "bytes": 2044,
-      "sha256": "2aedcd1644afc26e663e689a97fc86652eae91ca5dd5346a3d77920a15428e14"
+      "bytes": 2069,
+      "sha256": "1dc2baf77cb4c44663c534c93ae6dc09c62e385131b353814b522f579b647458"
     },
     {
       "path": "backend/__init__.py",
@@ -71,8 +71,8 @@
     },
     {
       "path": "docs/ML_VALIDATION.md",
-      "bytes": 7291,
-      "sha256": "185eb7699a161aae1ff76c4c1996a000489a0dae95cf66ef07352c601efb82ed"
+      "bytes": 7309,
+      "sha256": "eb0bc3391d64490c5324e33bce29e5591a933f5db9e7721e376305651b9115ba"
     },
     {
       "path": "docs/NATIVE_MAC_STACK.md",
@@ -96,8 +96,8 @@
     },
     {
       "path": "docs/report/README.md",
-      "bytes": 3675,
-      "sha256": "7158ea210c4b6169f6805dcca91079c1e36b012b0536dbd3f21f56f6e5479283"
+      "bytes": 1724,
+      "sha256": "d72b124a328a086dd441d77f85c07342f13be91432c91a76471aa4d3a3e78bb0"
     },
     {
       "path": "docs/report/assets-en/architecture.pdf",
@@ -131,28 +131,13 @@
     },
     {
       "path": "docs/report/assets-en/unipi-logo.SOURCE.md",
-      "bytes": 798,
-      "sha256": "814cc79b6d51f316f01119e53c541456c5be499d473b55f0717be347882659d3"
+      "bytes": 879,
+      "sha256": "16d57d1d5122e459b79343a6fb56a8f94ad0f6e831969c48f3555a149cbbb6ad"
     },
     {
       "path": "docs/report/assets-en/unipi-logo.pdf",
       "bytes": 369183,
       "sha256": "00dce48b9b1dded62b8e5ca88d5733c1826f788983c36a5ca2218c0dc9e9baa1"
-    },
-    {
-      "path": "docs/report/assets-en/unipi-logo.svg",
-      "bytes": 53144,
-      "sha256": "6c9dd6e8ea5ce640696cc67168d5274ccad20df0e7092c113560c2b923025a77"
-    },
-    {
-      "path": "docs/report/capture_grafana.mjs",
-      "bytes": 5368,
-      "sha256": "8562124845075bd1268f383d20fa9b6e3ccbd2b84ad3e2bda3a522d15067d22f"
-    },
-    {
-      "path": "docs/report/make_figures.py",
-      "bytes": 3579,
-      "sha256": "4b61ba011c3855133020afcaa8dbe052b6c80476c1dc00d5c129d2b682c486ba"
     },
     {
       "path": "firmware/node/Makefile",
@@ -258,11 +243,6 @@
       "path": "requirements-notebook.txt",
       "bytes": 93,
       "sha256": "86de89939691f64186897cbd9f47fe29b6e1b3c85e8d503f84f588ad42ef0aa1"
-    },
-    {
-      "path": "requirements-report.txt",
-      "bytes": 35,
-      "sha256": "cd483e2b403abc8c0d287c4f5d5b8468571953adf9731ac49330a22547c69799"
     },
     {
       "path": "requirements.txt",
@@ -485,16 +465,6 @@
       "sha256": "7fb19a645c1fea5c02ccf5e2173b96f1321716911ed2a15e870721f0af84087e"
     },
     {
-      "path": "results/2026-11-04-notebook-review/artifacts/execution-summary.json",
-      "bytes": 904,
-      "sha256": "b7ab078d8658a7317e8e3b68c57610b34d81cf967b83ef124a430b5c04a7e775"
-    },
-    {
-      "path": "results/2026-11-04-notebook-review/notebook-validation.json",
-      "bytes": 858,
-      "sha256": "2d6382af80cdb075fec158cf1b7a367382104832bf4a236bb4e35c33d63e0c4c"
-    },
-    {
       "path": "results/2026-11-04-queue-check/summary.json",
       "bytes": 327,
       "sha256": "30df1a4cf4963fe0607f01b9538e5673fdabdf89fb393036318db02c8c5ff5bc"
@@ -621,7 +591,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "06d6d8f440399801ce1adba9e27aa34c0bd0f398d40da18c4cc2e4fbd587fbcf",
+  "source_archive_sha256": "ed713bc372dcd03c76a03ff4eed043413012cfaee70d9c0ef0734031a5ea4b6e",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"

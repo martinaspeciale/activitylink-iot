@@ -7,8 +7,9 @@ Official horizontal blue logo downloaded from the University website on
 - Source website: https://www.unipi.it/
 - Identity guidance: https://www.unipi.it/identita-visiva-delluniversita-di-pisa/logo-delluniversita-di-pisa/
 
-`unipi-logo.svg` is the original downloaded file. `unipi-logo.pdf` is a vector
-conversion using PyMuPDF 1.26.7 (`open(..., filetype="svg").convert_to_pdf()`).
+`unipi-logo.pdf` is a vector conversion of the official SVG at the asset URL
+above, using PyMuPDF 1.26.7 (`open(..., filetype="svg").convert_to_pdf()`).
+The submission includes the PDF needed by LaTeX; the downloaded SVG is not duplicated.
 The artwork, colors, proportions and full seal/logotype composition are preserved.
 The report places it at 65 mm wide with surrounding white space.
 

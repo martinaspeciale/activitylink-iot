@@ -142,8 +142,8 @@ require a separate Python 3.11+ environment. The saved execution uses a local
 Python 3.13.5 Jupyter kernel. Hosted Colab execution remains unverified; a mocked
 upload/bootstrap check is not a hosted execution.
 
-Evidence: `results/2026-11-04-notebook-review/artifacts/execution-summary.json`
-and `results/2026-11-04-notebook-review/notebook-validation.json`.
-OOF predictions and candidate coefficients were compared with the preserved
+The executed notebook contains the new tables, figures and environment details.
+Internal validation logs are kept in the working repository, outside the source
+ZIP. OOF predictions and candidate coefficients were compared with the preserved
 command-line training results. No hyperparameters, shipped model or hardware
 experiment results were changed.

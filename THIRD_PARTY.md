@@ -20,8 +20,8 @@
   e ML in requirements*.txt e nei freeze conservati con le evidenze. Le licenze
   sono distribuite dai rispettivi pacchetti.
 - **Logo Università di Pisa**: versione orizzontale blu dal sito ufficiale
-  https://www.unipi.it/wp-content/uploads/Raggruppa-3020.svg, conservata in SVG
-  e convertita in PDF vettoriale per il frontespizio. Fonte e dettagli in
+  https://www.unipi.it/wp-content/uploads/Raggruppa-3020.svg, convertita in PDF
+  vettoriale per il frontespizio. Nello ZIP è incluso solo il PDF necessario. Fonte e dettagli in
   docs/report/assets-en/unipi-logo.SOURCE.md. I diritti sul marchio restano
   dell'Università; l'inclusione identifica il contesto accademico della relazione.
 
