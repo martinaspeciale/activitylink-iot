@@ -4,6 +4,7 @@ A temporary localhost broker relays unmodified telemetry and real actuator comma
 Only node1 telemetry is withheld during the fault window; radio traffic continues.
 The ordinary cloud is stopped for the experiment and restored afterwards.
 """
+
 import argparse
 import hashlib
 import json
@@ -16,7 +17,17 @@ import time
 
 import paho.mqtt.client as mqtt
 
-from native_stack import ROOT, STATE, PYTHON_DEPS, config, db, free_port, start_backend, stop_backend, wait_for
+from native_stack import (
+    ROOT,
+    STATE,
+    PYTHON_DEPS,
+    config,
+    db,
+    free_port,
+    start_backend,
+    stop_backend,
+    wait_for,
+)
 
 
 def scenario(out, credentials, adaptive, repeat):
@@ -50,14 +61,27 @@ def scenario(out, credentials, adaptive, repeat):
 
         # Withhold only HAR telemetry at cloud ingress; the radio nodes remain active
         drop = msg.topic == "activitylink/node1/telemetry" and fault_start <= now < fault_end
-        record({"time": now, "kind": "telemetry", "topic": msg.topic,
-                "payload": msg.payload.decode(), "dropped": drop})
+        record(
+            {
+                "time": now,
+                "kind": "telemetry",
+                "topic": msg.topic,
+                "payload": msg.payload.decode(),
+                "dropped": drop,
+            }
+        )
         if not drop:
             relay.publish(msg.topic, msg.payload, qos=0, retain=False)
 
     def command(client, userdata, msg):
-        record({"time": time.time(), "kind": "command", "topic": msg.topic,
-                "payload": msg.payload.decode()})
+        record(
+            {
+                "time": time.time(),
+                "kind": "command",
+                "topic": msg.topic,
+                "payload": msg.payload.decode(),
+            }
+        )
 
         # Forward backend commands to the real actuator through the ordinary broker
         actual.publish(msg.topic, msg.payload, qos=0, retain=False)
@@ -76,12 +100,25 @@ def scenario(out, credentials, adaptive, repeat):
             raise RuntimeError("relay subscription timeout")
         start = time.time()
         fault_start, fault_end, end = start + 10, start + 25, start + 40
-        env = dict(os.environ, PYTHONPATH=os.pathsep.join((str(PYTHON_DEPS), str(ROOT))),
-                   DB_HOST="127.0.0.1", DB_PORT="13306", DB_PASSWORD=credentials["app"],
-                   MQTT_HOST="127.0.0.1", MQTT_PORT="18884", ADAPTIVE=str(adaptive), RUN_ID=name)
+        env = dict(
+            os.environ,
+            PYTHONPATH=os.pathsep.join((str(PYTHON_DEPS), str(ROOT))),
+            DB_HOST="127.0.0.1",
+            DB_PORT="13306",
+            DB_PASSWORD=credentials["app"],
+            MQTT_HOST="127.0.0.1",
+            MQTT_PORT="18884",
+            ADAPTIVE=str(adaptive),
+            RUN_ID=name,
+        )
         with (out / "cloud.log").open("x") as log:
-            proc = subprocess.Popen([sys.executable, "-m", "backend.app"], cwd=ROOT, env=env,
-                                    stdout=log, stderr=subprocess.STDOUT)
+            proc = subprocess.Popen(
+                [sys.executable, "-m", "backend.app"],
+                cwd=ROOT,
+                env=env,
+                stdout=log,
+                stderr=subprocess.STDOUT,
+            )
         print(f"START {name}: fault from +10s to +25s, total 40s", flush=True)
         while time.time() < end:
             if proc.poll() is not None:
@@ -104,26 +141,50 @@ def scenario(out, credentials, adaptive, repeat):
     (out / "metrics.json").write_text(json.dumps(metrics, indent=2))
     stale = [m for m in metrics if fault_start <= m["time"] < fault_end and m["sensor_stale"]]
     dropped = [r for r in records if r["kind"] == "telemetry" and r["dropped"]]
-    sensor_before = [r for r in records if r["kind"] == "telemetry" and r["topic"] == "activitylink/node1/telemetry"
-                     and r["time"] < fault_start]
+    sensor_before = [
+        r
+        for r in records
+        if r["kind"] == "telemetry"
+        and r["topic"] == "activitylink/node1/telemetry"
+        and r["time"] < fault_start
+    ]
     detection = stale[0]["time"] - sensor_before[-1]["time"] if stale and sensor_before else None
     recovered = any(m["time"] > fault_end + 2 and not m["sensor_stale"] for m in metrics)
 
     # Assess reported LED states after allowing time for stale detection and propagation
-    reported = [json.loads(r["payload"])["led"] for r in records if r["kind"] == "telemetry"
-                and r["topic"] == "activitylink/node2/telemetry"
-                and fault_start + 9 <= r["time"] < fault_end]
-    result = {"run_id": name, "adaptive": adaptive, "start": start,
-              "fault_start": fault_start, "fault_end": fault_end, "end": time.time(),
-              "fault_kind": "selective node1 message loss at cloud ingress; actual radio nodes remain active",
-              "sensor_messages_dropped": len(dropped), "stale_samples": len(stale),
-              "stale_command_red": sum(m["command_led"] == 3 for m in stale),
-              "reported_leds_during_stale": reported, "detection_seconds_from_last_forwarded": detection,
-              "recovered": recovered, "last_counts": metrics[-1] if metrics else None}
-    result["passed"] = bool(dropped and stale and reported and recovered and metrics[-1]["invalid"] == 0
-                             and metrics[-1]["queue_drops"] == 0
-                             and all((m["command_led"] == 3) == bool(adaptive) for m in stale)
-                             and all((led == 3) == bool(adaptive) for led in reported))
+    reported = [
+        json.loads(r["payload"])["led"]
+        for r in records
+        if r["kind"] == "telemetry"
+        and r["topic"] == "activitylink/node2/telemetry"
+        and fault_start + 9 <= r["time"] < fault_end
+    ]
+    result = {
+        "run_id": name,
+        "adaptive": adaptive,
+        "start": start,
+        "fault_start": fault_start,
+        "fault_end": fault_end,
+        "end": time.time(),
+        "fault_kind": "selective node1 message loss at cloud ingress; actual radio nodes remain active",
+        "sensor_messages_dropped": len(dropped),
+        "stale_samples": len(stale),
+        "stale_command_red": sum(m["command_led"] == 3 for m in stale),
+        "reported_leds_during_stale": reported,
+        "detection_seconds_from_last_forwarded": detection,
+        "recovered": recovered,
+        "last_counts": metrics[-1] if metrics else None,
+    }
+    result["passed"] = bool(
+        dropped
+        and stale
+        and reported
+        and recovered
+        and metrics[-1]["invalid"] == 0
+        and metrics[-1]["queue_drops"] == 0
+        and all((m["command_led"] == 3) == bool(adaptive) for m in stale)
+        and all((led == 3) == bool(adaptive) for led in reported)
+    )
     (out / "summary.json").write_text(json.dumps(result, indent=2))
     print(json.dumps(result), flush=True)
     return result
@@ -148,19 +209,36 @@ def main():
     broker = None
     try:
         with (args.out / "relay-broker.log").open("x") as log:
-            broker = subprocess.Popen([str(ROOT / "tools/local-broker/build-no-tls/src/mosquitto"),
-                                       "-c", str(conf.resolve()), "-v"], stdout=log, stderr=subprocess.STDOUT)
+            broker = subprocess.Popen(
+                [
+                    str(ROOT / "tools/local-broker/build-no-tls/src/mosquitto"),
+                    "-c",
+                    str(conf.resolve()),
+                    "-v",
+                ],
+                stdout=log,
+                stderr=subprocess.STDOUT,
+            )
+
         def ready():
             import socket
+
             with socket.create_connection(("127.0.0.1", 18884), timeout=1):
                 return True
+
         wait_for(ready, 10)
         for repeat in range(1, args.repeats + 1):
 
             # Alternate order to reduce a fixed ordering effect
-            for adaptive in ((1, 0) if repeat % 2 else (0, 1)):
-                results.append(scenario(args.out / f"pair-{repeat}-{'adaptive' if adaptive else 'baseline'}",
-                                        credentials, adaptive, repeat))
+            for adaptive in (1, 0) if repeat % 2 else (0, 1):
+                results.append(
+                    scenario(
+                        args.out / f"pair-{repeat}-{'adaptive' if adaptive else 'baseline'}",
+                        credentials,
+                        adaptive,
+                        repeat,
+                    )
+                )
     finally:
         if broker:
             broker.terminate()
@@ -168,8 +246,11 @@ def main():
 
         # Restore ordinary adaptive control after the experiment, including on failure
         start_backend(credentials, 1, "hardware-native-post-stress")
-    summary = {"scope": "real MQTT/SQL/actuator, host ingress loss, 3 paired trials by default; no physical power failure",
-               "runs": results, "passed": all(r["passed"] for r in results)}
+    summary = {
+        "scope": "real MQTT/SQL/actuator, host ingress loss, 3 paired trials by default; no physical power failure",
+        "runs": results,
+        "passed": all(r["passed"] for r in results),
+    }
     (args.out / "summary.json").write_text(json.dumps(summary, indent=2))
     return int(not summary["passed"])
 

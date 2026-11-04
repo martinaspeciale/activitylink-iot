@@ -1,4 +1,5 @@
 """Telemetry validation and feedback policy."""
+
 import json
 import re
 
@@ -35,8 +36,13 @@ def validate(topic, payload):
         raise ValueError("invalid boot")
 
     # Unsigned 32-bit values range up to 2**32 - 1; seq starts at 1, uptime can be 0
-    bounds = {"seq": (1, 2**32 - 1), "uptime": (0, 2**32 - 1),
-              "activity": (0, 6), "enabled": (0, 1), "led": (0, 3)}
+    bounds = {
+        "seq": (1, 2**32 - 1),
+        "uptime": (0, 2**32 - 1),
+        "activity": (0, 6),
+        "enabled": (0, 1),
+        "led": (0, 3),
+    }
     for key, (low, high) in bounds.items():
 
         # Use the exact int type because Python also treats booleans as integers

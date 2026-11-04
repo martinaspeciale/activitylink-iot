@@ -1,4 +1,5 @@
 """Execute the ML notebook and save its outputs."""
+
 import argparse
 import json
 import os
@@ -28,9 +29,19 @@ for cell in notebook.cells:
 os.environ["ACTIVITYLINK_RESULTS_DIR"] = str(args.out.resolve())
 os.environ["ACTIVITYLINK_DATASET"] = str(args.dataset.resolve())
 os.environ["JUPYTER_PATH"] = str(ROOT / "tools/ml-venv/share/jupyter")
-NotebookClient(notebook, timeout=600, kernel_name="python3", resources={"metadata": {"path": str(ROOT)}}).execute()
+NotebookClient(
+    notebook, timeout=600, kernel_name="python3", resources={"metadata": {"path": str(ROOT)}}
+).execute()
 nbformat.write(notebook, args.out / "ActivityLink_SVM561_Reproduce.ipynb")
 nbformat.write(notebook, notebook_path)
-print(json.dumps({"status": "PASS", "runtime": "local Mac Python; not hosted Colab",
-                  "executed_cells": sum(c.cell_type == "code" for c in notebook.cells),
-                  "notebook": str(notebook_path)}, indent=2))
+print(
+    json.dumps(
+        {
+            "status": "PASS",
+            "runtime": "local Mac Python; not hosted Colab",
+            "executed_cells": sum(c.cell_type == "code" for c in notebook.cells),
+            "notebook": str(notebook_path),
+        },
+        indent=2,
+    )
+)

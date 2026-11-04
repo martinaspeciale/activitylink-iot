@@ -1,4 +1,5 @@
 """Actual MySQL tests of identity/freshness in an isolated temporary schema."""
+
 import argparse
 import json
 import os
@@ -24,7 +25,9 @@ os.environ.update(DB_NAME=name, DB_USER="root", DB_PASSWORD=credentials["root"],
 connection = None
 try:
     connection = connect_database()
-    message = dict(node="node1", boot="0123456789abcdef", seq=2, uptime=10, activity=1, enabled=1, led=1)
+    message = dict(
+        node="node1", boot="0123456789abcdef", seq=2, uptime=10, activity=1, enabled=1, led=1
+    )
     validate("activitylink/node1/telemetry", json.dumps(message))
     assert store(connection, message, 100.0) == "accepted"
     assert store(connection, message, 110.0) == "duplicates"
@@ -34,9 +37,19 @@ try:
         assert cursor.fetchone() == {"n": 1, "last": 100.0}, "duplicates must not refresh freshness"
     assert store(connection, dict(message, boot="fedcba9876543210", seq=1), 130.0) == "accepted"
     assert store(connection, dict(message, seq=3, uptime=11), 140.0) == "accepted"
-    result = {"passed": True, "checks": ["real schema creation", "insert", "duplicate identity",
-              "out-of-order rejection", "duplicates do not refresh freshness", "new boot restarts sequence", "next sequence"],
-              "scope": "temporary SQL schema; no simulated messages sent to hardware broker"}
+    result = {
+        "passed": True,
+        "checks": [
+            "real schema creation",
+            "insert",
+            "duplicate identity",
+            "out-of-order rejection",
+            "duplicates do not refresh freshness",
+            "new boot restarts sequence",
+            "next sequence",
+        ],
+        "scope": "temporary SQL schema; no simulated messages sent to hardware broker",
+    }
     args.output.write_text(json.dumps(result, indent=2))
     print(json.dumps(result, indent=2))
 finally:

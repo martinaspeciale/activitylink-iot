@@ -1,4 +1,5 @@
 """Read the observed dongle ports and print assignments for the shell."""
+
 import json
 from pathlib import Path
 import shlex
@@ -12,6 +13,5 @@ ports = {node["role"]: node["application_port"] for node in hardware["nodes"]}
 names = {"HAR": "HAR", "feedback": "FEEDBACK", "border-router": "BORDER_ROUTER"}
 
 # Print shell assignments for source <(python scripts/ports.py); Python cannot update its parent shell
-assignments = [f"export {name}={shlex.quote(ports[role])}"
-               for role, name in names.items()]
+assignments = [f"export {name}={shlex.quote(ports[role])}" for role, name in names.items()]
 print("\n".join(assignments))

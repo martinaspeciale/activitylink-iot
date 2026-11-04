@@ -1,4 +1,5 @@
 """Regression tests for subject separation and train-only file access."""
+
 import tempfile
 import unittest
 from pathlib import Path
@@ -42,10 +43,12 @@ class TrainingIsolationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / 'train').mkdir()
-            for name, data in [('X_train.txt', self.X), ('y_train.txt', self.y),
-                               ('subject_train.txt', self.groups)]:
-                np.savetxt(root / 'train' / name, data,
-                           fmt='%.18e' if data.ndim == 2 else '%d')
+            for name, data in [
+                ('X_train.txt', self.X),
+                ('y_train.txt', self.y),
+                ('subject_train.txt', self.groups),
+            ]:
+                np.savetxt(root / 'train' / name, data, fmt='%.18e' if data.ndim == 2 else '%d')
             original = np.loadtxt
             accessed = []
 

@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T14:16:55.066125+01:00",
+  "generated_at": "2026-11-04T14:48:23.413406+01:00",
   "report_pages": 8,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -36,13 +36,13 @@
     },
     {
       "path": "backend/app.py",
-      "bytes": 8400,
-      "sha256": "e06952c8434f46a8b654e852d772b67f672b308c8f9d19e74be6390bd5bbe50d"
+      "bytes": 9613,
+      "sha256": "c29ef6736df75b0fc404e229d9e724e469f524e0633bf10c6b85eba99a770233"
     },
     {
       "path": "backend/core.py",
-      "bytes": 2874,
-      "sha256": "b2f48e31b5b3606396909e0ded9146adae158c55237c82052dfd8a1c3d533883"
+      "bytes": 2908,
+      "sha256": "74b56a5f7424743c393a5f7083300a41e4bba5421e8ab0cad956b3c6fcd97fe6"
     },
     {
       "path": "config/devices.json",
@@ -96,13 +96,13 @@
     },
     {
       "path": "firmware/node/activitylink.c",
-      "bytes": 5293,
-      "sha256": "ba93c01276dbd26ce285d9224270b3e5f12548acbad2c9879f283e3c48db09d4"
+      "bytes": 5854,
+      "sha256": "b2b250ddedaff95ed32ce866efb7bfa355ca64bc99284b0bda4a3a0b28e47313"
     },
     {
       "path": "firmware/node/model.h",
-      "bytes": 59347,
-      "sha256": "a6f3cb92f267b42e8a58eb564be63787d174f969cb50ca7d023290e361f6a5ec"
+      "bytes": 59446,
+      "sha256": "998dd3f949ff30a3fbb0564ec623e837623cc87fc46c84cfa5878c3b72da7f99"
     },
     {
       "path": "firmware/node/project-conf.h",
@@ -111,8 +111,8 @@
     },
     {
       "path": "firmware/node/samples.h",
-      "bytes": 226478,
-      "sha256": "cd9c74808c758bb801279e84630f7253ef7f4fa44319551152ab91fa9304bda5"
+      "bytes": 255451,
+      "sha256": "d38f4ad701f1cfaa985b94e27d576f5194e59707e39567e8616fdbd5b65e838a"
     },
     {
       "path": "infra/grafana/dashboards/activitylink.json",
@@ -136,23 +136,23 @@
     },
     {
       "path": "ml/ActivityLink_SVM561_Reproduce.ipynb",
-      "bytes": 22944,
-      "sha256": "d33d140976c0fa80dfac0e702ff64ad2956d3120fde9a700b10a3866453eb1c2"
+      "bytes": 23762,
+      "sha256": "099d62e27975249845c6b3ec41d36c50f155fdb27e6cab4c02228af03dfb4f37"
     },
     {
       "path": "ml/evaluate_historical.py",
       "bytes": 2854,
-      "sha256": "735a369923350e6a67eb0bb0d2e6f136ef28a0993ebc70e83f576ef6130ad29b"
+      "sha256": "fdc33796e0b27d08c256492697c499d690c6997590a93cb1f9a53522c58ebd0b"
     },
     {
       "path": "ml/retrain.py",
-      "bytes": 7018,
-      "sha256": "2957b3146ebcd81b6866488fa34a333e3c2cd274ec9bca20de67aad31d9e3172"
+      "bytes": 7305,
+      "sha256": "c35cb9de777adcc00839f40f07580c22a9f6614e76e019ac71fb0da58d163092"
     },
     {
       "path": "ml/tests/test_training_isolation.py",
-      "bytes": 2836,
-      "sha256": "c929ba211ef95503dfdfd5bc7635384fce008262a7434c76895cfbf01d683672"
+      "bytes": 2842,
+      "sha256": "d2eb36c29a6ac87808d2518be4d7af7eef9d84fce0c701a632bdbbc1c14d8622"
     },
     {
       "path": "models/svm561.json",
@@ -161,8 +161,8 @@
     },
     {
       "path": "models/svm561_predictor.h",
-      "bytes": 59347,
-      "sha256": "a6f3cb92f267b42e8a58eb564be63787d174f969cb50ca7d023290e361f6a5ec"
+      "bytes": 59446,
+      "sha256": "998dd3f949ff30a3fbb0564ec623e837623cc87fc46c84cfa5878c3b72da7f99"
     },
     {
       "path": "patches/contiki-v5.1-sw1-pin.patch",
@@ -411,8 +411,8 @@
     },
     {
       "path": "scripts/build_firmware.sh",
-      "bytes": 1969,
-      "sha256": "01361f29e1e59ea010cc0128316f3127ccf4b721927299d2100342e48ff5daba"
+      "bytes": 1966,
+      "sha256": "b7ca26d7e6099ea146d01dff5f43c67ab5db2f93417064a6a0e22ec036e5b0e1"
     },
     {
       "path": "scripts/control.py",
@@ -421,83 +421,83 @@
     },
     {
       "path": "scripts/execute_notebook.py",
-      "bytes": 1583,
-      "sha256": "732c7e3af1b41b2b6659f524be97b5f232d7a32c7b22df31e3a41ff830c31dbf"
+      "bytes": 1642,
+      "sha256": "7bf23a861a6c34e966954056e49300bba6639a34ad4a7bae195ec1eca7bc2a3d"
     },
     {
       "path": "scripts/hardware_mqtt_check.py",
-      "bytes": 8002,
-      "sha256": "1033753b460a7153f73ef3a8655ca09458a6f702a964afce6eba6a9d0aef6bbb"
+      "bytes": 8699,
+      "sha256": "0f495d0c58ebd8d3a332650e6c528116359f3a079943752e591ea4d18ae7b323"
     },
     {
       "path": "scripts/hardware_stress.py",
-      "bytes": 8608,
-      "sha256": "18edb503ae62067156043a5f8d39dc74fa7c1d3b28daddfdde33bcb07b81e915"
+      "bytes": 9290,
+      "sha256": "57764edb47027f5b413715d479bd552e21aa29b0beb2b7e71f6d042e808afa82"
     },
     {
       "path": "scripts/native_stack.py",
-      "bytes": 9804,
-      "sha256": "cb55adbcf6fb9ae4f834ad164ed06d17fa088b35267257d583737bd011058288"
+      "bytes": 10495,
+      "sha256": "f26a5c6296d09d41d479cdb101d9037ac778f1cb024d39d88f01cd2a57d14725"
     },
     {
       "path": "scripts/native_stack_check.py",
-      "bytes": 6214,
-      "sha256": "54d622c7cfa401314aba6d7038135e386f0b851f8e217f88602f30019cb61a01"
+      "bytes": 7031,
+      "sha256": "9d86c9f9759970f2aa8ad9c82dcb813d69ec65f0ac61a8b7ada66e4c8aa8264c"
     },
     {
       "path": "scripts/physical_failure_check.py",
-      "bytes": 2562,
-      "sha256": "46852cb8d3e1dcbac1aefe7cc6e47c7ab98aee72e8e9732306b56de98f44cb77"
+      "bytes": 2634,
+      "sha256": "3fba3172784f6aee337cb3be188194fabadbca84d8e76c8b660acc65c6d5fabb"
     },
     {
       "path": "scripts/ports.py",
-      "bytes": 804,
-      "sha256": "aa39a0af6eab695b40387cf75d29240c96b91d3128d3afe8ebd9781ef0076762"
+      "bytes": 790,
+      "sha256": "9c71a809964965cb4d43a5c568b320eabe3678a0bd45a845f0a78fe84682082a"
     },
     {
       "path": "scripts/service_recovery_check.py",
-      "bytes": 4513,
-      "sha256": "be81070b6933c7a21126e2ce5ba57e0a4d77da40e0fef43eac8cbdac2f32930f"
+      "bytes": 4655,
+      "sha256": "75f18ac0121e4be7791aed05678bb6fa2cf15b8c1b3bc4c9119f981bb6a8339a"
     },
     {
       "path": "scripts/setup_contiki.sh",
-      "bytes": 878,
-      "sha256": "2672b73f3832397cea0b3613e6029c7e87b68192965fa6b1f28fe9fe573fa0a6"
+      "bytes": 886,
+      "sha256": "8db8732bc59abedf5c811fca36887f1bb2e0e35ff4e15963bf793d6c89c7bd0e"
     },
     {
       "path": "scripts/setup_mosquitto.sh",
       "bytes": 1182,
-      "sha256": "4d82b07b19c17bfcc7b923f59ed839f6ca622293e234a63ce303cbb474870fa4"
+      "sha256": "f82063e5466b2d81d5385a35c9d19e483856daf876e03843e15f27285540703d"
     },
     {
       "path": "scripts/setup_native_stack.py",
-      "bytes": 2288,
-      "sha256": "27092b9b95c2549f6e008f85db956c1e2ef37681254790ee833613934a37e4ec"
+      "bytes": 2443,
+      "sha256": "fa26ddb7c471199690726667dfeecfdd0879ccb1c518cf26fc7b38fa68628d2e"
     },
     {
       "path": "scripts/verify_model.py",
-      "bytes": 2334,
-      "sha256": "874b86049828cad76779eba28c819e10f0455c0a40509619c5e86b96e58490d6"
+      "bytes": 2516,
+      "sha256": "cd8c999b529342cee6dfd4ea751aa000d468332c75f337a3ab2b3e7a151a47a3"
     },
     {
       "path": "tests/backend_sql_contract.py",
-      "bytes": 2213,
-      "sha256": "b526f32898537fad3278f596d21feab8309af10a4ea9306fc5ec949be02398a1"
+      "bytes": 2326,
+      "sha256": "e7e7a92249d11ee6fd715a6b497078e480912c965f60ab1990928ae8e809a0c5"
     },
     {
       "path": "tests/test_backend_queue.py",
-      "bytes": 3348,
-      "sha256": "57732d62a6bb99b29f291d892ad4e5c43483293693cacecc21b979f8da8bf41b"
+      "bytes": 3570,
+      "sha256": "af3757214bba2a00c400a96e3080c51b51d3c98bfd4c4380193d9292414194e8"
     },
     {
       "path": "tests/test_core.py",
-      "bytes": 937,
-      "sha256": "7c3a2a4dc0be00a602d67a6fd98c8eb5a5f6be4cbd9593457c0b197ed6da9465"
+      "bytes": 1119,
+      "sha256": "1050dc69f37afcd9cf1de6861f3957a15cf3b057480d7b69c6896a0452146194"
     },
     {
       "path": "tests/test_protocol.py",
-      "bytes": 2441,
-      "sha256": "a8abc5112075295eee1c1dfacef26fa3797079ff0e715c891e3ba967c004d0f2"
+      "bytes": 2736,
+      "sha256": "0de1c67cd3cbde641af74fe37023dde3c5460c7e45360a9948176795d853bf1f"
     },
     {
       "path": "third_party/mosquitto/LICENSE.txt",
@@ -526,5 +526,5 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "340c75859117678201f1c1ea71739b61cd7bed001016636a22094b6d50dec809"
+  "source_archive_sha256": "2933dff4be1b72cf36801fbd14fc68ab24238d5c12c78736089859803e5ca23c"
 }

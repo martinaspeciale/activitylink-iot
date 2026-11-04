@@ -1,4 +1,5 @@
 """Evaluate a trained candidate on the historical UCI test split."""
+
 import argparse
 import json
 from pathlib import Path
@@ -27,19 +28,28 @@ def evaluate(dataset, candidate):
 
     # Compare with the shipped reference without replacing either model
     frozen = json.loads((ROOT / 'models/svm561.json').read_text())
-    old = np.asarray(frozen['classes'])[(X.astype(np.float32).astype(np.float64)
-        @ np.asarray(frozen['weights']).T + frozen['bias']).argmax(axis=1)]
-    return dict(scope='historical benchmark only; already consulted; no training or selection',
-                source='https://doi.org/10.24432/C54S4K', test_rows=len(y),
-                test_subjects=sorted(map(int, set(groups))), subject_overlap=0,
-                accuracy=float(accuracy_score(y, pred)),
-                macro_f1=float(f1_score(y, pred, average='macro', zero_division=0)),
-                errors=int((pred != y).sum()),
-                confusion_matrix=confusion_matrix(y, pred).tolist(),
-                classification_report=classification_report(y, pred, output_dict=True, zero_division=0),
-                prediction_mismatches_vs_shipped=int((pred != old).sum()),
-                max_weight_difference=float(np.abs(weights - frozen['weights']).max()),
-                used_for_selection=False, firmware_replaced=False)
+    old = np.asarray(frozen['classes'])[
+        (
+            X.astype(np.float32).astype(np.float64) @ np.asarray(frozen['weights']).T
+            + frozen['bias']
+        ).argmax(axis=1)
+    ]
+    return dict(
+        scope='historical benchmark only; already consulted; no training or selection',
+        source='https://doi.org/10.24432/C54S4K',
+        test_rows=len(y),
+        test_subjects=sorted(map(int, set(groups))),
+        subject_overlap=0,
+        accuracy=float(accuracy_score(y, pred)),
+        macro_f1=float(f1_score(y, pred, average='macro', zero_division=0)),
+        errors=int((pred != y).sum()),
+        confusion_matrix=confusion_matrix(y, pred).tolist(),
+        classification_report=classification_report(y, pred, output_dict=True, zero_division=0),
+        prediction_mismatches_vs_shipped=int((pred != old).sum()),
+        max_weight_difference=float(np.abs(weights - frozen['weights']).max()),
+        used_for_selection=False,
+        firmware_replaced=False,
+    )
 
 
 def main():

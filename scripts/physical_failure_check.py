@@ -1,4 +1,5 @@
 """Record HAR disconnection and reconnection during a manual test."""
+
 import argparse
 import json
 from pathlib import Path
@@ -46,7 +47,12 @@ try:
             if stale is None:
                 stale = row
                 print("STALE/RED observed; awaiting HAR return", flush=True)
-        if stale and row["time"] > stale["time"] and not row["sensor_stale"] and row["reported_led"] in (1, 2):
+        if (
+            stale
+            and row["time"] > stale["time"]
+            and not row["sensor_stale"]
+            and row["reported_led"] in (1, 2)
+        ):
             recovery = row
             break
         time.sleep(0.3)
@@ -56,9 +62,15 @@ finally:
     stream.close()
 sensor_events = [e for e in events if e["data"]["node"] == "node1"]
 boots = list(dict.fromkeys(e["data"]["boot"] for e in sensor_events))
-result = {"start": start, "end": time.time(), "stale": stale, "recovery": recovery,
-          "observed_har_boots": boots, "passed": bool(stale and recovery and len(boots) >= 2),
-          "scope": "physical action by user; red/stale, new HAR boot and recovery via actual MQTT/SQL"}
+result = {
+    "start": start,
+    "end": time.time(),
+    "stale": stale,
+    "recovery": recovery,
+    "observed_har_boots": boots,
+    "passed": bool(stale and recovery and len(boots) >= 2),
+    "scope": "physical action by user; red/stale, new HAR boot and recovery via actual MQTT/SQL",
+}
 (args.out / "summary.json").write_text(json.dumps(result, indent=2))
 print(json.dumps(result, indent=2))
 raise SystemExit(not result["passed"])

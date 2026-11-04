@@ -1,4 +1,5 @@
 """Download and configure the pinned MySQL and Grafana releases."""
+
 import hashlib
 import json
 import os
@@ -12,12 +13,23 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "tools/native-stack"
 DOWNLOADS = BASE / "downloads"
 PACKAGES = [
-    ("mysql-8.0.31-macos12-x86_64", "https://cdn.mysql.com/archives/mysql-8.0/mysql-8.0.31-macos12-x86_64.tar.gz",
-     "f148632c405c0d49c1bd4ee92f3b8bd0705ff0776e82f20fede9f1ee6af10199", "bin/mysqld"),
-    ("grafana-v11.6.0", "https://dl.grafana.com/oss/release/grafana-11.6.0.darwin-amd64.tar.gz",
-     "f9718154edc42c6ebaf6c760e75b948e983db2f4ce1b9477cd58e33003fe146f", "bin/grafana")]
+    (
+        "mysql-8.0.31-macos12-x86_64",
+        "https://cdn.mysql.com/archives/mysql-8.0/mysql-8.0.31-macos12-x86_64.tar.gz",
+        "f148632c405c0d49c1bd4ee92f3b8bd0705ff0776e82f20fede9f1ee6af10199",
+        "bin/mysqld",
+    ),
+    (
+        "grafana-v11.6.0",
+        "https://dl.grafana.com/oss/release/grafana-11.6.0.darwin-amd64.tar.gz",
+        "f9718154edc42c6ebaf6c760e75b948e983db2f4ce1b9477cd58e33003fe146f",
+        "bin/grafana",
+    ),
+]
 if platform.system() != "Darwin" or platform.machine() != "x86_64":
-    raise SystemExit("This setup is pinned to Intel macOS; see Compose for the separate Linux option")
+    raise SystemExit(
+        "This setup is pinned to Intel macOS; see Compose for the separate Linux option"
+    )
 DOWNLOADS.mkdir(parents=True, exist_ok=True)
 for folder, url, expected, binary in PACKAGES:
     archive = DOWNLOADS / url.rsplit("/", 1)[1]
@@ -27,7 +39,9 @@ for folder, url, expected, binary in PACKAGES:
         with urllib.request.urlopen(url, timeout=60) as source, partial.open("wb") as destination:
             while chunk := source.read(1024 * 1024):
                 destination.write(chunk)
-        assert hashlib.sha256(partial.read_bytes()).hexdigest() == expected, "Archive checksum mismatch"
+        assert (
+            hashlib.sha256(partial.read_bytes()).hexdigest() == expected
+        ), "Archive checksum mismatch"
         os.replace(partial, archive)
     if not (BASE / folder / binary).exists():
         with tarfile.open(archive) as source:
@@ -35,7 +49,9 @@ for folder, url, expected, binary in PACKAGES:
                 target = (BASE / member.name).resolve()
                 assert target.is_relative_to(BASE.resolve()), "Unsafe archive path"
                 if member.issym() or member.islnk():
-                    linked = ((target.parent if member.issym() else BASE) / member.linkname).resolve()
+                    linked = (
+                        (target.parent if member.issym() else BASE) / member.linkname
+                    ).resolve()
                     assert linked.is_relative_to(BASE.resolve()), "Unsafe archive link"
             source.extractall(BASE, filter="data")
     subprocess.run([str(BASE / folder / binary), "--version"], check=True)
