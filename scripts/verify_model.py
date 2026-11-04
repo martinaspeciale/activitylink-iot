@@ -16,10 +16,12 @@ if a.dataset:
 else:
     with (ROOT / "data/replay.csv").open() as f:
         X = np.array([[float(r[f"x{i}"]) for i in range(561)] for r in csv.DictReader(f)])
-# Use float32 inputs to match the representation consumed by the C predictor.
+
+# Use float32 inputs to match the representation consumed by the C predictor
 X = np.ascontiguousarray(X, dtype=np.float32)
 expected = np.array(m["classes"])[(X.astype(np.float64) @ np.array(m["weights"]).T + m["bias"]).argmax(axis=1)]
-# Compile and run the shipped predictor on the host, not on the ARM device.
+
+# Compile and run the shipped predictor on the host, not on the ARM device
 with tempfile.TemporaryDirectory() as temp:
     d = Path(temp)
     (d / "predict.c").write_text('#include "svm561_predictor.h"\nint predict(const float *x) { return har_predict(x); }\n')
@@ -29,7 +31,8 @@ with tempfile.TemporaryDirectory() as temp:
     lib.predict.argtypes = [ctypes.POINTER(ctypes.c_float)]
     lib.predict.restype = ctypes.c_int
     actual = np.array([lib.predict(x.ctypes.data_as(ctypes.POINTER(ctypes.c_float))) for x in X])
-# Agreement between implementations is distinct from accuracy against true labels.
+
+# Agreement between implementations is distinct from accuracy against true labels
 result = dict(scope="host GCC; shipped JSON vs shipped C; no ARM execution",
               samples=len(X), mismatches=int((actual != expected).sum()),
               header_sha256=hashlib.sha256((ROOT / "models/svm561_predictor.h").read_bytes()).hexdigest(),

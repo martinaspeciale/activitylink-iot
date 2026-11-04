@@ -1,7 +1,8 @@
 CONTIKI_PROJECT = activitylink
 all: $(CONTIKI_PROJECT)
 CONTIKI ?= ../../vendor/contiki-ng
-# Build the same source as HAR (1) or feedback (2).
+
+# Build the same source as HAR (1) or feedback (2)
 ROLE ?= 1
 CFLAGS += -DNODE_ROLE=$(ROLE)
 include $(CONTIKI)/Makefile.dir-variables

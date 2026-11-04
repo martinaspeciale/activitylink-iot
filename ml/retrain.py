@@ -19,7 +19,8 @@ from sklearn.svm import LinearSVC
 ROOT = Path(__file__).resolve().parents[1]
 URL = 'https://archive.ics.uci.edu/static/public/240/human+activity+recognition+using+smartphones.zip'
 SHA = 'c00b803081a5c797cd5e4b83700a9810b38d53d9d84e01917e090e1fdbc81031'
-# Keep the training recipe fixed; the official test does not choose these settings.
+
+# Keep the training recipe fixed; the official test does not choose these settings
 RECIPE = dict(features=561, C=0.1, dual='auto', max_iter=5000, random_state=42,
               folds=5, grouping='subject', feature_selection=False,
               hyperparameter_search=False, rejection_threshold=False)
@@ -39,7 +40,8 @@ def prepare_dataset(out):
         if digest(temp) != SHA:
             raise RuntimeError('Dataset checksum mismatch')
         os.replace(temp, archive)
-    # The archive contains both splits, but train_only() reads only the training files.
+
+    # The archive contains both splits, but train_only() reads only the training files
     with zipfile.ZipFile(archive) as z:
         z.extractall(out / 'download')
     with zipfile.ZipFile(out / 'download/UCI HAR Dataset.zip') as z:
@@ -55,16 +57,19 @@ def grouped_validation(X, y, subjects, folds=5):
     predictions = np.zeros_like(y)
     coverage = np.zeros(len(y), dtype=int)
     rows = []
-    # Group by person so windows from one person cannot appear on both sides of a fold.
+
+    # Group by person so windows from one person cannot appear on both sides of a fold
     for fold, (train, valid) in enumerate(GroupKFold(n_splits=folds).split(X, y, subjects), 1):
         training_subjects = sorted(map(int, set(subjects[train])))
         validation_subjects = sorted(map(int, set(subjects[valid])))
         if set(training_subjects) & set(validation_subjects):
             raise RuntimeError('Subject leakage')
-        # Fit a fresh scaler and classifier using only the training part of this fold.
+
+        # Fit a fresh scaler and classifier using only the training part of this fold
         fitted = clone(pipeline).fit(X[train], y[train])
         pred = fitted.predict(X[valid])
-        # Collect out-of-fold predictions; each row is evaluated once without training on it.
+
+        # Collect out-of-fold predictions; each row is evaluated once without training on it
         predictions[valid] = pred
         coverage[valid] += 1
         rows.append(dict(fold=fold, training_subjects=training_subjects,
@@ -93,7 +98,8 @@ def grouped_validation(X, y, subjects, folds=5):
 
 def train_only(dataset, out):
     out.mkdir(parents=True, exist_ok=True)
-    # Save the fixed recipe before fitting.
+
+    # Save the fixed recipe before fitting
     (out / 'protocol.json').write_text(json.dumps(RECIPE, indent=2) + '\n')
     paths = [dataset / 'train' / name for name in
              ('X_train.txt', 'y_train.txt', 'subject_train.txt')]
@@ -105,15 +111,18 @@ def train_only(dataset, out):
     if not np.isfinite(X).all() or not set(y) <= set(range(1, 7)):
         raise ValueError('Invalid training values')
     pipeline, result, predictions = grouped_validation(X, y, subjects, RECIPE['folds'])
-    # Refit on all training subjects.
+
+    # Refit on all training subjects
     fitted = pipeline.fit(X, y)
     scaler, svm = fitted.steps[0][1], fitted.steps[1][1]
-    # Fold standardization into the linear coefficients so C accepts the original features.
+
+    # Fold standardization into the linear coefficients so C accepts the original features
     weights = svm.coef_ / scaler.scale_
     bias = svm.intercept_ - weights @ scaler.mean_
     model = dict(name='svm561', classes=svm.classes_.tolist(), indices=list(range(561)),
                  weights=weights.tolist(), bias=bias.tolist())
-    # Write a candidate to the output directory; leave the deployed firmware model unchanged.
+
+    # Write a candidate to the output directory; leave the deployed firmware model unchanged
     (out / 'svm561.json').write_text(json.dumps(model))
     np.savetxt(out / 'oof_predictions.csv', np.column_stack((subjects, y, predictions)),
                fmt='%d', delimiter=',', header='subject,true,predicted', comments='')

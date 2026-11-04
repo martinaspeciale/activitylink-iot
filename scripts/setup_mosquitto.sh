@@ -1,5 +1,6 @@
 #!/bin/sh
-# Local build only: no Homebrew installation, TLS, sudo or system service.
+
+# Local build only: no Homebrew installation, TLS, sudo or system service
 set -eu
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 cd "$ROOT"

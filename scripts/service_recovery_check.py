@@ -14,8 +14,11 @@ parser.add_argument("--out", type=Path, required=True)
 args = parser.parse_args()
 args.out.mkdir(parents=True, exist_ok=False)
 credentials = config()
-start_broker()  # Adopt only the identified project broker, never an unrelated server.
-# Record real telemetry while services are interrupted and restarted below.
+
+# Adopt only the identified project broker, never an unrelated server
+start_broker()
+
+# Record real telemetry while services are interrupted and restarted below
 events = []
 stream = (args.out / "mqtt.jsonl").open("x", buffering=1)
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id="activitylink-service-check")
@@ -65,7 +68,8 @@ try:
     start_mysql(credentials)
     database_up = time.time()
     after_db = wait_for(lambda: recovered(database_up), 45)
-    # Every sample observed during DB absence must eventually appear in SQL.
+
+    # Every sample observed during DB absence must eventually appear in SQL
     during = [e for e in events if down + 1 <= e["time"] < database_up]
     def persisted():
         with db(credentials, user="activitylink", database="activitylink") as connection:

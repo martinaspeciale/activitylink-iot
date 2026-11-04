@@ -37,7 +37,8 @@ def main():
     if len({node for node, _ in serial_ports}) != len(serial_ports):
         parser.error("each node may have only one serial reader")
     args.out.mkdir(parents=True, exist_ok=True)
-    # Exclusive creation protects earlier observations.
+
+    # Exclusive creation protects earlier observations
     stream = (args.out / "telemetry.jsonl").open("x", buffering=1)
     observations, errors, commands, connections = [], [], [], []
     watchdog = None
@@ -117,7 +118,8 @@ def main():
                 finally:
                     if initial == 0:
                         command("node1", "P", "enabled", 0)
-                # Observe feedback watchdog after the final command (firmware uses >8s).
+
+                # Observe feedback watchdog after the final command (firmware uses >8s)
                 stop.wait(11)
                 last_command_time = next(c["time"] for c in reversed(commands) if c["node"] == "node2")
                 watchdog = any(e["time"] >= last_command_time + 9

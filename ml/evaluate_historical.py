@@ -11,7 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def evaluate(dataset, candidate):
     model = json.loads(candidate.read_text())
-    # This separate evaluation reads the already consulted test; it performs no fitting.
+
+    # This separate evaluation reads the already consulted test; it performs no fitting
     X = np.loadtxt(dataset / 'test/X_test.txt')
     y = np.loadtxt(dataset / 'test/y_test.txt', dtype=int)
     groups = np.loadtxt(dataset / 'test/subject_test.txt', dtype=int)
@@ -20,9 +21,11 @@ def evaluate(dataset, candidate):
         raise ValueError('Official train/test subject overlap')
     weights = np.asarray(model['weights'])
     bias = np.asarray(model['bias'])
-    # Choose the largest linear score; these scores are not class probabilities.
+
+    # Choose the largest linear score; these scores are not class probabilities
     pred = np.asarray(model['classes'])[(X @ weights.T + bias).argmax(axis=1)]
-    # Compare with the shipped reference without replacing either model.
+
+    # Compare with the shipped reference without replacing either model
     frozen = json.loads((ROOT / 'models/svm561.json').read_text())
     old = np.asarray(frozen['classes'])[(X.astype(np.float32).astype(np.float64)
         @ np.asarray(frozen['weights']).T + frozen['bias']).argmax(axis=1)]

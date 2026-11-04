@@ -19,7 +19,8 @@ def main():
     args.out.mkdir(parents=True, exist_ok=True)
     credentials = config()
     command_checks = []
-    # This optional check sends real pause/resume commands, rather than only reading status.
+
+    # This optional check sends real pause/resume commands, rather than only reading status
     if args.commands:
         with db(credentials, user="activitylink", database="activitylink") as connection:
             with connection.cursor() as cur:
@@ -32,7 +33,8 @@ def main():
             for value, enabled in (("P", 0), ("R", 1)):
                 sent = time.time()
                 client.publish("activitylink/node1/command", value.encode(), qos=0, retain=False).wait_for_publish(5)
-                # Require new sensor and actuator telemetry after the command, not old SQL rows.
+
+                # Require new sensor and actuator telemetry after the command, not old SQL rows
                 def confirmed():
                     with db(credentials, user="activitylink", database="activitylink") as connection:
                         with connection.cursor() as cur:
@@ -50,7 +52,8 @@ def main():
                     return {"command": value, "sensor": sensor, "actuator": actuator, "metric": metric}
                 command_checks.append(wait_for(confirmed, 10))
         finally:
-            # Restore the HAR enabled state observed before the check.
+
+            # Restore the HAR enabled state observed before the check
             client.publish("activitylink/node1/command", b"R" if initial_enabled else b"P").wait_for_publish(5)
             client.disconnect()
             client.loop_stop()
