@@ -93,6 +93,10 @@ PROCESS_THREAD(activitylink_process, ev, data) {
   /* Connection retries are handled by the periodic timer below */
   conn.auto_reconnect = 0;
   printf("AL boot node=%s boot=%s rtimer_hz=%lu\n", NODE_NAME, boot, (unsigned long)RTIMER_SECOND);
+
+  /* Converting -10 to unsigned uses wraparound on this 32-bit target
+     The initial elapsed time is then about 10 seconds, so the >= 5 check
+     allows a connection attempt on the first timer tick */
   last_connect = (unsigned)-10;
   etimer_set(&tick, CLOCK_SECOND);
   while (1) {

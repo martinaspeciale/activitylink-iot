@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T14:48:23.413406+01:00",
+  "generated_at": "2026-11-04T15:05:05.352705+01:00",
   "report_pages": 8,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -96,8 +96,8 @@
     },
     {
       "path": "firmware/node/activitylink.c",
-      "bytes": 5854,
-      "sha256": "b2b250ddedaff95ed32ce866efb7bfa355ca64bc99284b0bda4a3a0b28e47313"
+      "bytes": 6059,
+      "sha256": "94324ce6bc0f0976ca7004800f324800647bd9bf982cc760e74cab7f92e69f09"
     },
     {
       "path": "firmware/node/model.h",
@@ -526,5 +526,5 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "2933dff4be1b72cf36801fbd14fc68ab24238d5c12c78736089859803e5ca23c"
+  "source_archive_sha256": "8e95d69fda6f33c974516f4b901e1a3fc06aaea9e6173657095fe57f5cde10fc"
 }
