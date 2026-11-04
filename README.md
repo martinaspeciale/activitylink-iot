@@ -21,7 +21,16 @@ Guida: [riproduzione](docs/REPRODUCE.md), [stack Mac](docs/NATIVE_MAC_STACK.md),
 La procedura usa il target originale Contiki del laboratorio Righetti (p. 193).
 Sul Mac si usa `gmake` e una seriale `/dev/cu.usbmodem...` al posto di `/dev/ttyACM0`.
 Il compilatore ARM deve essere nel PATH anche per leggere questo Makefile.
-Il percorso seguente è quello installato sul Mac verificato: adattarlo su un altro host.
+Sul Mac operativo il PATH è già configurato in `~/.zshrc`: basta aprire un nuovo
+terminale. Su un altro host, aggiungere una sola volta alla propria `~/.zshrc`
+la riga seguente, adattando il percorso all'installazione, poi aprire un nuovo terminale:
+
+```sh
+export PATH="$HOME/opt/arm-toolchains/arm-gnu-toolchain-12.3.rel1-darwin-x86_64-arm-none-eabi/bin:$PATH"
+```
+
+Questa è preparazione dell'ambiente, non un comando da ripetere a ogni demo.
+Verificare con `command -v arm-none-eabi-gcc`.
 
 **Terminale 1**, dalla root del progetto, con ambiente già predisposto:
 
@@ -34,7 +43,6 @@ Identificare il border router: il valore PORT sotto è quello del collaudo,
 non una selezione automatica della prima porta disponibile. Poi, sempre dalla root:
 
 ```sh
-export PATH="/Users/martina/opt/arm-toolchains/arm-gnu-toolchain-12.3.rel1-darwin-x86_64-arm-none-eabi/bin:$PATH"
 cd vendor/contiki-ng/examples/rpl-border-router
 gmake TARGET=nrf52840 BOARD=dongle PORT=/dev/cu.usbmodemFA8130D5146E1 connect-router
 ```

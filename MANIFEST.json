@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-03T23:54:00.132458+01:00",
+  "generated_at": "2026-11-04T08:11:57.358753+01:00",
   "report_pages": 8,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -21,8 +21,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5013,
-      "sha256": "9ccda18cff5416d23cb34fee029b2110f507792fdf4aaf59fc4da6e0337771c8"
+      "bytes": 5303,
+      "sha256": "00fbc0c31aab3d683b972338292447f7eff060aeece2ef0026e3e90b800748bd"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -81,8 +81,8 @@
     },
     {
       "path": "docs/REPRODUCE.md",
-      "bytes": 12776,
-      "sha256": "5d564500f5fe98d947336e054876fa6c4c1a257491d9bc5166c62cd4e51c3047"
+      "bytes": 13066,
+      "sha256": "951b3f6018b2457990903cd57a9eff34b7e53b80ed6bf36866b49e881152b929"
     },
     {
       "path": "firmware/node/Makefile",
@@ -486,5 +486,5 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "c78c051ca03252ebcfa39f62602bde0a2155d44b9c8f2efa58f5d82dee3aa782"
+  "source_archive_sha256": "44e0181e7a26c5acb19363fa4f9b659b94e14fd6cf1be677c4ca878caaa32551"
 }
