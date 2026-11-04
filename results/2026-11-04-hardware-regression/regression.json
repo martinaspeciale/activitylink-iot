@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "scope": "real dongles, current Python CLI and backend lifecycle, MQTT/SQL, Grafana API; no new flash or retraining; no browser/optical LED verification",
+  "command_checks": [
+    "P",
+    "R"
+  ],
+  "panels_checked": 4,
+  "latest_initial_metric": {
+    "id": 8174,
+    "time": 1793798089.452188,
+    "run_id": "hardware-regression-20261104",
+    "adaptive": 1,
+    "sensor_stale": 0,
+    "actuator_stale": 0,
+    "command_led": 2,
+    "reported_led": 2,
+    "accepted": 63,
+    "duplicates": 0,
+    "invalid": 0,
+    "out_of_order": 0,
+    "queue_drops": 0
+  },
+  "backend_lifecycle_passed": true,
+  "live_run": "hardware-regression-20261104-lifecycle",
+  "post_restart_panels_checked": 4,
+  "post_restart_metric": {
+    "id": 8271,
+    "time": 1793798199.358028,
+    "run_id": "hardware-regression-20261104-lifecycle",
+    "adaptive": 1,
+    "sensor_stale": 0,
+    "actuator_stale": 0,
+    "command_led": 1,
+    "reported_led": 1,
+    "accepted": 90,
+    "duplicates": 0,
+    "invalid": 0,
+    "out_of_order": 0,
+    "queue_drops": 0
+  }
+}

@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T11:45:37.979473+01:00",
+  "generated_at": "2026-11-04T14:16:55.066125+01:00",
   "report_pages": 8,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -80,9 +80,14 @@
       "sha256": "7e1b0101a040d1e2d1b75b14c8b1a058b33a5991454073e619d2da0c06b867ae"
     },
     {
+      "path": "docs/QUEUE_SATURATION_CHECK.md",
+      "bytes": 1461,
+      "sha256": "cb7540d00f4d3a10626edceec9ac8be976e75d6b3918bc758e2451571ec85832"
+    },
+    {
       "path": "docs/REPRODUCE.md",
-      "bytes": 13491,
-      "sha256": "35fe836cba76bb734e76d00d716fff7e2f6b1bceefd1e95cd1fcad5fef95022b"
+      "bytes": 13698,
+      "sha256": "0b722d00eadeec8f3154d5ebaeedc13a97af2f89ce8a497a5acff67c31bede58"
     },
     {
       "path": "firmware/node/Makefile",
@@ -380,6 +385,31 @@
       "sha256": "4293a5010a2cafefb6a0edd82c02c0e29f4971a7292c84ababab43fdeae3eab8"
     },
     {
+      "path": "results/2026-11-04-hardware-regression/cli-lifecycle.json",
+      "bytes": 3442,
+      "sha256": "f7813ddeed2a27090b775f4d17285ab6925473a18ffe6e721e8a440972146f02"
+    },
+    {
+      "path": "results/2026-11-04-hardware-regression/post-restart/summary.json",
+      "bytes": 1270,
+      "sha256": "11355f73b33f6012fcf6be7519d6bc4ea30f4f8ba4b069a48fa845ce475de49d"
+    },
+    {
+      "path": "results/2026-11-04-hardware-regression/regression.json",
+      "bytes": 1065,
+      "sha256": "d669c5b354786f0b113ffd850fe7216e8bfd1218cfaf67e3f623ab4f5b8d0339"
+    },
+    {
+      "path": "results/2026-11-04-hardware-regression/summary.json",
+      "bytes": 3032,
+      "sha256": "7fb19a645c1fea5c02ccf5e2173b96f1321716911ed2a15e870721f0af84087e"
+    },
+    {
+      "path": "results/2026-11-04-queue-check/summary.json",
+      "bytes": 327,
+      "sha256": "30df1a4cf4963fe0607f01b9538e5673fdabdf89fb393036318db02c8c5ff5bc"
+    },
+    {
       "path": "scripts/build_firmware.sh",
       "bytes": 1969,
       "sha256": "01361f29e1e59ea010cc0128316f3127ccf4b721927299d2100342e48ff5daba"
@@ -455,6 +485,11 @@
       "sha256": "b526f32898537fad3278f596d21feab8309af10a4ea9306fc5ec949be02398a1"
     },
     {
+      "path": "tests/test_backend_queue.py",
+      "bytes": 3348,
+      "sha256": "57732d62a6bb99b29f291d892ad4e5c43483293693cacecc21b979f8da8bf41b"
+    },
+    {
       "path": "tests/test_core.py",
       "bytes": 937,
       "sha256": "7c3a2a4dc0be00a602d67a6fd98c8eb5a5f6be4cbd9593457c0b197ed6da9465"
@@ -491,5 +526,5 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "cd545ff816454c2e40b128e6e7653a6e87d749ae9acc99c75413fa6526fe6e86"
+  "source_archive_sha256": "340c75859117678201f1c1ea71739b61cd7bed001016636a22094b6d50dec809"
 }

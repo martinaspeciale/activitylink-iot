@@ -107,6 +107,10 @@ Grafana: http://127.0.0.1:3000/d/activitylink. Utente `admin`, password nel camp
 
 ## Test e confronto
 
+La suite include una prova aggiuntiva di saturazione della coda: 1005 messaggi,
+1000 accodati e 5 scartati, con MQTT/SQL simulati. Dettagli e limiti:
+[QUEUE_SATURATION_CHECK.md](QUEUE_SATURATION_CHECK.md).
+
 ```sh
 .venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v
 .venv/bin/python tests/backend_sql_contract.py --output results/NUOVO-SQL.json
