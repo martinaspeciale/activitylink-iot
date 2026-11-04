@@ -3,8 +3,9 @@
 `ActivityLink_Report.tex` is the canonical report source. The layout uses a classic
 academic article style with a centered title, black numbered headings and plain
 page numbers. The PDF is generated
-with pdfLaTeX, not HTML/browser printing. It contains eight A4 pages and two
-fillable author fields on page 1. The complete PDF is delivered separately
+with pdfLaTeX, not HTML/browser printing. It contains ten A4 pages: a dedicated title page, a clickable table of contents
+and eight report pages. Page 1 has two editable fields, prefilled with
+Martina Speciale and student ID 603047. The complete PDF is delivered separately
 from the source ZIP.
 
 From the project root, with a LaTeX installation containing the packages listed
@@ -17,8 +18,8 @@ sh scripts/build_report.sh
 The build uses the supplied vector figures and runs pdfLaTeX twice. It writes
 intermediate files under `runtime/report-latex/`, preserves an existing PDF in
 `deliverables/archive/`, and creates `deliverables/ActivityLink_Report.pdf`.
-Fill in the author fields after the final compilation; rebuilding creates a
-fresh PDF from the source.
+Author details are defined in the LaTeX source and can also be edited in the PDF.
+Rebuilding restores the values specified in the source.
 
 The figures are generated from the preserved 2 November hardware measurements.
 To regenerate them, use a Python environment with Matplotlib (the pinned version

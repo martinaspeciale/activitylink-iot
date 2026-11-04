@@ -289,6 +289,6 @@ presentati come esercizi obbligatori aggiuntivi del laboratorio.
 
 ## Relazione LaTeX
 
-Il PDF di otto pagine è in inglese. Il [sorgente LaTeX](report/ActivityLink_Report.tex)
+Il PDF di dieci pagine è in inglese. Il [sorgente LaTeX](report/ActivityLink_Report.tex)
 e le [istruzioni di compilazione](report/README.md) sono inclusi.
 Dalla root: `sh scripts/build_report.sh`. Il PDF resta separato dallo ZIP.

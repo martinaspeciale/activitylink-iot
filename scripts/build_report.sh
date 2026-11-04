@@ -6,7 +6,7 @@ OUTPUT="$ROOT/deliverables/ActivityLink_Report.pdf"
 mkdir -p "$BUILD_DIR" "$ROOT/deliverables"
 cd "$ROOT/docs/report"
 
-# Two passes resolve PDF form fields and document references
+# Two passes resolve the table of contents and PDF form fields
 for pass in 1 2; do
   pdflatex -interaction=nonstopmode -halt-on-error -no-shell-escape \
     -output-directory="$BUILD_DIR" ActivityLink_Report.tex \

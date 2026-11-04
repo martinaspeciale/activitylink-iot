@@ -8,7 +8,7 @@
 \hypersetup{hidelinks,
   pdftitle={ActivityLink: On-device Activity Recognition and Data Availability Feedback},
   pdfsubject={Individual Internet of Things project, examination 17 November 2026},
-  pdfauthor={},pdfkeywords={IoT, MQTT, Contiki-NG, nRF52840, human activity recognition}}
+  pdfauthor={Martina Speciale},pdfkeywords={IoT, MQTT, Contiki-NG, nRF52840, human activity recognition}}
 \graphicspath{{assets-en/}}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt}
@@ -25,17 +25,36 @@
 \pagestyle{plain}
 \begin{document}
 
-\begin{center}
-{\large Internet of Things --- Individual Project}\\[8pt]
-{\LARGE\bfseries ActivityLink}\\[5pt]
-{\large On-device activity recognition and\\data availability feedback}\\[8pt]
-Examination: 17 November 2026
-\end{center}
-\medskip
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\centering
+\vspace*{18mm}
+{\Large Internet of Things\par}
+\vspace{7mm}
+{\large Individual Project Report\par}
+\vspace{24mm}
+{\Huge\bfseries ActivityLink\par}
+\vspace{8mm}
+{\Large On-device activity recognition and\par
+ data availability feedback\par}
+\vspace{26mm}
 \begin{Form}
-Name and surname: \TextField[name=nome\string_cognome,width=95mm,height=5mm,borderwidth=0.5,bordercolor={0 0 0},charsize=10pt]{}\\[5pt]
-Student ID: \TextField[name=matricola,width=48mm,height=5mm,borderwidth=0.5,bordercolor={0 0 0},charsize=10pt]{}
+\TextField[name=nome\string_cognome,width=85mm,height=6mm,borderwidth=0,
+  align=1,charsize=10pt,value={Martina Speciale},default={Martina Speciale}]{}\par
+\vspace{6mm}
+Student ID: \TextField[name=matricola,width=45mm,height=5mm,borderwidth=0.5,
+  bordercolor={0 0 0},charsize=10pt,value={603047},default={603047}]{}
 \end{Form}
+\vfill
+{\large Examination: 17 November 2026\par}
+\vspace{8mm}
+{Technical report --- 4 November 2026\par}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
 
 \reportsection{Introduction}
 ActivityLink demonstrates a small IoT system that classifies human activity on a microcontroller and displays both the activity category and the availability of recent data on a separate device. Movement is shown in green, posture in blue, and unavailable data in red. The Smart Health use case is a demonstration of daily activity monitoring; it does not provide clinical diagnoses or validated medical alerts.

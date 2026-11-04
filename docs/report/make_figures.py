@@ -62,7 +62,7 @@ fig.savefig(OUT / "stress-timeline.pdf")
 plt.close(fig)
 
 fig, axis = plt.subplots(figsize=(10, 2.9), layout="constrained")
-axis.set(xlim=(0, 10), ylim=(0, 3))
+axis.set(xlim=(-0.3, 10), ylim=(-0.15, 3.05))
 axis.axis("off")
 boxes = [(0, 1.9, 1.6, .8, "HAR / node1\nLocal SVM + LED"),
          (0, .25, 1.6, .8, "Feedback / node2\nLED + watchdog"),
@@ -83,6 +83,6 @@ for start, end in [((1.65, 2.2), (2.25, 1.65)), ((1.65, .75), (2.25, 1.3)),
                                    color="#216b8b", linewidth=1.2))
 axis.text(.9, .02, "IEEE 802.15.4 / 6LoWPAN", fontsize=8, ha="center")
 axis.text(5.6, .3, "Services on the Mac", fontsize=9, ha="center", weight="bold")
-fig.savefig(OUT / "architecture.pdf")
+fig.savefig(OUT / "architecture.pdf", bbox_inches="tight", pad_inches=0.15)
 plt.close(fig)
 print("English figures generated from archived measurements")

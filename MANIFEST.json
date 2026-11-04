@@ -3,11 +3,11 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T17:33:40.364001+01:00",
-  "report_pages": 8,
+  "generated_at": "2026-11-04T17:57:15.278630+01:00",
+  "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
-  "author_fields": "user fills separate PDF",
+  "author_fields": "Martina Speciale and student ID 603047 prefilled in editable PDF fields",
   "files": [
     {
       "path": ".gitignore",
@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 390433,
-      "sha256": "7b64677f97b0d2e5f590819969d0c3ebdaef59505d04b531db63b149090f68bf"
+      "bytes": 395155,
+      "sha256": "37146f8195276fe501934ab71224205ffa4505b8d64a40549bc39c12f1a0d585"
     },
     {
       "path": "README.md",
@@ -86,38 +86,38 @@
     },
     {
       "path": "docs/REPRODUCE.md",
-      "bytes": 13949,
-      "sha256": "e226d0f426ea8b42b667d8b2edc8fe590c6dbed4a6938b72c81321d7f89a4fe1"
+      "bytes": 13950,
+      "sha256": "1b5c4542df013fa9152bb9ef1a65ab0b09e24c56468df32990822e1ae052e8b5"
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 22954,
-      "sha256": "5b2241f9b755d276b34b9eecb0d7b5977d90fcf02dc88ac00e9dd1ddc4e1b1ae"
+      "bytes": 23333,
+      "sha256": "b5827160d039929199622c92de9823913c0f63f2b4b6fdd503adfc6dc63764ff"
     },
     {
       "path": "docs/report/README.md",
-      "bytes": 1493,
-      "sha256": "7348cc5e502895d226697ca711c68173ab2fdfe686a0859fc99245feecde2d75"
+      "bytes": 1650,
+      "sha256": "607570a1badeec6f3dc4f368e79520fc9f2c32f9012dc59fab1feb5ee9252ae6"
     },
     {
       "path": "docs/report/assets-en/architecture.pdf",
-      "bytes": 22136,
-      "sha256": "593008318c94a751e48f9d078671cce0af319adffd0abd95afcb6b8d164cf42d"
+      "bytes": 22131,
+      "sha256": "1ff91e70492a648ca0ffa7ed2be86728a048205a7a749013212622de5bb86418"
     },
     {
       "path": "docs/report/assets-en/stress-comparison.pdf",
       "bytes": 19138,
-      "sha256": "6436da499d7f31136be0c306c6deea76596fd468db869631bbfca8ba7bdda894"
+      "sha256": "596ad54cd12209969d49ff75371a76bdc337ca139277ddac473bcaf89612515b"
     },
     {
       "path": "docs/report/assets-en/stress-timeline.pdf",
       "bytes": 20163,
-      "sha256": "fcb1a4e5cda6d04fac5656ec3e091644022df79751499882594467dd16c0d441"
+      "sha256": "9148a1e01e9dc8d8df63739696575cf3b57adc57c1b3b53f1f5a71998f3b6a4c"
     },
     {
       "path": "docs/report/make_figures.py",
-      "bytes": 4657,
-      "sha256": "b45c819e438eeb18aab5164a320060ec3e07bceadf7854cbe80de15341dec313"
+      "bytes": 4705,
+      "sha256": "9dc4b0599a91e8c5108e7c3105b03ffb5ca771ffbc902c89af11f1645f75f876"
     },
     {
       "path": "firmware/node/Makefile",
@@ -451,8 +451,8 @@
     },
     {
       "path": "scripts/build_report.sh",
-      "bytes": 917,
-      "sha256": "d249eaead40cbe9487bb0eb5b8111614986c04bbe5bae593f11705b2061447bb"
+      "bytes": 919,
+      "sha256": "f49e12b26e9570a926675f7e3cc26909eeeef71cbfebf1dc1a145dbbaf8c719b"
     },
     {
       "path": "scripts/control.py",
@@ -566,8 +566,8 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "2fbb59896486f9f6e4020c766a391aec810b4e0ca9b98d744c212a0edc564c26",
+  "source_archive_sha256": "07efe063a1d35b70b055d07c92c928c40067f849407f9f113772de6e50e43a15",
   "report_language": "English",
   "report_source_format": "LaTeX",
-  "report_layout": "classic academic article"
+  "report_layout": "classic academic article with dedicated title page and table of contents"
 }
