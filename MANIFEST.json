@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 887633,
-      "sha256": "2be331f3b1090caefe239279891fe7706a4e2e3d3163529c52cef7e203c8b46a"
+      "bytes": 888065,
+      "sha256": "1dbebb303334c9d1a0f1903947606e5f3d3bfd2c469b4901ae67de42fa013897"
     },
     {
       "path": "README.md",
@@ -91,8 +91,8 @@
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 26736,
-      "sha256": "594f3385f8abb69d1b8ba830ad2ed68cf45129584082dd040c3a2231a45f834b"
+      "bytes": 26842,
+      "sha256": "925d24c749f7d2b2a99ff4a48f917dae86431acaa9ca8eb86d6b75c947111740"
     },
     {
       "path": "docs/report/README.md",

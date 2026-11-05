@@ -185,12 +185,12 @@ The right column connects detection to the display. Solid lines are controller c
 
 \clearpage
 \reportsection{Adaptive/baseline results}
-The aggregate figure summarises the six original runs. Its left axis measures the percentage of stale controller samples in which red was commanded. Adaptive issues red in \textbf{28/28} such samples (100\%); baseline does so in \textbf{0/27} (0\%). These are control decisions sampled during the interruption, not counts of lost packets or classification accuracy. The unequal denominators reflect transmission and controller timing: equal fault durations need not produce equal sample counts.
+The aggregate figure summarises the six original runs. Its left axis measures the percentage of stale controller samples in which red was commanded. Adaptive issues red in \textbf{28/28} such samples (100\%); baseline does so in \textbf{0/27} (0\%). These are control decisions sampled during the interruption, not counts of lost packets or classification accuracy. The unequal denominators reflect transmission and controller timing. Even when interruptions last equally long, the controller may record different numbers of samples.
 
 \noindent\makebox[\linewidth][c]{\includegraphics[width=0.90\linewidth,height=32mm,keepaspectratio]{stress-comparison.pdf}}\par
 {\small\textbf{Figure 1.} Response during stale observations (left) and detection time for three runs per mode (right).}
 
-On the right, each dot represents one run. Its height is the elapsed time from the last HAR message forwarded before blocking to the first controller sample marking it stale, not time from the start of the block. The dashed line marks the six-second freshness threshold. Observed delays of 6.015--6.933 seconds also reflect periodic controller checks and scheduling. Both modes use the same detector: the result supports a difference in feedback behaviour, not faster detection by adaptive. Three short pairs do not establish statistical significance or performance across other deployments.
+Each right-hand dot measures one run's detection time, from the last HAR message forwarded before blocking to the first stale controller sample, rather than from the start of blocking. The dashed line marks the six-second freshness threshold. The observed 6.015--6.933 seconds reflect periodic checks and scheduling. Both modes use the same detector, so the right-hand plot does not demonstrate faster detection by adaptive. The distinction appears in the left-hand plot: adaptive commands red when observations are stale, while baseline retains the last recorded state. Three pairs do not establish statistical significance or generality across deployments.
 
 \smallskip
 \noindent\textbf{Adaptive mode}\par
