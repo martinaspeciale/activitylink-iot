@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-05T19:43:18.159290+01:00",
+  "generated_at": "2026-11-05T19:47:47.842868+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 872881,
-      "sha256": "12f66012914890b7c1a57093acf60da32bb250ac93e7c6ae1501a05dc87075a9"
+      "bytes": 873620,
+      "sha256": "726233dbc9758fd211ba5a5f0222d5812b1bb76a6e1ea24fbb652665ff473646"
     },
     {
       "path": "README.md",
@@ -91,8 +91,8 @@
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 28183,
-      "sha256": "9cdc8415aba96f1676884573797f8deda5479ebf513aecfc2839aebe01d96a88"
+      "bytes": 28690,
+      "sha256": "dd05385cffe866777b9a05a36e172bcb5b7fd65f456e4fc9525c7bee35e1f614"
     },
     {
       "path": "docs/report/README.md",
@@ -591,7 +591,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "208d4071b01b898a9e03beed1d22360c07ff125fcac2ea5b2b43309bf9a04b5a",
+  "source_archive_sha256": "465c9a217b38403779841d5571a6ef4d583d62d7a9af955dad14eef51cc0381c",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"
