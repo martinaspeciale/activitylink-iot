@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-05T20:46:13.919768+01:00",
+  "generated_at": "2026-11-05T20:54:52.528666+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 871945,
-      "sha256": "238009cb1ff459ccc4de35f41831ad0af574b28890844ea476e4d2f995170551"
+      "bytes": 887349,
+      "sha256": "80cf592aff066f23e275b40cbfbe600ae5c869b1c61c4450a87f22c7ee4cde13"
     },
     {
       "path": "README.md",
@@ -91,8 +91,8 @@
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 26982,
-      "sha256": "47fc211d43650488ff8a77f7734baae2dde654c57c94755b8e381cec24013a8a"
+      "bytes": 26540,
+      "sha256": "eb3f6053f03295fc3bf6128bc036306f3346d7a0d75a614e2aa6707140fa0a66"
     },
     {
       "path": "docs/report/README.md",
@@ -128,6 +128,11 @@
       "path": "docs/report/assets-en/stress-comparison.pdf",
       "bytes": 19138,
       "sha256": "596ad54cd12209969d49ff75371a76bdc337ca139277ddac473bcaf89612515b"
+    },
+    {
+      "path": "docs/report/assets-en/stress-timeline.pdf",
+      "bytes": 18678,
+      "sha256": "fa0d436ecb49a26443c0c52db0177b469c3b1bf40e4d980a9b2832a3ba32d809"
     },
     {
       "path": "docs/report/assets-en/unipi-logo.SOURCE.md",
@@ -561,7 +566,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "47641b741b883d6467f2de8ddc25c5813dde4a5e9bd944b9a5bb8137b6fe16eb",
+  "source_archive_sha256": "a3816115474bffdde08874c2c4c18eb4c51b33d17eaf8127db6c5b79feba4ec8",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"
