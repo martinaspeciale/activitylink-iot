@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-05T16:20:24.629361+01:00",
+  "generated_at": "2026-11-05T16:27:45.315825+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -186,8 +186,8 @@
     },
     {
       "path": "ml/ActivityLink_SVM561_Reproduce.ipynb",
-      "bytes": 133549,
-      "sha256": "ea8c81fe35f0f3b4adbea3959f8f47ad3f03e5e2919a0f47c7e562ac2ab91429"
+      "bytes": 137155,
+      "sha256": "d0314f34b03fffbdc7267c8d790c8078334fc9a0a09cf0a7ce6d1f5393be7c06"
     },
     {
       "path": "ml/README.md",
@@ -591,7 +591,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "ccae9f13c50ab84890f034180d4e06242722b6646b931777110d1ad6f6669d54",
+  "source_archive_sha256": "a71cd72612c29f10c5467b2e9650e6b5c078b949eff26b5450011d88fa73703b",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"
