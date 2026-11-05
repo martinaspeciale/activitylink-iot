@@ -109,7 +109,7 @@ Here, $\mu_i$ and $\sigma_i$ are the training mean and standard deviation for fe
 
 Rerunning the notebook saves a newly trained classification model without replacing the model installed on the dongles and used in the hardware experiments. The device replays 24 stored vectors, four per class, at approximately one per second. Walking and its stair-related variants map to green; sitting, standing and lying map to blue. Only the predicted class and node state are transmitted.
 
-Accuracy measures the proportion of correct labels; macro-F1 averages the per-activity F1 scores equally. The table also includes implementation and timing checks.
+The table summarises recognition performance, consistency of the exported implementation and prediction time.
 
 \begin{tabularx}{\linewidth}{@{}Yr@{}}
 \toprule
@@ -124,9 +124,9 @@ HAR inference observed on 15 device samples & 1.152--1.168 ms\\
 \bottomrule
 \end{tabularx}
 
-The host Python/C comparison uses the deployed reference; it checks implementation agreement, not classification accuracy or execution of all windows on ARM. Device timing covers prediction alone: 72--73 ticks at 62,500 ticks per second. It excludes communication and feature extraction and establishes neither overall latency nor a worst-case execution bound.
+OOF accuracy is the proportion of held-out windows classified correctly. For each activity, precision measures how often its predicted label is correct; recall measures how many of its examples are recognised. F1 is their harmonic mean, and macro-F1 averages the six activity scores equally. Both OOF metrics aggregate the five folds. The fold range gives the minimum and maximum macro-F1; the standard deviation describes variation between subject groups, not a confidence interval.
 
-The official test gives historical accuracy of 96.1995\% and macro-F1 of 96.2914\%. Because it was previously consulted, these results are not a new blind evaluation and do not select the current candidate. The notebook was executed locally; hosted Colab remains unverified. Retraining leaves the firmware unchanged. The replay vectors provide no additional accuracy estimate.
+The Python/C row counts prediction differences between the deployed model's implementations on 2,947 inputs. Zero means agreement, not perfect recognition; C runs on the host during this check. The inference row reports the time range for 15 dongle predictions, excluding feature extraction and communication. It measures neither overall response time nor a guaranteed maximum.
 \clearpage
 \reportsection{Messaging, persistence and control}
 Communication between the devices and the Cloud Application uses Message Queuing Telemetry Transport (MQTT). Its publish/subscribe model allows each device to send updates to a named topic and receive commands without knowing the other application's address. The clients connect over TCP to Mosquitto, the message broker on the host computer, using Eclipse Paho in Python and Contiki's implementation on the dongles. This arrangement suits periodic activity updates and a separate feedback device; it was selected for that structure and the available implementations, rather than a measured advantage over the alternative CoAP protocol.
