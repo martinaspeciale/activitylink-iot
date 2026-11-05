@@ -63,7 +63,7 @@ To make this behaviour reproducible, sensing is simulated with numerical descrip
 \end{center}
 {\small The activity and feedback devices communicate through a border router. On the host computer, a message broker relays updates and commands, while a database stores observations and a dashboard makes the control behaviour visible.}
 
-This arrangement allows the project to address the experimental objective of the course as well as its implementation requirements [1]. We compare ordinary operation with periods of missing sensor data, using the same system with adaptation enabled (adaptive mode) and disabled (baseline). The question is whether the remote display should continue showing the last activity or explicitly indicate that the observation can no longer be treated as current. The following sections develop the device architecture and classification method before examining that control decision and the evidence collected from the real deployment.
+To examine how the system responds when observations become unavailable, we compare ordinary operation with periods of missing sensor data, using the same system with adaptation enabled (adaptive mode) and disabled (baseline). The question is whether the remote display should continue showing the last activity or explicitly indicate that the observation can no longer be treated as current. The following sections develop the device architecture and classification method before examining that control decision and the evidence collected from the real deployment.
 \clearpage
 \reportsection{Devices, network and firmware}
 The three roles introduced above are implemented on nRF52840 USB dongles, small boards containing a microcontroller and a low-power radio. The activity node is referred to as HAR, for \emph{human activity recognition}, while the feedback node acts as an actuator by changing its light in response to commands. The border router provides the connection between this device network and the host computer; it does not classify activities or run the control application.
@@ -80,7 +80,7 @@ Border router & Connects the device network to the host & Low-power radio and US
 
 On the wireless side, the devices use IEEE 802.15.4, which provides the radio and access to the shared channel. Above it, 6LoWPAN adapts Internet Protocol version 6 (IPv6) packets to the small frames available on this link, and the Routing Protocol for Low-Power and Lossy Networks (RPL) maintains paths through the network. Consequently, the application does not depend on every device remaining a direct radio neighbour of the border router. The router carries IPv6 traffic to the host computer through Serial Line Internet Protocol (SLIP) over USB. Contiki's \texttt{tunslip6} connects this serial link to a virtual network interface configured with \file{fd00::1/64}, through which the devices reach the host services.
 
-The firmware is based on Contiki-NG 5.1 and follows the border-router procedure used in the laboratory. The application nodes and router use different platform definitions for the same chip, reflecting the working configuration of their drivers. A board-configuration correction also ensures that the physical SW1 button is connected to the expected input. Exact build settings and device-port assignments are recorded in the reproduction files, where they can be checked without obscuring the roles described here. The table below describes the preserved firmware images. HEX is the text format used to represent their contents, while RAM refers to the devices' working memory.
+The firmware is based on Contiki-NG 5.1 and follows the border-router procedure used in the laboratory [1]. The application nodes and router use different platform definitions for the same chip, reflecting the working configuration of their drivers. A board-configuration correction also ensures that the physical SW1 button is connected to the expected input. Exact build settings and device-port assignments are recorded in the reproduction files, where they can be checked without obscuring the roles described here. The table below describes the preserved firmware images. HEX is the text format used to represent their contents, while RAM refers to the devices' working memory.
 
 \begin{tabularx}{\linewidth}{@{}Yrr@{}}
 \toprule
@@ -168,7 +168,7 @@ MQTT 3.1.1 uses clean sessions, quality-of-service level 0 (QoS 0) and non-retai
 
 \clearpage
 \reportsection{Experimental design}
-The individual-project specification asks for evaluation under faulty or intermittent-node behaviour and comparison of an adaptive mechanism with adaptation disabled [1]. Here, the relevant disturbance is the loss of recent HAR observations. We therefore evaluate whether the remote display makes that loss visible, while keeping the ordinary classification and message path in place on the real dongles.
+The experiments examine how the system responds to intermittent observations from the activity node. We compare operation with adaptation enabled and disabled to determine whether the remote display makes the loss of recent HAR data visible. Throughout this comparison, classification and device communication continue on the real dongles.
 
 To make the disturbance repeatable, a temporary relay broker on \texttt{localhost:18884} forwards device messages and actuator commands but withholds HAR telemetry during a controlled interval. Each run lasts 40 seconds: the system operates normally for ten seconds, experiences selective loss for fifteen, and has fifteen seconds to recover after forwarding resumes. Three pairs alternate the order of adaptive and baseline execution. The ordinary controller is stopped during each experiment and restored afterwards, so another process does not issue competing commands under the same device identities.
 
@@ -241,7 +241,7 @@ The demonstrated configuration can be reproduced using the setup, build and oper
 
 \sub{References}
 {\footnotesize\raggedright
-[1] Course specification, \emph{IoT Project 2026}, pp. 1--3; \emph{Righetti laboratory slides}, pp. 7, 12, 75, 90 and 193. Local teaching material is not redistributed.\\[3pt]
+[1] \emph{Righetti laboratory slides}, pp. 7, 12, 75, 90 and 193. Local teaching material is not redistributed.\\[3pt]
 [2] Reyes-Ortiz et al., \emph{Human Activity Recognition Using Smartphones}, UCI Machine Learning Repository (2013). \url{https://doi.org/10.24432/C54S4K}. CC BY 4.0; attribution in \file{data/ATTRIBUTION.md}.\\[3pt]
 [3] \href{https://github.com/contiki-ng/contiki-ng}{Contiki-NG source repository}, version 5.1; platform support, networking and MQTT implementation.\\[3pt]
 [4] \href{https://mosquitto.org/}{Eclipse Mosquitto} 2.0.22 and \href{https://eclipse.dev/paho/clients/python/docs/}{Eclipse Paho MQTT Python client}. Component notices are in \file{THIRD_PARTY.md}.\\[3pt]
