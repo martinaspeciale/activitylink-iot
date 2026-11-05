@@ -2,8 +2,8 @@
 
 `ActivityLink_Report.tex` is the report source. The ten-page English PDF uses a
 classic academic layout with a dedicated cover, official University of Pisa logo,
-clickable contents and eight body pages. Martina Speciale and student ID 603047
-are ordinary cover text, without editable fields or borders.
+clickable contents and eight body pages. Martina Speciale appears on the cover with 603047 underneath, without a field
+label, editable fields or borders.
 
 ## Build
 

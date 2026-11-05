@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-05T15:52:44.984149+01:00",
+  "generated_at": "2026-11-05T16:11:41.799326+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 893420,
-      "sha256": "626611a2c8420356be35cbd371f863a4a94bf08cee661ad705a5ccc609ab4179"
+      "bytes": 877206,
+      "sha256": "40f43103cdde0fd75f7d2cab4b334634fac526c2d0b0edc75dedaccd04f0678e"
     },
     {
       "path": "README.md",
@@ -91,18 +91,18 @@
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 23650,
-      "sha256": "87d2be288172bd767989bd2ede7ad8bf5595fafc7c7345cc27bdf46d3ce216c5"
+      "bytes": 28280,
+      "sha256": "4c5b2898e65e457da9c3f572259723386af403d94175c9b92268833a3671d2da"
     },
     {
       "path": "docs/report/README.md",
-      "bytes": 1724,
-      "sha256": "d72b124a328a086dd441d77f85c07342f13be91432c91a76471aa4d3a3e78bb0"
+      "bytes": 1737,
+      "sha256": "55070ecc18144a22a2f97f0a8a325af7a92451a8a635fcfaa7e162493e75c58c"
     },
     {
       "path": "docs/report/assets-en/architecture.pdf",
-      "bytes": 22131,
-      "sha256": "1ff91e70492a648ca0ffa7ed2be86728a048205a7a749013212622de5bb86418"
+      "bytes": 24075,
+      "sha256": "866cff84fd0001f1a599440518af198f2ac663cadebc97a8a486e213e4ccd8a2"
     },
     {
       "path": "docs/report/assets-en/grafana-adaptive.png",
@@ -591,7 +591,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "20d1b15a5543e1151c4a0d42e905d93ae247f21b8c548517c699c2a975da89cc",
+  "source_archive_sha256": "d3ceed97bceb8b2a637fdcaa35ab4b7ea85a82e2c0431a13934d16854a102ac2",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"
