@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-05T22:13:14.887267+01:00",
+  "generated_at": "2026-11-05T22:20:09.500291+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 887620,
-      "sha256": "bbf8b69dc9761d712875128b6c826ba982c4c41308b2701982ab70f28a2979e3"
+      "bytes": 903332,
+      "sha256": "8d76f69f9825db203031badaafd0ecdd2cde9a84ee54896d0d9033509962ce89"
     },
     {
       "path": "README.md",
@@ -91,8 +91,8 @@
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 26733,
-      "sha256": "18e80d2f385e51132afb8ebc8b71d4e0863ddf0297b8ee1fc5ac195c49142dec"
+      "bytes": 26606,
+      "sha256": "7705cbe48054ff56269cda9227f6b27943e3e102cc4034a9dcadd87097134b55"
     },
     {
       "path": "docs/report/README.md",
@@ -123,6 +123,11 @@
       "path": "docs/report/assets-en/grafana-baseline.png.json",
       "bytes": 626,
       "sha256": "17f9911e914f44c7a10aceda55134ee7bdca0c92716402af7937bb68d8557955"
+    },
+    {
+      "path": "docs/report/assets-en/recovery-evidence.pdf",
+      "bytes": 18442,
+      "sha256": "7a8ec7f83af2ca1fa6f22af9832a15c809faf2f5dc6e6bb0e4146ada46ed24da"
     },
     {
       "path": "docs/report/assets-en/stress-comparison.pdf",
@@ -601,7 +606,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "76d7a7fa913054093cc03fdca5833da20d97ea569f1ab8aebcd56cd33fd34449",
+  "source_archive_sha256": "28c9e735382d39f8b7c0bd1ecda36ff3a670949dacb8fcc8f66a26629976a996",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"

@@ -7,7 +7,7 @@
 \usepackage[pdfencoding=auto,psdextra]{hyperref}
 \hypersetup{hidelinks,
   pdftitle={ActivityLink: On-device Activity Recognition and Data Availability Feedback},
-  pdfsubject={Individual Internet of Things project, examination 17 November 2026},
+  pdfsubject={Individual Internet of Things project},
   pdfauthor={Martina Speciale},pdfkeywords={IoT, MQTT, Contiki-NG, nRF52840, human activity recognition}}
 \graphicspath{{assets-en/}}
 \setlength{\parindent}{0pt}
@@ -170,7 +170,7 @@ MQTT 3.1.1 uses clean sessions, quality-of-service level 0 (QoS 0) and non-retai
 \reportsection{Experimental design}
 The experiments ask whether the remote display makes missing activity data visible. A software relay receives telemetry from the ordinary broker and forwards it to a temporary broker on \texttt{localhost:18884}, to which the test backend connects. For each 40-second run, forwarding operates normally for ten seconds, HAR telemetry is withheld for fifteen seconds, and forwarding resumes for the final fifteen. The feedback's telemetry and commands continue to pass through. HAR remains active, so this tests unavailable observations at the backend rather than radio congestion or power loss.
 
-We run three pairs, each containing adaptive and baseline. Alternating which mode runs first avoids always testing one earlier or later; this is a precaution against changes over time, not a response to an observed ordering problem. The ordinary controller is stopped during testing and restored afterwards to prevent competing commands. The six-run aggregate on the next page concerns these 2 November trials; the timeline below illustrates an additional pair recorded on 5 November with the same procedure.
+We run three pairs, each containing adaptive and baseline. Alternating which mode runs first avoids always testing one earlier or later; this is a precaution against changes over time, not a response to an observed ordering problem. The ordinary controller is stopped during testing and restored afterwards to prevent competing commands. The next page aggregates these six runs; the timeline below illustrates a separate pair recorded with the same procedure.
 
 \begin{center}
 \includegraphics[width=\linewidth]{stress-timeline.pdf}
@@ -194,35 +194,29 @@ Each right-hand dot measures one run's detection time, from the last HAR message
 
 \smallskip
 \noindent\textbf{Adaptive mode}\par
-\noindent\makebox[\linewidth][c]{\includegraphics[width=0.90\linewidth]{grafana-adaptive.png}}\par
+\noindent\makebox[\linewidth][c]{\includegraphics[trim=0 0 0 115bp,clip,width=0.90\linewidth]{grafana-adaptive.png}}\par
 \noindent\textbf{Baseline mode}\par
-\noindent\makebox[\linewidth][c]{\includegraphics[width=0.90\linewidth]{grafana-baseline.png}}\par
-{\small\textbf{Figure 2.} Grafana captures from 4 November show the first historical pair. Sensor stale rises in both modes, but only adaptive commands red. Here, \texttt{reported\_led} denotes feedback telemetry.}
+\noindent\makebox[\linewidth][c]{\includegraphics[trim=0 0 0 115bp,clip,width=0.90\linewidth]{grafana-baseline.png}}\par
+{\small\textbf{Figure 2.} Grafana captures show the first pair from the six-run experiment. Sensor stale rises in both modes, but only adaptive commands red. Here, \texttt{reported\_led} denotes feedback telemetry.}
 
 \clearpage
 \reportsection{Robustness and recovery}
-The controlled-loss trials leave the radio devices running, so an additional check disconnected HAR while the router and feedback remained connected. The application marked the sensor stale and the feedback turned red; after HAR was reconnected, a new boot was accepted and activity feedback resumed. Recovery was also confirmed visually. Since the physical reinsertion time was not recorded precisely, this observation does not provide a measurement of RPL reconvergence latency.
+These checks interrupt different components of the system. We distinguish a missing sensor, unavailable services and software-level input faults because their recovery paths differ. The plots use saved MQTT observations; LED codes remain 0 for off, 1 for green, 2 for blue and 3 for red.
 
-Service failures affect a different part of the system. If SQL is unavailable, the Cloud Application cannot continue its ordinary database-based decisions, even though messages may still reach its 1,000-item RAM queue, which is not preserved across process restarts. The feedback's independent watchdog then provides the local red indication. When SQL returns, buffered observations retain their original receive times, preventing an old queued message from appearing newly acquired simply because it was stored later. The broker test, in contrast, interrupts the messaging path itself. The principal observations from these checks are collected below.
+\begin{center}
+\includegraphics[width=\linewidth]{recovery-evidence.pdf}
+\end{center}
+{\small\textbf{Figure 3.} Physical HAR disconnection, database interruption and broker interruption. The first two panels show feedback telemetry. In the third, each tick is a received message, not a LED state. Shading marks the observed HAR message gap or the service interruption interval; each panel has its own relative clock.}
 
-\begin{tabularx}{\linewidth}{@{}lY@{}}
-\toprule
-Check & Verified observation\\
-\midrule
-MySQL unavailable & Local feedback watchdog turns red; backend process survives\\
-MySQL recovery & All 35 messages observed during the outage are later present in SQL\\
-Broker restart & Automatic recovery observed 6.81 s after broker startup\\
-SQL contract & Insert, duplicate, ordering, reboot and freshness checks pass\\
-4 November regression & Real pause/resume, backend stop/restart and four Grafana panel queries pass\\
-Current unit suite & 10 backend/protocol tests and 2 ML-isolation tests pass\\
-\bottomrule
-\end{tabularx}
+\textbf{HAR disconnection.} We unplug HAR while leaving feedback and the border router connected. We expect the controller to mark HAR stale and command red, then accept a new sensor boot after reconnection. The first panel shows feedback changing to red during the HAR telemetry gap and returning to an activity colour when messages resume. SQL snapshots confirm fresh feedback during sensor stale and acceptance of the new boot. The shaded gap is bounded by received messages, not precisely timed USB actions, so it does not measure radio reconvergence latency.
 
-All 35 messages observed during the SQL outage were subsequently present in the database. This result describes that particular buffered interval, rather than a guarantee of persistence under every failure. During a broker outage, QoS 0 permits telemetry loss; the relevant observation is the return to fresh data and coherent feedback, not replay of every missed message. Similarly, the measured 6.81-second recovery interval begins at broker startup and does not describe the entire outage.
+\textbf{Database interruption.} We stop MySQL while MQTT and the backend remain active. The controller cannot complete its database-based decisions; commands cease and the feedback watchdog should turn red. The middle panel confirms red in actual feedback telemetry, which remains observable through MQTT. After database restart, activity feedback returns and all 35 messages in the checked outage interval are found in SQL. The backend process survives. Buffered messages retain their receive timestamps, so delayed insertion cannot make an old observation appear new. This verifies one bounded outage, not durable storage across a backend restart.
 
-Because the hardware trials did not fill the input queue, its overflow branch was checked separately. The real backend callback received 1,005 valid messages before consumption, retaining 1,000 and rejecting five. Following one simulated SQL connection error, the loop drained the accepted messages in their original order and reported the corresponding accepted and drop counts. MQTT and SQL were replaced with test objects, so this check establishes queue capacity and recovery of consumption, rather than radio saturation or database throughput. Its method and limits are documented in \file{docs/QUEUE_SATURATION_CHECK.md}.
+\textbf{Broker interruption.} We stop and restart Mosquitto, interrupting both telemetry and commands. The final panel shows the resulting gap in messages received from both nodes. The local feedback watchdog is expected to act, but its LED cannot be observed through MQTT while the broker is absent. After restart, both nodes reconnect and SQL confirms recent observations and normal activity feedback. The successful recovery check occurs 6.81 seconds after broker startup, not after the initial stop. With QoS 0, missed telemetry need not be replayed.
 
-The later hardware check exercised pause/resume and stopping/restarting the Python control process, leaving broker, SQL and Grafana active while the feedback watchdog took over. Control returned after restart without a new flash or model replacement. Throughout this evaluation, reported light values are observations made by device software rather than optical measurements. Taken together, the checks show recovery in one three-dongle deployment, rather than establishing energy consumption, peak memory usage, radio delivery ratio, clinical accuracy or long-term reliability. Security is also limited to the evaluated configuration: the broker has no TLS or authentication, the boot identifier is not cryptographic identity, and MySQL and Grafana remain bound to localhost.
+\textbf{Backend interruption and router coverage.} In a separate check, we stop only the Python controller, leaving broker, SQL and the devices active. Feedback telemetry reports red after commands stop and an activity colour after controller restart, without reflashing. This exercises the local watchdog independently of the host decision loop. We have not recorded a border-router unplug/replug trial: loss of its USB or radio path is an unverified scenario, not a result established by the HAR or broker tests.
+
+\textbf{Input integrity and queue capacity.} A temporary real SQL schema verifies insertion, duplicate and out-of-order rejection, unchanged freshness for duplicates, and sequence restart with a new boot. These are data-contract checks, not physical outages. Queue overflow is checked separately with mocked MQTT and SQL: 1,005 valid messages reach the real backend callback, 1,000 are retained and five rejected. After one simulated database error, consumption resumes in order. This establishes the queue's software behaviour, not hardware saturation or radio throughput.
 \clearpage
 \reportsection{Conclusions and reproduction}
 ActivityLink brings local activity recognition and remote feedback into a single small IoT application. Its central design concern is the interpretation of a displayed result when the underlying observation is no longer recent. The HAR device makes its own classification decision, while the Cloud Application reads stored observations to decide what the separate feedback device should show. This division demonstrates both local processing on a constrained device and control through a database-backed application.
@@ -235,7 +229,7 @@ The demonstrated configuration can be reproduced using the setup, build and oper
 
 \sub{References}
 {\footnotesize\raggedright
-[1] Reyes-Ortiz et al., \emph{Human Activity Recognition Using Smartphones}, UCI Machine Learning Repository (2013). \url{https://doi.org/10.24432/C54S4K}. CC BY 4.0; attribution in \file{data/ATTRIBUTION.md}.\\[3pt]
+[1] Reyes-Ortiz et al., \emph{Human Activity Recognition Using Smartphones}, UCI Machine Learning Repository. \url{https://doi.org/10.24432/C54S4K}. CC BY 4.0; attribution in \file{data/ATTRIBUTION.md}.\\[3pt]
 [2] \href{https://github.com/contiki-ng/contiki-ng}{Contiki-NG source repository}, version 5.1; platform support, networking and MQTT implementation.\\[3pt]
 [3] \href{https://mosquitto.org/}{Eclipse Mosquitto} 2.0.22 and \href{https://eclipse.dev/paho/clients/python/docs/}{Eclipse Paho MQTT Python client}. Component notices are in \file{THIRD_PARTY.md}.\\[3pt]
 [4] \href{https://grafana.com/docs/grafana/latest/datasources/mysql/}{Grafana MySQL datasource documentation}. The evaluated deployment uses Grafana 11.6.0 and MySQL Community 8.0.31; platform-specific setup is documented in the reproduction guides.
