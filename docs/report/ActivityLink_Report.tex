@@ -184,7 +184,6 @@ The relay records observed messages and intentional drops, while SQL records the
 
 Across the three pairs, detection takes 6.015--6.933 seconds from the last forwarded sensor message. Equal fault durations do not produce identical message counts because transmission phases and the device's cyclic inputs can differ. The first adaptive and baseline traces, for example, do not contain exactly the same sequence of activity changes. The paired design therefore supports a comparison of the response to missing information, without establishing statistical significance or generality across deployments from three short pairs.
 
-Measurements are preserved in \file{results/2026-11-02-final/stress/} for the six original runs and \file{results/2026-11-05-demo-stress/} for the additional pair.
 \clearpage
 \reportsection{Adaptive/baseline results}
 The comparison shows a consistent difference in how missing observations are presented. Across the six runs, adaptive selects red for \textbf{28/28 stale controller samples}, whereas baseline selects red for \textbf{0/27}. The stabilized device reports support the same distinction: red appears in \textbf{17/17} adaptive reports and \textbf{0/17} baseline reports. All runs return to activity feedback after forwarding resumes, with final validation and queue-overflow counters remaining at zero.
