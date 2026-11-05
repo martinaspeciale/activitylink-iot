@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-05T19:50:40.653466+01:00",
+  "generated_at": "2026-11-05T19:59:42.221495+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,13 +16,13 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 874417,
-      "sha256": "62869492c87ea7466c0492ad9e77e373f2059fef48359d1366423172698f5322"
+      "bytes": 871928,
+      "sha256": "f1c2f0a500d8f66426c20e4bb1c892ebc3ecac5b46c68fa647349044b7ce9bb0"
     },
     {
       "path": "README.md",
-      "bytes": 6136,
-      "sha256": "ce600cb105c185473051a92346c6d869da4b4140d08a818b1736bd72cb4d36df"
+      "bytes": 6119,
+      "sha256": "de368969a9d00a033d1124776b9f31e536e8dd5653b6be97a269acafc0f05b18"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -86,13 +86,13 @@
     },
     {
       "path": "docs/REPRODUCE.md",
-      "bytes": 14303,
-      "sha256": "9fa004be007081e71e679ae81b9d6bce01f7faf6d5bf2a99af83571f0f56344a"
+      "bytes": 13298,
+      "sha256": "ac742a14438d0b50737340222fee580041a9634599aa0226cd722cce80bc5520"
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 28443,
-      "sha256": "90dcceaaf54e4ccbe2a0ee66eee1538ab3d5667789d9a60be0945286a7f55044"
+      "bytes": 26975,
+      "sha256": "fd86a472af25a664dfa32e367e9eed3403d69b9cff311014e49fa3bfc134a75b"
     },
     {
       "path": "docs/report/README.md",
@@ -253,36 +253,6 @@
       "path": "results/2026-11-02-final/final-integration/summary.json",
       "bytes": 3047,
       "sha256": "a65fa352e5a247e1ea69ce7fb5797c93476f611d045a7a9304242bb2ca69addd"
-    },
-    {
-      "path": "results/2026-11-02-final/firmware/border-router/border-router.hex",
-      "bytes": 225617,
-      "sha256": "b14ce46c33739e326d3108ab22ca4aefeb2ac0e37c9f34c58c339c20a336f366"
-    },
-    {
-      "path": "results/2026-11-02-final/firmware/contiki-commit.txt",
-      "bytes": 41,
-      "sha256": "309009283ee7d1e95ae4645486d584599045dff4ba82bb84854e57d7e3333ad7"
-    },
-    {
-      "path": "results/2026-11-02-final/firmware/node1/activitylink.hex",
-      "bytes": 413512,
-      "sha256": "25a5d3fd5740bc2b47af58c8a69619a3a61e254fb0ebe59025353f98f7fac960"
-    },
-    {
-      "path": "results/2026-11-02-final/firmware/node2/activitylink.hex",
-      "bytes": 223452,
-      "sha256": "4e573390390eae13921887842e46099f0193858e4c3e7df8c58457fa0d94cc7e"
-    },
-    {
-      "path": "results/2026-11-02-final/firmware/platforms.txt",
-      "bytes": 90,
-      "sha256": "1340d0d38d9a8a67cba8bbcef547a7a6ea576ba98bd27bfeb137c77abd237246"
-    },
-    {
-      "path": "results/2026-11-02-final/firmware/summary.json",
-      "bytes": 1838,
-      "sha256": "d713442e23919eea4292b57f3dc27ce6d7fe6b9517387770f4fe49ba64b77cc1"
     },
     {
       "path": "results/2026-11-02-final/inference-timing.json",
@@ -591,7 +561,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "33cdf64942f51a530accf39b121ec8eef8fd6a8dc3da1e1a4b32c1f35550262a",
+  "source_archive_sha256": "b9789e6baea13af04f39e2b79ef97c5daa8919bcfb46ec720443f8d429401a8e",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"

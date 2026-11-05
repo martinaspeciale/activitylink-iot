@@ -19,7 +19,7 @@ Guida: [riproduzione](docs/REPRODUCE.md), [stack Mac](docs/NATIVE_MAC_STACK.md),
 
 ## Avvio dopo il setup
 
-La procedura usa il target originale Contiki del laboratorio Righetti (p. 193).
+La procedura usa il target originale Contiki `connect-router`.
 Sul Mac si usa `gmake` e una seriale `/dev/cu.usbmodem...` al posto di `/dev/ttyACM0`.
 Il compilatore ARM deve essere nel PATH anche per leggere questo Makefile.
 Sul Mac operativo il PATH è già configurato in `~/.zshrc`: basta aprire un nuovo

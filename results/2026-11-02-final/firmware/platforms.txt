@@ -1,2 +1,0 @@
-node1,node2: TARGET=nrf BOARD=nrf52840/dongle
-border-router: TARGET=nrf52840 BOARD=dongle

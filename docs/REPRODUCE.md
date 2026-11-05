@@ -25,13 +25,13 @@ MAKE=gmake OUT_DIR=results/NUOVA-BUILD sh scripts/build_firmware.sh
 gmake -C vendor/contiki-ng/tools/serial-io tunslip6
 ```
 
-Setup applica la patch SW1 P1.06. Nessun flash automatico. Le immagini HEX e i
-checksum della configurazione collaudata sono in `results/2026-11-02-final/firmware/`.
+Setup applica la patch SW1 P1.06. Nessun flash automatico. Le immagini HEX
+vengono generate nella directory scelta con `OUT_DIR` durante la compilazione.
 Prima di caricare immagini verificare target, dispositivo DFU e bootloader.
 
 ## Avvio hardware
 
-La procedura usa il target originale Contiki del laboratorio Righetti (p. 193).
+La procedura usa il target originale Contiki `connect-router`.
 Sul Mac si usa `gmake` e una seriale `/dev/cu.usbmodem...` al posto di `/dev/ttyACM0`.
 Il compilatore ARM deve essere nel PATH anche per leggere questo Makefile.
 Sul Mac operativo il PATH è già configurato in `~/.zshrc`: basta aprire un nuovo
@@ -181,7 +181,7 @@ Applicazione nella flash del dongle
 
 È uno schema della procedura: il target di build può automatizzare più passaggi.
 Lo script `scripts/build_firmware.sh` produce ELF e HEX ma non esegue il flash.
-Il target `dfu-upload` del laboratorio comprende invece il caricamento.
+Il target `dfu-upload` comprende invece il caricamento.
 
 ### Tre rappresentazioni del programma
 
@@ -220,9 +220,8 @@ Il controllo per riga rende la somma dei byte, checksum incluso, un multiplo di
 che il programma sia corretto.
 
 Riferimento di formato: [Intel HEX, documentazione Keil](https://www.keil.com/support/docs/1584/_hlp_hexfile.htm).
-Il validatore usato nello sviluppo controlla proprio somma, lunghezza e indirizzi;
-il riepilogo dei tre HEX distribuiti è in
-`results/2026-11-02-final/firmware/summary.json`.
+Il checksum del formato controlla la coerenza di ogni record; non misura
+la correttezza del programma.
 
 ### Che cosa fa DFU
 
@@ -269,29 +268,12 @@ poi si confronta lo stesso tipo di contenuto.
 La normalizzazione del progetto usa `objcopy --gap-fill 0xff`: gli spazi senza
 record dati sono riempiti esplicitamente con il byte FF. Per node2 i dati HEX
 sono 79.428 byte, mentre l'intervallo BIN occupa 79.444 byte: i 16 byte aggiuntivi
-sono un gap. Con il riempimento coerente le immagini ricostruite dei tre ruoli
-corrispondono ai BIN dei pacchetti DFU dei flash noti, come documenta `summary.json`.
+sono un gap. Per confrontare un HEX con un BIN occorre ricostruire gli stessi indirizzi
+e usare il medesimo valore di riempimento per i gap.
 
 Questo confronto riguarda artefatti sul computer: **non è una rilettura completa
 della flash dei dongle**. Per il comportamento reale si usano anche log, traffico,
 pulsanti e prove funzionali. Hash uguale non implica comportamento certificato.
-
-### Collegamento con il corso
-
-Riferimenti ai PDF del corso disponibili nella cartella originale, contando le
-pagine del PDF:
-
-- `Righetti_lab.pdf`, p. 77: output della build, compresi ELF, HEX, BIN e MAP.
-- Pp. 7 e 14: installazione di `nrfutil` e strumenti Nordic.
-- P. 90: compilazione e caricamento con il target `.dfu-upload`.
-- P. 193: caricamento DFU del border router e successivo collegamento SLIP.
-- `Righetti.pdf`, pp. 5 e 10: checksum nelle intestazioni di rete; non una lezione
-  sul checksum Intel HEX o sul manifest SHA-256 del progetto.
-
-Nei PDF controllati non è stata trovata una spiegazione dedicata dell'algoritmo
-SHA-256 o della struttura Intel HEX a livello di singolo record. Questi controlli
-approfondiscono e documentano la procedura di build e riproduzione; non vengono
-presentati come esercizi obbligatori aggiuntivi del laboratorio.
 
 ## Relazione LaTeX
 
