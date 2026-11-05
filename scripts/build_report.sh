@@ -1,12 +1,17 @@
 #!/bin/sh
 set -eu
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
-BUILD_DIR="$ROOT/runtime/report-latex"
+BUILD_ROOT="$ROOT/runtime/report-latex"
 OUTPUT="$ROOT/deliverables/ActivityLink_Report.pdf"
-mkdir -p "$BUILD_DIR" "$ROOT/deliverables"
+mkdir -p "$BUILD_ROOT" "$ROOT/deliverables"
+
+# Isolate each compilation so concurrent runs cannot overwrite PDF objects or auxiliary files
+BUILD_DIR=$(mktemp -d "$BUILD_ROOT/build.XXXXXX")
+OUTPUT_TMP=$(mktemp "$ROOT/deliverables/.ActivityLink_Report.XXXXXX")
+trap 'rm -f "$OUTPUT_TMP"' 0 HUP INT TERM
 cd "$ROOT/docs/report"
 
-# Two passes resolve the table of contents and PDF form fields
+# Two passes resolve the table of contents and internal links
 for pass in 1 2; do
   pdflatex -interaction=nonstopmode -halt-on-error -no-shell-escape \
     -output-directory="$BUILD_DIR" ActivityLink_Report.tex \
@@ -22,5 +27,8 @@ if [ -f "$OUTPUT" ]; then
   stamp=$(date +%Y%m%d-%H%M%S)
   cp "$OUTPUT" "$ROOT/deliverables/archive/ActivityLink_Report-$stamp.pdf"
 fi
-cp "$BUILD_DIR/ActivityLink_Report.pdf" "$OUTPUT"
+
+# Replace the deliverable atomically so readers never open a partially copied file
+cp "$BUILD_DIR/ActivityLink_Report.pdf" "$OUTPUT_TMP"
+mv -f "$OUTPUT_TMP" "$OUTPUT"
 printf 'Compiled English LaTeX report: %s\n' "$OUTPUT"
