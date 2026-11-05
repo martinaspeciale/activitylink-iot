@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-05T16:12:58.761311+01:00",
+  "generated_at": "2026-11-05T16:20:24.629361+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 875135,
-      "sha256": "41eba3a87fb2b57dce827ee000054d8b3eb69ec03c4c074e98261529357d4c62"
+      "bytes": 874801,
+      "sha256": "9ece46ec2a1484eba1d57604e4de6e3c77c0e261e18d96bc7cfce8706d264f34"
     },
     {
       "path": "README.md",
@@ -91,8 +91,8 @@
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 28181,
-      "sha256": "a3083d93ffbec7740fbce00b9050df5760e4196aa3a7ba62681f6d387b1e5e23"
+      "bytes": 28301,
+      "sha256": "f531b5073f06b5049d8f18121061b243f0259bdf8a3d5d00863fc207026ee970"
     },
     {
       "path": "docs/report/README.md",
@@ -101,8 +101,8 @@
     },
     {
       "path": "docs/report/assets-en/architecture.pdf",
-      "bytes": 24075,
-      "sha256": "866cff84fd0001f1a599440518af198f2ac663cadebc97a8a486e213e4ccd8a2"
+      "bytes": 23697,
+      "sha256": "ddf263fdd46fa1dc16a0f4c02a887044bd9f14ba4244af473b1bea73c6725db4"
     },
     {
       "path": "docs/report/assets-en/grafana-adaptive.png",
@@ -591,7 +591,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "eedb6f43ad01eb6cea02b15401ea52fe98a168b246a5297938f6a29ea9ab5138",
+  "source_archive_sha256": "ccae9f13c50ab84890f034180d4e06242722b6646b931777110d1ad6f6669d54",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"
