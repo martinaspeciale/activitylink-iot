@@ -107,7 +107,7 @@ After validation, we train a new pipeline on all 21 training subjects using the 
 \]
 Here, $\mu_i$ and $\sigma_i$ are the training mean and standard deviation for feature $i$. The weight $w_{ji}$ multiplies the scaled feature $i$ for activity $j$, and $b_j$ is the bias added to that weighted sum. The adjusted weights $w'_{ji}$ and biases $b'_j$ include the scaler's effect, allowing the C predictor to accept the published UCI features in their original order without applying our scaler again. It stores coefficients as float32 values and selects the largest score; scores are not probabilities.
 
-The deployed reference remains separate from the new candidate, preserving the model used in the hardware experiments. The device replays 24 stored vectors, four per class, at approximately one per second. Walking and its stair-related variants map to green; sitting, standing and lying map to blue. Only the predicted class and node state are transmitted.
+Rerunning the notebook saves a newly trained classification model without replacing the model installed on the dongles and used in the hardware experiments. The device replays 24 stored vectors, four per class, at approximately one per second. Walking and its stair-related variants map to green; sitting, standing and lying map to blue. Only the predicted class and node state are transmitted.
 
 Accuracy measures the proportion of correct labels; macro-F1 averages the per-activity F1 scores equally. The table also includes implementation and timing checks.
 
