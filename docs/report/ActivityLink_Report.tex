@@ -174,17 +174,17 @@ To make the disturbance repeatable, a temporary relay broker on \texttt{localhos
 
 This method isolates missing data at the application's input. HAR continues classifying and communicating over the radio while selected messages are suppressed before reaching the backend. Consequently, the experiment evaluates the control response to unavailable observations, rather than radio congestion, packet-delivery ratio or the effects of physically removing power. A separate unplug/replug check addresses physical disconnection, as discussed later.
 
-The relay records observed messages and intentional drops, while SQL records the controller's decisions and counters. Detection time is measured from the last forwarded sensor message to the first sample in which the controller marks it stale. To examine the actuator after detection and command propagation, the reported-light comparison uses a stabilized window beginning at 19 seconds from run start. The following plots show the first adaptive/baseline pair on separate relative time axes.
+The relay records observed messages and intentional drops, while SQL records the controller's decisions and counters. Detection time is measured from the last forwarded sensor message to the first sample in which the controller marks it stale. To examine the actuator after detection and command propagation, the reported-light comparison uses a stabilized window beginning at 19 seconds from run start. The plots illustrate an additional pair recorded on 5 November using the same procedure; the six-run aggregate below refers to the 2 November trials.
 
 \begin{center}
 \includegraphics[width=\linewidth]{stress-timeline.pdf}
 \end{center}
-{\small The shaded interval marks selective HAR telemetry loss from 10 to 25 seconds. The first pair was recorded on 2 November. Both modes detect stale data, but only adaptive commands red (LED code 3). Dashed LED traces show the feedback state reported to the controller.}
+{\small The shaded interval marks selective HAR telemetry loss from 10 to 25 seconds. Each plot uses its own run's relative time. Both modes detect stale data, but only adaptive commands red (LED code 3). Dashed LED traces show the feedback state reported to the controller.}
 
 
 Across the three pairs, detection takes 6.015--6.933 seconds from the last forwarded sensor message. Equal fault durations do not produce identical message counts because transmission phases and the device's cyclic inputs can differ. The first adaptive and baseline traces, for example, do not contain exactly the same sequence of activity changes. The paired design therefore supports a comparison of the response to missing information, without establishing statistical significance or generality across deployments from three short pairs.
 
-The per-run summaries and traces are preserved under \file{results/2026-11-02-final/stress/}. Separate device and service checks are discussed in the robustness section.
+Measurements are preserved in \file{results/2026-11-02-final/stress/} for the six original runs and \file{results/2026-11-05-demo-stress/} for the additional pair.
 \clearpage
 \reportsection{Adaptive/baseline results}
 The comparison shows a consistent difference in how missing observations are presented. Across the six runs, adaptive selects red for \textbf{28/28 stale controller samples}, whereas baseline selects red for \textbf{0/27}. The stabilized device reports support the same distinction: red appears in \textbf{17/17} adaptive reports and \textbf{0/17} baseline reports. All runs return to activity feedback after forwarding resumes, with final validation and queue-overflow counters remaining at zero.

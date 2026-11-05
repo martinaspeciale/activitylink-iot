@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-05T20:54:52.528666+01:00",
+  "generated_at": "2026-11-05T20:58:36.842561+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 887349,
-      "sha256": "80cf592aff066f23e275b40cbfbe600ae5c869b1c61c4450a87f22c7ee4cde13"
+      "bytes": 887554,
+      "sha256": "71967dda027b31da1c150ffaad49f54987e364b1c999a11b061c5711c0f8f090"
     },
     {
       "path": "README.md",
@@ -91,8 +91,8 @@
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 26540,
-      "sha256": "eb3f6053f03295fc3bf6128bc036306f3346d7a0d75a614e2aa6707140fa0a66"
+      "bytes": 26595,
+      "sha256": "50b612a378e787f388cb20e5b6dee12fc564f26daf4e0776dc16979472c29367"
     },
     {
       "path": "docs/report/README.md",
@@ -131,8 +131,8 @@
     },
     {
       "path": "docs/report/assets-en/stress-timeline.pdf",
-      "bytes": 18678,
-      "sha256": "fa0d436ecb49a26443c0c52db0177b469c3b1bf40e4d980a9b2832a3ba32d809"
+      "bytes": 18689,
+      "sha256": "6131ffccd06b149431f9631480aea3a1de47346e242b7864fafd88f3f58af982"
     },
     {
       "path": "docs/report/assets-en/unipi-logo.SOURCE.md",
@@ -445,6 +445,41 @@
       "sha256": "30df1a4cf4963fe0607f01b9538e5673fdabdf89fb393036318db02c8c5ff5bc"
     },
     {
+      "path": "results/2026-11-05-demo-stress/pair-1-adaptive/metrics.json",
+      "bytes": 11938,
+      "sha256": "9a2d5296e6322480fddb6c79426ff423e04b3b739697fa930e59c5e99f9d7a9e"
+    },
+    {
+      "path": "results/2026-11-05-demo-stress/pair-1-adaptive/summary.json",
+      "bytes": 883,
+      "sha256": "10c506b50b33edfa31b2b5969d9c770d0f4455ca99ceaa520ab6c0476583c51c"
+    },
+    {
+      "path": "results/2026-11-05-demo-stress/pair-1-adaptive/wire.jsonl",
+      "bytes": 23153,
+      "sha256": "2924175788da68ead7cf7a2b339ed850769287af997e9432172bd50a648fbd20"
+    },
+    {
+      "path": "results/2026-11-05-demo-stress/pair-1-baseline/metrics.json",
+      "bytes": 11932,
+      "sha256": "fa91686e95ddc7ed4efb192d775816630adc28fb243ce17798b1af5db78f1526"
+    },
+    {
+      "path": "results/2026-11-05-demo-stress/pair-1-baseline/summary.json",
+      "bytes": 881,
+      "sha256": "c1615ed208b81711b2d57a98527ca2fe4f3bce265349de4dee51eae7211df754"
+    },
+    {
+      "path": "results/2026-11-05-demo-stress/pair-1-baseline/wire.jsonl",
+      "bytes": 22921,
+      "sha256": "295a63a555fb2515b42e3ef819d31ab0433de317f3eea0047cff944beca3bd24"
+    },
+    {
+      "path": "results/2026-11-05-demo-stress/summary.json",
+      "bytes": 2219,
+      "sha256": "a0eaa5df8de395b30d0caa279cce0e85cf3eed36291109f4fd280459ffd1d95f"
+    },
+    {
       "path": "scripts/build_firmware.sh",
       "bytes": 1966,
       "sha256": "b7ca26d7e6099ea146d01dff5f43c67ab5db2f93417064a6a0e22ec036e5b0e1"
@@ -566,7 +601,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "a3816115474bffdde08874c2c4c18eb4c51b33d17eaf8127db6c5b79feba4ec8",
+  "source_archive_sha256": "596d751dbf14e652b14a90e105fb551e6d7a093ea7b78b28650a7595c5f0681d",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"

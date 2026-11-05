@@ -1,0 +1,38 @@
+{
+  "run_id": "hw-adaptive-1979e2c4e5-1",
+  "adaptive": 1,
+  "start": 1793908533.5196779,
+  "fault_start": 1793908543.5196779,
+  "fault_end": 1793908558.5196779,
+  "end": 1793908573.685358,
+  "fault_kind": "selective node1 message loss at cloud ingress; actual radio nodes remain active",
+  "sensor_messages_dropped": 15,
+  "stale_samples": 10,
+  "stale_command_red": 10,
+  "reported_leds_during_stale": [
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+  ],
+  "detection_seconds_from_last_forwarded": 6.092273235321045,
+  "recovered": true,
+  "last_counts": {
+    "id": 39832,
+    "time": 1793908572.6564548,
+    "run_id": "hw-adaptive-1979e2c4e5-1",
+    "adaptive": 1,
+    "sensor_stale": 0,
+    "actuator_stale": 0,
+    "command_led": 2,
+    "reported_led": 2,
+    "accepted": 63,
+    "duplicates": 0,
+    "invalid": 0,
+    "out_of_order": 0,
+    "queue_drops": 0
+  },
+  "passed": true
+}

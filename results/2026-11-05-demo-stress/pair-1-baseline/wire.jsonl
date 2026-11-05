@@ -1,0 +1,118 @@
+{"time": 1793908574.1062741, "kind": "command", "topic": "activitylink/node2/command", "payload": "2"}
+{"time": 1793908574.4769962, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":48,\"uptime\":260,\"activity\":0,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908574.571797, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":51,\"uptime\":260,\"activity\":5,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908575.1160462, "kind": "command", "topic": "activitylink/node2/command", "payload": "2"}
+{"time": 1793908575.4371278, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":49,\"uptime\":261,\"activity\":0,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908575.6126359, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":52,\"uptime\":261,\"activity\":6,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908576.139678, "kind": "command", "topic": "activitylink/node2/command", "payload": "2"}
+{"time": 1793908576.467266, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":50,\"uptime\":262,\"activity\":0,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908576.620817, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":53,\"uptime\":262,\"activity\":6,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908577.151453, "kind": "command", "topic": "activitylink/node2/command", "payload": "2"}
+{"time": 1793908577.427933, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":51,\"uptime\":263,\"activity\":0,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908577.57691, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":54,\"uptime\":263,\"activity\":6,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908578.231935, "kind": "command", "topic": "activitylink/node2/command", "payload": "2"}
+{"time": 1793908578.492012, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":52,\"uptime\":264,\"activity\":0,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908578.545046, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":55,\"uptime\":264,\"activity\":6,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908579.30673, "kind": "command", "topic": "activitylink/node2/command", "payload": "2"}
+{"time": 1793908579.4757571, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":53,\"uptime\":265,\"activity\":0,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908579.82361, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":56,\"uptime\":265,\"activity\":1,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908580.364075, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908580.475647, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":54,\"uptime\":266,\"activity\":0,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908580.627913, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":57,\"uptime\":266,\"activity\":1,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908581.365815, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908581.503598, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":55,\"uptime\":267,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908581.5895748, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":58,\"uptime\":267,\"activity\":1,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908582.433005, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908582.580897, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":59,\"uptime\":268,\"activity\":1,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908582.7332458, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":56,\"uptime\":268,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908583.4709811, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908583.4911401, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":57,\"uptime\":269,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908583.587754, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":60,\"uptime\":269,\"activity\":2,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908584.4993868, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":58,\"uptime\":270,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908584.5069618, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908584.581578, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":61,\"uptime\":270,\"activity\":2,\"enabled\":1,\"led\":1}", "dropped": true}
+{"time": 1793908585.429164, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":59,\"uptime\":271,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908585.542069, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908585.590664, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":62,\"uptime\":271,\"activity\":2,\"enabled\":1,\"led\":1}", "dropped": true}
+{"time": 1793908586.499437, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":60,\"uptime\":272,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908586.619549, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908586.638428, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":63,\"uptime\":272,\"activity\":2,\"enabled\":1,\"led\":1}", "dropped": true}
+{"time": 1793908587.522177, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":61,\"uptime\":273,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908587.604285, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":64,\"uptime\":273,\"activity\":3,\"enabled\":1,\"led\":1}", "dropped": true}
+{"time": 1793908587.63787, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908588.450984, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":62,\"uptime\":274,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908588.643748, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":65,\"uptime\":274,\"activity\":3,\"enabled\":1,\"led\":1}", "dropped": true}
+{"time": 1793908588.6749492, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908589.559262, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":63,\"uptime\":275,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908589.5600388, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":66,\"uptime\":275,\"activity\":3,\"enabled\":1,\"led\":1}", "dropped": true}
+{"time": 1793908589.718525, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908590.475261, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":64,\"uptime\":276,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908590.58929, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":67,\"uptime\":276,\"activity\":3,\"enabled\":1,\"led\":1}", "dropped": true}
+{"time": 1793908590.794882, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908591.484749, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":65,\"uptime\":277,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908591.5942569, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":68,\"uptime\":277,\"activity\":4,\"enabled\":1,\"led\":2}", "dropped": true}
+{"time": 1793908591.830104, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908592.428261, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":66,\"uptime\":278,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908592.599255, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":69,\"uptime\":278,\"activity\":4,\"enabled\":1,\"led\":2}", "dropped": true}
+{"time": 1793908592.894488, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908593.506289, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":67,\"uptime\":279,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908593.668586, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":70,\"uptime\":279,\"activity\":4,\"enabled\":1,\"led\":2}", "dropped": true}
+{"time": 1793908593.937994, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908594.445884, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":68,\"uptime\":280,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908594.627212, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":71,\"uptime\":280,\"activity\":4,\"enabled\":1,\"led\":2}", "dropped": true}
+{"time": 1793908594.963093, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908595.5052931, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":69,\"uptime\":281,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908595.596014, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":72,\"uptime\":281,\"activity\":5,\"enabled\":1,\"led\":2}", "dropped": true}
+{"time": 1793908596.0272992, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908596.481774, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":70,\"uptime\":282,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908596.681878, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":73,\"uptime\":282,\"activity\":5,\"enabled\":1,\"led\":2}", "dropped": true}
+{"time": 1793908597.114296, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908597.4593332, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":71,\"uptime\":283,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908597.611416, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":74,\"uptime\":283,\"activity\":5,\"enabled\":1,\"led\":2}", "dropped": true}
+{"time": 1793908598.1912918, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908598.436256, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":72,\"uptime\":284,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908598.589925, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":75,\"uptime\":284,\"activity\":5,\"enabled\":1,\"led\":2}", "dropped": true}
+{"time": 1793908599.248134, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908599.4275131, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":73,\"uptime\":285,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908599.6582148, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":76,\"uptime\":285,\"activity\":6,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908600.289711, "kind": "command", "topic": "activitylink/node2/command", "payload": "2"}
+{"time": 1793908600.4283168, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":74,\"uptime\":286,\"activity\":0,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908600.605047, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":77,\"uptime\":286,\"activity\":6,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908601.347324, "kind": "command", "topic": "activitylink/node2/command", "payload": "2"}
+{"time": 1793908601.514208, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":75,\"uptime\":287,\"activity\":0,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908601.665986, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":78,\"uptime\":287,\"activity\":6,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908602.395859, "kind": "command", "topic": "activitylink/node2/command", "payload": "2"}
+{"time": 1793908602.521653, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":76,\"uptime\":288,\"activity\":0,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908602.681705, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":79,\"uptime\":288,\"activity\":6,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908603.431363, "kind": "command", "topic": "activitylink/node2/command", "payload": "2"}
+{"time": 1793908603.560417, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":77,\"uptime\":289,\"activity\":0,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908603.697084, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":80,\"uptime\":289,\"activity\":1,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908604.482363, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":78,\"uptime\":290,\"activity\":0,\"enabled\":1,\"led\":2}", "dropped": false}
+{"time": 1793908604.495144, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908604.67537, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":81,\"uptime\":290,\"activity\":1,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908605.435555, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":79,\"uptime\":291,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908605.5514612, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908605.689174, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":82,\"uptime\":291,\"activity\":1,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908606.4589372, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":80,\"uptime\":292,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908606.569532, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908606.587611, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":83,\"uptime\":292,\"activity\":1,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908607.4523299, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":81,\"uptime\":293,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908607.603394, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":84,\"uptime\":293,\"activity\":2,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908607.61358, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908608.482302, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":82,\"uptime\":294,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908608.652802, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908608.705368, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":85,\"uptime\":294,\"activity\":2,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908609.482216, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":83,\"uptime\":295,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908609.6297731, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":86,\"uptime\":295,\"activity\":2,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908609.744919, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908610.548874, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":84,\"uptime\":296,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908610.689266, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":87,\"uptime\":296,\"activity\":2,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908610.8205912, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908611.451113, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":85,\"uptime\":297,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908611.658654, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":88,\"uptime\":297,\"activity\":3,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908611.880806, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908612.474402, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":86,\"uptime\":298,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908612.61341, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":89,\"uptime\":298,\"activity\":3,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908612.932556, "kind": "command", "topic": "activitylink/node2/command", "payload": "1"}
+{"time": 1793908613.446544, "kind": "telemetry", "topic": "activitylink/node2/telemetry", "payload": "{\"node\":\"node2\",\"boot\":\"2ffb9eaaa13bd3ce\",\"seq\":87,\"uptime\":299,\"activity\":0,\"enabled\":1,\"led\":1}", "dropped": false}
+{"time": 1793908613.6341891, "kind": "telemetry", "topic": "activitylink/node1/telemetry", "payload": "{\"node\":\"node1\",\"boot\":\"66622a633b892f6e\",\"seq\":90,\"uptime\":299,\"activity\":3,\"enabled\":1,\"led\":1}", "dropped": false}
