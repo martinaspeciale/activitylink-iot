@@ -1,4 +1,4 @@
-"""Manage the local Mosquitto, MySQL, backend and Grafana processes."""
+"""Manage the local Cloud Application, Mosquitto, MySQL and Grafana; leave SLIP separate."""
 
 import argparse
 import json
@@ -20,7 +20,7 @@ MYSQL = ROOT / "tools/native-stack/mysql-8.0.31-macos12-x86_64"
 GRAFANA = ROOT / "tools/native-stack/grafana-v11.6.0"
 PYTHON_DEPS = ROOT / "tools/python-deps"
 
-# The legacy cloud identifier is kept for existing PID files; the process is local backend.app
+# The Cloud Application runs locally as backend.app, matching the project specification
 SIGNATURES = {
     "mysql": str(MYSQL / "bin/mysqld"),
     "grafana": str(GRAFANA / "bin/grafana"),
@@ -285,8 +285,8 @@ def main():
         choices=(
             "start",
             "status",
-            "stop-backend",
-            "start-backend",
+            "stop-cloud",
+            "start-cloud",
             "restart-mysql",
             "restart-broker",
         ),
@@ -295,7 +295,7 @@ def main():
     parser.add_argument("--run-id", default="hardware-native")
     args = parser.parse_args()
     credentials = config()
-    if args.action == "stop-backend":
+    if args.action == "stop-cloud":
         stop_backend()
     elif args.action == "restart-mysql":
         stop_service("mysql")
@@ -306,7 +306,7 @@ def main():
         start_broker()
 
     # Both actions ensure MQTT and SQL are available; only start also launches Grafana
-    elif args.action in ("start", "start-backend"):
+    elif args.action in ("start", "start-cloud"):
         start_broker()
         start_mysql(credentials)
         start_backend(credentials, args.adaptive, args.run_id)

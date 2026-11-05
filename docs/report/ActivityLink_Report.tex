@@ -262,7 +262,7 @@ Saturating the queue is not an explicit individual-project requirement, but the 
 MQTT and SQL are replaced by test objects in this check; storage calls are observed rather than written to real MySQL. It verifies queue capacity, overflow counting and recovery of consumption, not radio performance or real SQL throughput. Earlier hardware runs with zero queue drops did not exercise saturation.
 
 \sub{Interpretation and limitations}
-The 4 November hardware regression exercises the current Python CLI and \texttt{stop-backend} and \texttt{start-backend}: stopping the backend leaves broker, SQL and Grafana active, feedback reports watchdog red, and restarting restores control. Reported LED codes are device software observations, not optical measurements. No new flash or retraining was needed.
+The 4 November hardware regression exercises pause/resume and stopping/restarting the Python control process: stopping the backend leaves broker, SQL and Grafana active, feedback reports watchdog red, and restarting restores control. Reported LED codes are device software observations, not optical measurements. No new flash or retraining was needed.
 
 The evaluation covers one three-dongle setup and short trials. It does not establish energy consumption, peak RAM, radio PDR, congestion behavior, clinical accuracy or long-term reliability. The official ML test is historical; hosted Colab remains unverified. Detailed additional evidence is in \file{docs/QUEUE_SATURATION_CHECK.md} and the dated regression directories.
 

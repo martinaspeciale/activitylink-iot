@@ -80,13 +80,13 @@ Non aprire contemporaneamente la stessa seriale con un altro programma.
 ```sh
 source .venv/bin/activate
 python scripts/native_stack.py status
-python scripts/native_stack.py stop-backend
+python scripts/native_stack.py stop-cloud
 python scripts/native_stack.py start --adaptive 1 --run-id demo-esame
 open http://127.0.0.1:3000/d/activitylink
 ```
 
 Gli script Python sono del progetto; non sono comandi forniti dalle slide.
-`start` riusa un backend già attivo: `stop-backend` prima dell'avvio permette di
+`start` riusa un backend già attivo: `stop-cloud` prima dell'avvio permette di
 applicare il run_id e la modalità scelti. Non serve esportare PYTHONPATH.
 
 Durante la demo, nel Terminale 2, eseguire separatamente pausa e ripresa:
@@ -96,8 +96,8 @@ python scripts/control.py pause --host ::1
 python scripts/control.py resume --host ::1
 ```
 
-Al termine usare `python scripts/native_stack.py stop-backend`, poi Ctrl+C nel
-Terminale 1 e scollegare i dongle. stop-backend ferma solo il backend: broker,
+Al termine usare `python scripts/native_stack.py stop-cloud`, poi Ctrl+C nel
+Terminale 1 e scollegare i dongle. stop-cloud ferma solo il backend: broker,
 MySQL e Grafana possono restare attivi. Cambiare la procedura di lancio non
 modifica firmware o modello; è stata verificata la generazione del comando
 Contiki senza ripetere il collaudo sui dongle.

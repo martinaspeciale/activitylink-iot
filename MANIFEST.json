@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-04T21:29:38.774162+01:00",
+  "generated_at": "2026-11-05T15:52:44.984149+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,13 +16,13 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 893435,
-      "sha256": "b7fa3374ef32d86830c10c9c947cebe93ed02785f08e5985ed575a5868b23cc2"
+      "bytes": 893420,
+      "sha256": "626611a2c8420356be35cbd371f863a4a94bf08cee661ad705a5ccc609ab4179"
     },
     {
       "path": "README.md",
-      "bytes": 6144,
-      "sha256": "d14af3ef9b2b81dcee35bd7060dc9796cfb101324ea6ec3a879ed9d1ee23c3a3"
+      "bytes": 6136,
+      "sha256": "ce600cb105c185473051a92346c6d869da4b4140d08a818b1736bd72cb4d36df"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -76,8 +76,8 @@
     },
     {
       "path": "docs/NATIVE_MAC_STACK.md",
-      "bytes": 1057,
-      "sha256": "7e1b0101a040d1e2d1b75b14c8b1a058b33a5991454073e619d2da0c06b867ae"
+      "bytes": 1053,
+      "sha256": "0c49e71dcfc0b82c7fb0fa66338132fdccbd0b71076faf660cb068262f7f1200"
     },
     {
       "path": "docs/QUEUE_SATURATION_CHECK.md",
@@ -86,13 +86,13 @@
     },
     {
       "path": "docs/REPRODUCE.md",
-      "bytes": 14311,
-      "sha256": "d78e401d42fbaec6e7bf014217fb3429d7c63f21cb6beec0d856bfc4c14bacc5"
+      "bytes": 14303,
+      "sha256": "9fa004be007081e71e679ae81b9d6bce01f7faf6d5bf2a99af83571f0f56344a"
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 23662,
-      "sha256": "bdc996e729ee6dcd9785d058738853cbd20f857c54bc4fbed3ee8cb27490b629"
+      "bytes": 23650,
+      "sha256": "87d2be288172bd767989bd2ede7ad8bf5595fafc7c7345cc27bdf46d3ce216c5"
     },
     {
       "path": "docs/report/README.md",
@@ -501,8 +501,8 @@
     },
     {
       "path": "scripts/native_stack.py",
-      "bytes": 10495,
-      "sha256": "f26a5c6296d09d41d479cdb101d9037ac778f1cb024d39d88f01cd2a57d14725"
+      "bytes": 10501,
+      "sha256": "04979ac42c5d34feeef36825e950d7347923415042fbff2c4c967ef8bca36229"
     },
     {
       "path": "scripts/native_stack_check.py",
@@ -591,7 +591,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "fe422d3f0bc4170cbe553fc9aeb895c405c5bdd02ecb7a97b084617b4c069f03",
+  "source_archive_sha256": "20d1b15a5543e1151c4a0d42e905d93ae247f21b8c548517c699c2a975da89cc",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"
