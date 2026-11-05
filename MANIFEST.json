@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-05T22:59:37.308075+01:00",
+  "generated_at": "2026-11-05T23:05:25.931669+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,18 +16,13 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 902502,
-      "sha256": "1368cd795475a4bc32e8df6f55c558bea284f7a455310e65f04004858b3ea833"
+      "bytes": 900244,
+      "sha256": "6bc85dce5370001af4db6e26228633de1358b1fb200f7aea6df784c8b5e6e2c5"
     },
     {
       "path": "README.md",
-      "bytes": 7180,
-      "sha256": "7390d586ff075f40686ef6415ec956d8970a038f8c49e20ed29d745b8014240d"
-    },
-    {
-      "path": "THIRD_PARTY.md",
-      "bytes": 2069,
-      "sha256": "1dc2baf77cb4c44663c534c93ae6dc09c62e385131b353814b522f579b647458"
+      "bytes": 7880,
+      "sha256": "6860b4a83d70305d5f61124807fea41bdacd95e0f4193820fc99bd95587ff2be"
     },
     {
       "path": "backend/__init__.py",
@@ -53,11 +48,6 @@
       "path": "config/hardware.json",
       "bytes": 720,
       "sha256": "428d98f21a85e0cd44fd2ca40f21521340532d13d9f2b9d7c702414fe43c38e3"
-    },
-    {
-      "path": "data/ATTRIBUTION.md",
-      "bytes": 1093,
-      "sha256": "1ec72fe3ece85fcf0820d2567474b1274642576ebf63a5b359cb3e96ec14d4aa"
     },
     {
       "path": "data/firmware_samples.json",
@@ -86,13 +76,13 @@
     },
     {
       "path": "docs/REPRODUCE.md",
-      "bytes": 14357,
-      "sha256": "285b738138f583525f8043ab8b9582e19186b3c4407dbd6f9f151ec342144ada"
+      "bytes": 14486,
+      "sha256": "3e60f7cb8710bd9d6a06c464e9a9f0e0b1e2b187def89ada49533390c0998289"
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 27495,
-      "sha256": "35f8c4ca0d8089c90e5f312e0b10eeec24eacc1567afb2c8ce4fad7f9b7c8e5b"
+      "bytes": 27404,
+      "sha256": "9dfa060731cd22d71b4ef417b1972a8384df2af09bfe5cc24d780862a21af1f1"
     },
     {
       "path": "docs/report/README.md",
@@ -501,8 +491,8 @@
     },
     {
       "path": "scripts/demo.sh",
-      "bytes": 11332,
-      "sha256": "ee492d8650ae709f756943fce9c3d39620f93abaaf4e2c31c5e64062eed148c6"
+      "bytes": 12633,
+      "sha256": "e9d13fe127b19b204faf574a67e7db11c428e63f9b9c475a2ebd2b88c0cadcaf"
     },
     {
       "path": "scripts/demo_status.py",
@@ -616,7 +606,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "e984631375c178c0dbe1e8a11d75bd19512c5bc086273935bf41e3a648ba2de1",
+  "source_archive_sha256": "84c6d5c853351bae671d09321bf71bd2fca5c11fdf1576360e2c8216c2e1490f",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"

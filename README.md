@@ -17,7 +17,8 @@ l'esecuzione diretta. Usa il Python di `.venv` senza richiedere l'attivazione:
 Per la demo, `./scripts/demo.sh router` resta attivo nel primo terminale; nel
 secondo eseguire `./scripts/demo.sh start adaptive`, poi `./scripts/demo.sh dashboard`
 e `./scripts/demo.sh` per aprire il menu. `watch` osserva MQTT da un terzo terminale
-senza dipendere da SQL. `--dry-run` stampa i comandi senza eseguirli.
+senza dipendere da SQL. `show COMANDO`, anche nel menu, stampa i comandi sottostanti senza eseguirli
+(per esempio `show stress 3`). `--dry-run` rimane disponibile come alternativa.
 
 Scenari: `pause`, `resume`, `buttons`, `check`, `stress` o `stress 3`, `physical`,
 `services`, `mysql-stop`/`mysql-start`, `broker-stop`/`broker-start`,
@@ -37,8 +38,7 @@ manutenzione del firmware, non necessarie per avviare i dongle già programmati.
 - `results/`: misure e risultati essenziali citati nella relazione.
 - `MANIFEST.json`: dimensioni e SHA-256 dei file distribuiti.
 
-Guida: [riproduzione](docs/REPRODUCE.md), [stack Mac](docs/NATIVE_MAC_STACK.md),
-[attribuzioni e componenti](THIRD_PARTY.md).
+Guida: [riproduzione](docs/REPRODUCE.md), [stack Mac](docs/NATIVE_MAC_STACK.md).
 
 ## Avvio dopo il setup
 
@@ -153,3 +153,14 @@ le singole parti sono state effettivamente sviluppate o collaudate.
 La relazione PDF è in inglese e deriva da [ActivityLink_Report.tex](docs/report/ActivityLink_Report.tex).
 Sorgente, figure e [istruzioni di compilazione](docs/report/README.md) sono inclusi nel progetto.
 Dalla root: `sh scripts/build_report.sh`. Il PDF compilato viene consegnato separatamente.
+
+## Dataset e componenti
+
+Il dataset *Human Activity Recognition Using Smartphones* è di Reyes-Ortiz J.,
+Anguita D., Ghio A., Oneto L. e Parra X., distribuito dalla
+[UCI Machine Learning Repository](https://doi.org/10.24432/C54S4K) con licenza
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Il progetto usa le
+feature pubblicate: i campioni inclusi sono selezionati e convertiti in float32;
+i pesi del classificatore sono ottenuti dall'addestramento. Non sono nuove
+registrazioni dei sensori. Le licenze originali di Mosquitto sono incluse in
+`third_party/mosquitto/`; le dipendenze scaricate conservano i propri avvisi.

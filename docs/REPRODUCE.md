@@ -18,7 +18,8 @@ l'esecuzione diretta. Usa il Python di `.venv` senza richiedere l'attivazione:
 Per la demo, `./scripts/demo.sh router` resta attivo nel primo terminale; nel
 secondo eseguire `./scripts/demo.sh start adaptive`, poi `./scripts/demo.sh dashboard`
 e `./scripts/demo.sh` per aprire il menu. `watch` osserva MQTT da un terzo terminale
-senza dipendere da SQL. `--dry-run` stampa i comandi senza eseguirli.
+senza dipendere da SQL. `show COMANDO`, anche nel menu, stampa i comandi sottostanti senza eseguirli
+(per esempio `show stress 3`). `--dry-run` rimane disponibile come alternativa.
 
 Scenari: `pause`, `resume`, `buttons`, `check`, `stress` o `stress 3`, `physical`,
 `services`, `mysql-stop`/`mysql-start`, `broker-stop`/`broker-start`,
@@ -171,7 +172,7 @@ tools/ml-venv/bin/python scripts/execute_notebook.py \
 Il dataset UCI viene scaricato con verifica SHA-256. Il notebook può essere eseguito
 con i sorgenti anche in Colab; il servizio ospitato non è stato verificato. Le
 metriche riproducono un benchmark storico già noto. Il nuovo training non sostituisce
-il modello congelato del firmware. Attribuzione: `data/ATTRIBUTION.md`.
+il modello congelato del firmware. Fonte e licenza del dataset sono riportate nel README.
 
 Il trainer legge solo `train/` e produce `validation.json`: 5 fold per soggetto,
 scaler riappreso in ciascun fold, ricetta fissa e nessuna selezione sul test.

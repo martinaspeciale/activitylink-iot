@@ -8,10 +8,12 @@ PYTHON="$ROOT/.venv/bin/python"
 MAKE=${MAKE:-gmake}
 DRY_RUN=0
 
-if [ "${1:-}" = "--dry-run" ]; then
-    DRY_RUN=1
-    shift
-fi
+case "${1:-}" in
+    --dry-run|--show|show)
+        DRY_RUN=1
+        shift
+        ;;
+esac
 
 # The prepared host keeps the ARM tools here; an explicit override takes precedence
 ARM_TOOLCHAIN_BIN=${ARM_TOOLCHAIN_BIN:-"$HOME/opt/arm-toolchains/arm-gnu-toolchain-12.3.rel1-darwin-x86_64-arm-none-eabi/bin"}
@@ -20,10 +22,26 @@ if [ -d "$ARM_TOOLCHAIN_BIN" ]; then
     export PATH
 fi
 
-run() {
+format_arguments() {
+    for argument in "$@"; do
+        case "$argument" in
+            ''|*[!a-zA-Z0-9_./:=+,-]*)
+                quoted=$(printf '%s' "$argument" | sed "s/'/'\\\\''/g")
+                printf " '%s'" "$quoted"
+                ;;
+            *) printf ' %s' "$argument" ;;
+        esac
+    done
+}
+
+print_command() {
     printf '+'
-    printf ' %s' "$@"
+    format_arguments "$@"
     printf '\n'
+}
+
+run() {
+    print_command "$@"
     if [ "$DRY_RUN" -eq 0 ]; then
         "$@"
     fi
@@ -56,6 +74,10 @@ ports() {
 help_text() {
     cat <<'HELP'
 Usage: ./scripts/demo.sh [--dry-run] COMMAND [ARGUMENTS]
+       ./scripts/demo.sh show COMMAND [ARGUMENTS]
+
+Use show before any command to print its underlying commands without executing them
+Examples: show pause, show start adaptive, show stress 3, show services
 
 Preparation
   setup                   Create .venv, install runtime dependencies and prepare local services/Contiki
@@ -104,6 +126,7 @@ menu() {
         case "$choice" in
             exit|quit) break ;;
             help|'') help_text ;;
+            'show '*) show_choice "${choice#show }" ;;
             'start adaptive') invoke start adaptive ;;
             'start baseline') invoke start baseline ;;
             'stress 3') invoke stress 3 ;;
@@ -113,6 +136,17 @@ menu() {
             *) echo 'Use a command shown above; flash ROLE DFU_PORT is available outside the menu' ;;
         esac
     done
+}
+
+# Split menu words without eval or filename expansion; command validation stays in the case below
+show_choice() {
+    request=$1
+    set -f
+    set -- $request
+    if ! sh "$ROOT/scripts/demo.sh" show "$@"; then
+        echo 'Unknown command or arguments; see help' >&2
+    fi
+    set +f
 }
 
 # Run menu selections in a child shell so a failed scenario does not close the menu
@@ -149,7 +183,7 @@ case "$COMMAND" in
     doctor)
         echo "Project: $ROOT"
         for tool in "$MAKE" arm-none-eabi-gcc arm-none-eabi-objcopy gcc; do
-            if ! command -v "$tool"; then
+            if ! run command -v "$tool"; then
                 echo "Missing tool: $tool"
             fi
         done
@@ -162,13 +196,14 @@ case "$COMMAND" in
         ;;
     router)
         need_python
-        if [ "$DRY_RUN" -eq 1 ]; then
+        if [ "$DRY_RUN" -eq 1 ] && [ ! -x "$PYTHON" ]; then
             run "$PYTHON" scripts/ports.py
             BORDER_ROUTER='${BORDER_ROUTER from config/hardware.json}'
         else
+            print_command "$PYTHON" scripts/ports.py
             ASSIGNMENTS=$("$PYTHON" scripts/ports.py)
             eval "$ASSIGNMENTS"
-            if [ ! -e "$BORDER_ROUTER" ]; then
+            if [ "$DRY_RUN" -eq 0 ] && [ ! -e "$BORDER_ROUTER" ]; then
                 echo 'Border-router port absent; compare demo.sh ports with config/hardware.json' >&2
                 exit 1
             fi
@@ -252,11 +287,16 @@ BUTTONS
         need_python
         new_result check
         if [ "$DRY_RUN" -eq 1 ]; then
-            RUN_ID='ACTIVE_RUN_FROM_SQL'
+            printf '+ RUN_ID=$('
+            format_arguments "$PYTHON" scripts/demo_status.py --run-id
+            printf ')\n'
+            printf '+'
+            format_arguments "$PYTHON" scripts/native_stack_check.py --out "$OUT" --run-id
+            printf ' "$RUN_ID" --commands\n'
         else
             RUN_ID=$("$PYTHON" scripts/demo_status.py --run-id)
+            run "$PYTHON" scripts/native_stack_check.py --out "$OUT" --run-id "$RUN_ID" --commands
         fi
-        run "$PYTHON" scripts/native_stack_check.py --out "$OUT" --run-id "$RUN_ID" --commands
         ;;
     stop-cloud) stack stop-cloud ;;
     start-cloud)
