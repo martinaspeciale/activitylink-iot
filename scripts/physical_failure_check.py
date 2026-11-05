@@ -1,4 +1,4 @@
-"""Record HAR disconnection and reconnection during a manual test."""
+"""Observe unplug/replug of HAR; no automatic power, reset or firmware actions."""
 
 import argparse
 import json
@@ -18,6 +18,7 @@ args.out.mkdir(parents=True, exist_ok=False)
 stream = (args.out / "mqtt.jsonl").open("x", buffering=1)
 events = []
 ready = threading.Event()
+baseline_ready = threading.Event()
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id="activitylink-physical-check")
 client.on_connect = lambda c, u, f, r, p: c.subscribe("activitylink/+/telemetry")
 client.on_subscribe = lambda *a: ready.set()
@@ -27,6 +28,8 @@ def message(c, u, msg):
     entry = {"time": time.time(), "topic": msg.topic, "data": json.loads(msg.payload)}
     events.append(entry)
     stream.write(json.dumps(entry) + "\n")
+    if entry["data"]["node"] == "node1" and entry["data"]["enabled"]:
+        baseline_ready.set()
 
 
 client.on_message = message
@@ -37,6 +40,22 @@ start = time.time()
 stale, recovery = None, None
 try:
     assert ready.wait(5)
+    print("Waiting for active HAR telemetry; keep HAR connected", flush=True)
+    if not baseline_ready.wait(15):
+        raise RuntimeError("No active HAR baseline; resume HAR and verify the router before retrying")
+    with db(credentials, user="activitylink", database="activitylink") as connection:
+        with connection.cursor() as cur:
+            cur.execute("SELECT * FROM metrics ORDER BY id DESC LIMIT 1")
+            initial = cur.fetchone()
+    if not (
+        initial
+        and time.time() - initial["time"] < 5
+        and initial["adaptive"] == 1
+        and not initial["sensor_stale"]
+        and not initial["actuator_stale"]
+        and initial["reported_led"] in (1, 2)
+    ):
+        raise RuntimeError("Start adaptive control, resume HAR and unmute feedback before this check")
     print("READY: unplug HAR for at least 15s, then replug", flush=True)
     while time.time() - start < args.timeout:
         with db(credentials, user="activitylink", database="activitylink") as connection:

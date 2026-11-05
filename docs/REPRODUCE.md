@@ -4,6 +4,29 @@ Eseguire dalla root estratta. Configurazione verificata: Mac Intel, macOS12.7.6;
 Python3.10 per il runtime, Python3.13 per il notebook. Le password sono generate
 localmente in `runtime/native-stack/credentials.json`, non distribuite.
 
+## Comandi della demo
+
+`scripts/demo.sh` raccoglie i comandi esistenti in un menu leggibile e offre anche
+l'esecuzione diretta. Usa il Python di `.venv` senza richiedere l'attivazione:
+
+```sh
+./scripts/demo.sh help
+./scripts/demo.sh setup
+./scripts/demo.sh ports
+```
+
+Per la demo, `./scripts/demo.sh router` resta attivo nel primo terminale; nel
+secondo eseguire `./scripts/demo.sh start adaptive`, poi `./scripts/demo.sh dashboard`
+e `./scripts/demo.sh` per aprire il menu. `watch` osserva MQTT da un terzo terminale
+senza dipendere da SQL. `--dry-run` stampa i comandi senza eseguirli.
+
+Scenari: `pause`, `resume`, `buttons`, `check`, `stress` o `stress 3`, `physical`,
+`services`, `mysql-stop`/`mysql-start`, `broker-stop`/`broker-start`,
+`stop-cloud`/`start-cloud`, `sql`, `queue` e `tests`. Attendere READY prima di
+scollegare HAR in `physical`. Le interruzioni manuali richiedono il corrispondente
+comando di riavvio. `build` e `flash ROLE DFU_PORT` sono operazioni esplicite di
+manutenzione del firmware, non necessarie per avviare i dongle già programmati.
+
 ## Setup e firmware
 
 ```sh
@@ -125,7 +148,7 @@ ordinario viene fermato per il test e ripristinato alla fine. Non avviare un alt
 controller o emulatore con gli stessi ID.
 
 I risultati finali essenziali sono in `results/2026-11-02-final/`: stress,
-scollegamento fisico, riavvio servizi, contratto SQL, equivalenza ML e memoria.
+scollegamento fisico, riavvio servizi, contratto SQL ed equivalenza ML.
 `physical_failure_check.py` richiede l'azione fisica sull'HAR;
 `service_recovery_check.py` interrompe e riavvia realmente i servizi del progetto.
 

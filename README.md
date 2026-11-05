@@ -3,6 +3,29 @@
 Sorgenti della configurazione verificata: tre dongle nRF52840, MQTT, backend
 Python/MySQL e Grafana. La [relazione PDF](ActivityLink_Report.pdf) è inclusa nella root della repository e viene consegnata separatamente dallo ZIP del codice.
 
+## Comandi della demo
+
+`scripts/demo.sh` raccoglie i comandi esistenti in un menu leggibile e offre anche
+l'esecuzione diretta. Usa il Python di `.venv` senza richiedere l'attivazione:
+
+```sh
+./scripts/demo.sh help
+./scripts/demo.sh setup
+./scripts/demo.sh ports
+```
+
+Per la demo, `./scripts/demo.sh router` resta attivo nel primo terminale; nel
+secondo eseguire `./scripts/demo.sh start adaptive`, poi `./scripts/demo.sh dashboard`
+e `./scripts/demo.sh` per aprire il menu. `watch` osserva MQTT da un terzo terminale
+senza dipendere da SQL. `--dry-run` stampa i comandi senza eseguirli.
+
+Scenari: `pause`, `resume`, `buttons`, `check`, `stress` o `stress 3`, `physical`,
+`services`, `mysql-stop`/`mysql-start`, `broker-stop`/`broker-start`,
+`stop-cloud`/`start-cloud`, `sql`, `queue` e `tests`. Attendere READY prima di
+scollegare HAR in `physical`. Le interruzioni manuali richiedono il corrispondente
+comando di riavvio. `build` e `flash ROLE DFU_PORT` sono operazioni esplicite di
+manutenzione del firmware, non necessarie per avviare i dongle già programmati.
+
 ## Contenuto
 
 - `firmware/`: HAR con SVM locale, attuatore e configurazione applicativa.
@@ -11,7 +34,7 @@ Python/MySQL e Grafana. La [relazione PDF](ActivityLink_Report.pdf) è inclusa n
 - `ml/README.md`, `requirements-notebook.txt`: notebook setup and Colab instructions.
 - `models/`, `data/`: modello congelato, campioni e attribuzione UCI HAR.
 - `scripts/`, `tests/`: setup, build, controllo e riproduzione delle verifiche.
-- `results/`: immagini HEX e risultati essenziali citati nella relazione.
+- `results/`: misure e risultati essenziali citati nella relazione.
 - `MANIFEST.json`: dimensioni e SHA-256 dei file distribuiti.
 
 Guida: [riproduzione](docs/REPRODUCE.md), [stack Mac](docs/NATIVE_MAC_STACK.md),

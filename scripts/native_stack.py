@@ -289,6 +289,10 @@ def main():
             "start-cloud",
             "restart-mysql",
             "restart-broker",
+            "stop-mysql",
+            "start-mysql",
+            "stop-broker",
+            "start-broker",
         ),
     )
     parser.add_argument("--adaptive", type=int, choices=(0, 1), default=1)
@@ -297,6 +301,14 @@ def main():
     credentials = config()
     if args.action == "stop-cloud":
         stop_backend()
+    elif args.action == "stop-mysql":
+        stop_service("mysql")
+    elif args.action == "start-mysql":
+        start_mysql(credentials)
+    elif args.action == "stop-broker":
+        stop_service("broker")
+    elif args.action == "start-broker":
+        start_broker()
     elif args.action == "restart-mysql":
         stop_service("mysql")
         start_mysql(credentials)

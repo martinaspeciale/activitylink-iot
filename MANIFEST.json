@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-05T22:45:04.407607+01:00",
+  "generated_at": "2026-11-05T22:59:37.308075+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -21,8 +21,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 6119,
-      "sha256": "de368969a9d00a033d1124776b9f31e536e8dd5653b6be97a269acafc0f05b18"
+      "bytes": 7180,
+      "sha256": "7390d586ff075f40686ef6415ec956d8970a038f8c49e20ed29d745b8014240d"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -86,8 +86,8 @@
     },
     {
       "path": "docs/REPRODUCE.md",
-      "bytes": 13298,
-      "sha256": "ac742a14438d0b50737340222fee580041a9634599aa0226cd722cce80bc5520"
+      "bytes": 14357,
+      "sha256": "285b738138f583525f8043ab8b9582e19186b3c4407dbd6f9f151ec342144ada"
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
@@ -500,6 +500,16 @@
       "sha256": "db707a553499c31ad256ffeb6337864a3b75fe489545f21f8cba67ad75ef099f"
     },
     {
+      "path": "scripts/demo.sh",
+      "bytes": 11332,
+      "sha256": "ee492d8650ae709f756943fce9c3d39620f93abaaf4e2c31c5e64062eed148c6"
+    },
+    {
+      "path": "scripts/demo_status.py",
+      "bytes": 3405,
+      "sha256": "14306716eb277ded7502987c38f04e008ee71d65c53a69c4048747142db3b17e"
+    },
+    {
       "path": "scripts/execute_notebook.py",
       "bytes": 1888,
       "sha256": "cc08c840e2e9d919f2fb74c68d63d243686874037dc5df78f8259561e2691230"
@@ -516,8 +526,8 @@
     },
     {
       "path": "scripts/native_stack.py",
-      "bytes": 10501,
-      "sha256": "04979ac42c5d34feeef36825e950d7347923415042fbff2c4c967ef8bca36229"
+      "bytes": 10882,
+      "sha256": "ab3b6aa3e55fa46e469d49502235b81d1fae0366752d662970eb4f7319d792de"
     },
     {
       "path": "scripts/native_stack_check.py",
@@ -526,8 +536,8 @@
     },
     {
       "path": "scripts/physical_failure_check.py",
-      "bytes": 2634,
-      "sha256": "3fba3172784f6aee337cb3be188194fabadbca84d8e76c8b660acc65c6d5fabb"
+      "bytes": 3586,
+      "sha256": "ebf89c20d76087ef0b22b9f7e3173413a2ce63e1cebf5292c909857595ad6976"
     },
     {
       "path": "scripts/ports.py",
@@ -606,7 +616,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "19e05befeacb3d7c947f4cb0197fc0df396b1a17cd03db5a43a755896734230d",
+  "source_archive_sha256": "e984631375c178c0dbe1e8a11d75bd19512c5bc086273935bf41e3a648ba2de1",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"
