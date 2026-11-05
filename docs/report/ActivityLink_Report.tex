@@ -185,7 +185,7 @@ The right column connects detection to the display. Solid lines are controller c
 
 \clearpage
 \reportsection{Adaptive/baseline results}
-The aggregate figure summarises the six original runs. Its left axis measures the percentage of stale controller samples in which red was commanded. Adaptive issues red in \textbf{28/28} such samples (100\%); baseline does so in \textbf{0/27} (0\%). These are control decisions sampled during the interruption, not counts of lost packets or classification accuracy. The unequal denominators reflect transmission and controller timing. Even when interruptions last equally long, the controller may record different numbers of samples.
+The left-hand plot summarises the six original runs. Adaptive commands red in \textbf{28/28} stale controller samples (100\%); baseline does so in \textbf{0/27} (0\%). The vertical axis shows this percentage, not classification accuracy or packet loss. The denominators differ because transmission and controller timing vary. Even when interruptions last equally long, the controller may record different numbers of samples.
 
 \noindent\makebox[\linewidth][c]{\includegraphics[width=0.90\linewidth,height=32mm,keepaspectratio]{stress-comparison.pdf}}\par
 {\small\textbf{Figure 1.} Response during stale observations (left) and detection time for three runs per mode (right).}
@@ -194,9 +194,9 @@ Each right-hand dot measures one run's detection time, from the last HAR message
 
 \smallskip
 \noindent\textbf{Adaptive mode}\par
-\noindent\makebox[\linewidth][c]{\includegraphics[width=0.96\linewidth]{grafana-adaptive.png}}\par
+\noindent\makebox[\linewidth][c]{\includegraphics[width=0.90\linewidth]{grafana-adaptive.png}}\par
 \noindent\textbf{Baseline mode}\par
-\noindent\makebox[\linewidth][c]{\includegraphics[width=0.96\linewidth]{grafana-baseline.png}}\par
+\noindent\makebox[\linewidth][c]{\includegraphics[width=0.90\linewidth]{grafana-baseline.png}}\par
 {\small\textbf{Figure 2.} Grafana captures from 4 November show the first historical pair. Sensor stale rises in both modes, but only adaptive commands red. Here, \texttt{reported\_led} denotes feedback telemetry.}
 
 \clearpage
