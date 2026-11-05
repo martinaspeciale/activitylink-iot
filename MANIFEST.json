@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-05T23:21:16.529623+01:00",
+  "generated_at": "2026-11-05T23:28:37.028066+01:00",
   "report_pages": 10,
   "report_delivery": "separate PDF, not duplicated inside the source ZIP",
   "scope": "minimal project source, canonical notebook, required configuration and one usage guide",
@@ -101,8 +101,8 @@
     },
     {
       "path": "ml/ActivityLink_SVM561_Reproduce.ipynb",
-      "bytes": 138594,
-      "sha256": "ad68270eb9d7bc43d91cafba32a3b9feec93945c74be7ce3448d8253744c1831"
+      "bytes": 123398,
+      "sha256": "cf402e67bd5d0a8ace980efcbfd0f655f3680e45bfb0e9d704f97dcaab22011b"
     },
     {
       "path": "ml/evaluate_historical.py",
@@ -246,5 +246,5 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "a46c7292f7f40a9ad3a17b599a72098ca7841c290583aa335ca7e06b0c068c6a"
+  "source_archive_sha256": "a17b690ee48d67398c37cb684a18f6aab8be4bcf757417a4bad25eeeb743b524"
 }
