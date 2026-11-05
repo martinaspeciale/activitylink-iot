@@ -129,7 +129,7 @@ OOF accuracy is the proportion of held-out windows classified correctly. For eac
 The Python/C row counts prediction differences between the deployed model's implementations on 2,947 inputs. Zero means agreement, not perfect recognition; C runs on the host during this check. The inference row reports the time range for 15 dongle predictions, excluding feature extraction and communication. It measures neither overall response time nor a guaranteed maximum.
 \clearpage
 \reportsection{Messaging, persistence and control}
-Communication between the devices and the Cloud Application uses Message Queuing Telemetry Transport (MQTT). Its publish/subscribe model allows each device to send updates to a named topic and receive commands without knowing the other application's address. The clients connect over TCP to Mosquitto, the message broker on the host computer, using Eclipse Paho in Python and Contiki's implementation on the dongles. This arrangement suits periodic activity updates and a separate feedback device; it was selected for that structure and the available implementations, rather than a measured advantage over the alternative CoAP protocol.
+Communication between the devices and the Cloud Application uses Message Queuing Telemetry Transport (MQTT). Its publish/subscribe model allows each device to send updates to a named topic and receive commands without knowing the other application's address. The clients connect over TCP to Mosquitto, the message broker on the host computer, using Eclipse Paho in Python and Contiki's implementation on the dongles. This publish/subscribe structure suits periodic activity updates and independently controlled feedback.
 
 Telemetry uses JavaScript Object Notation (JSON), a text format that makes messages easy to inspect and validate before storage. For example, an active HAR node may publish the following message, where \texttt{boot} distinguishes a device restart and \texttt{seq} identifies a transmission attempt:
 \begin{Code}
@@ -164,7 +164,7 @@ Fresh movement/posture & Green/blue & Green/blue\\
 \bottomrule
 \end{tabularx}
 
-MQTT 3.1.1 uses clean sessions, quality-of-service level 0 (QoS 0) and non-retained messages. These choices permit loss but avoid automatically replaying old commands on reconnection; repeated current commands and the watchdog support recovery. Grafana reads the resulting observations in UTC, with counters accumulating over the process lifetime. A reported light value of $-1$ means that feedback is missing or stale, rather than describing a physical colour.
+MQTT 3.1.1 uses clean sessions, quality-of-service level 0 (QoS 0) and non-retained messages. These choices permit loss but avoid replaying old commands on reconnection. The backend periodically resends its current LED command, even when unchanged. After more than eight seconds without a valid command, the feedback watchdog turns the LED red unless muted. Grafana reads the resulting observations in UTC, with counters accumulating over the process lifetime. A reported light value of $-1$ means that feedback is missing or stale, rather than describing a physical colour.
 
 \clearpage
 \reportsection{Experimental design}
