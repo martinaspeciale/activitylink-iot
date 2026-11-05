@@ -3,7 +3,7 @@
   "mode": "individuale",
   "exam": "2026-11-17",
   "submission_deadline": "2026-11-13",
-  "generated_at": "2026-11-05T19:59:42.221495+01:00",
+  "generated_at": "2026-11-05T20:17:50.928371+01:00",
   "report_pages": 10,
   "report_delivery": "PDF at repository root; submit separately from the source ZIP",
   "scope": "Essential submission files imported as a Git repository; comments reviewed; PDF included separately at repository root.",
@@ -16,8 +16,8 @@
     },
     {
       "path": "ActivityLink_Report.pdf",
-      "bytes": 871928,
-      "sha256": "f1c2f0a500d8f66426c20e4bb1c892ebc3ecac5b46c68fa647349044b7ce9bb0"
+      "bytes": 871960,
+      "sha256": "adc6b522102c29a62d5e5a053d23f451796254f007a24a5ad53509912111d273"
     },
     {
       "path": "README.md",
@@ -71,8 +71,8 @@
     },
     {
       "path": "docs/ML_VALIDATION.md",
-      "bytes": 7309,
-      "sha256": "eb0bc3391d64490c5324e33bce29e5591a933f5db9e7721e376305651b9115ba"
+      "bytes": 8109,
+      "sha256": "19452852f941784a92a14bed20ee2b2d7df34dcb672cf49f503de55216a03e42"
     },
     {
       "path": "docs/NATIVE_MAC_STACK.md",
@@ -91,8 +91,8 @@
     },
     {
       "path": "docs/report/ActivityLink_Report.tex",
-      "bytes": 26975,
-      "sha256": "fd86a472af25a664dfa32e367e9eed3403d69b9cff311014e49fa3bfc134a75b"
+      "bytes": 26964,
+      "sha256": "53ccf5482f913de030ef1d3fe54f279b0862058e2e99cdc4de7c3d51719051fa"
     },
     {
       "path": "docs/report/README.md",
@@ -186,8 +186,8 @@
     },
     {
       "path": "ml/ActivityLink_SVM561_Reproduce.ipynb",
-      "bytes": 137155,
-      "sha256": "d0314f34b03fffbdc7267c8d790c8078334fc9a0a09cf0a7ce6d1f5393be7c06"
+      "bytes": 137698,
+      "sha256": "5710383fbd13423421ef7089fa64456a7407643719af1981f4d84730a3b567dc"
     },
     {
       "path": "ml/README.md",
@@ -561,7 +561,7 @@
     }
   ],
   "git_history": "Reconstructed component history with conventional dates 2026-10-20 through 2026-11-03; repository created 2026-11-03; dates are not evidence of actual development.",
-  "source_archive_sha256": "b9789e6baea13af04f39e2b79ef97c5daa8919bcfb46ec720443f8d429401a8e",
+  "source_archive_sha256": "f2a340a31eafb355a391c8da2f3ceb7126254034dc564146247133dd51590ca5",
   "report_language": "English",
   "report_source_format": "LaTeX",
   "report_layout": "classic academic article with official UniPi logo, dedicated title page and table of contents"

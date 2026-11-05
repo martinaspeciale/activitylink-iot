@@ -23,7 +23,19 @@ Il protocollo viene salvato prima del calcolo delle metriche.
 
 Le predizioni out-of-fold (OOF) sono quelle prodotte sulle righe escluse di volta
 in volta dal fit. La metrica aggregata è calcolata su tutte queste predizioni.
-Il modello candidato finale viene poi appreso su tutto il training ufficiale.
+Il modello candidato finale viene poi appreso su tutto il training ufficiale,
+con gli stessi iperparametri. I cinque modelli dei fold sono temporanei: non si
+mediano né si trasferiscono i loro pesi nel modello finale. La k-fold valuta
+la procedura di addestramento; il punteggio OOF non è una misura diretta del
+modello finale su nuovi dati.
+
+Per esportare la pipeline, ogni peso del classificatore viene diviso per la scala
+della relativa feature; il bias viene corretto usando anche le medie apprese.
+Il punteggio di ogni attività è la somma pesata delle feature più il bias.
+Il dongle riceve quindi le feature UCI già elaborate, nello stesso ordine del
+training, senza riapplicare il nostro StandardScaler. Non si tratta di letture
+grezze dei sensori. La trasformazione è equivalente algebricamente, con possibili
+arrotondamenti numerici nell'implementazione float32.
 
 ## Risultati della validazione interna
 
