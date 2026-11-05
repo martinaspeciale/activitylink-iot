@@ -1,145 +1,135 @@
-# ActivityLink — progetto individuale IoT 2026
+# ActivityLink
 
-Sorgenti della configurazione verificata: tre dongle nRF52840, MQTT, backend
-Python/MySQL e Grafana. La [relazione PDF](ActivityLink_Report.pdf) è inclusa nella root della repository e viene consegnata separatamente dallo ZIP del codice.
+ActivityLink combines activity classification on an nRF52840 dongle with a separate
+feedback dongle and a border router. The Python backend receives MQTT telemetry,
+stores it in MySQL and controls the feedback LED. Grafana displays the controller
+metrics. Sensing is simulated with stored UCI HAR features; classification runs
+on the device. Green means movement, blue means posture and red signals unavailable
+recent data. HAR SW1 pauses/resumes recognition; feedback SW1 mutes/unmutes its LED.
 
-## Comandi della demo
+This archive contains the project source, configuration, training notebook and
+scripts used to run the application and reproduce its scenarios. The report PDF
+is supplied separately. Dependencies and generated results are not bundled.
 
-`scripts/demo.sh` raccoglie i comandi esistenti in un menu leggibile e offre anche
-l'esecuzione diretta. Usa il Python di `.venv` senza richiedere l'attivazione:
+## Preparation
+
+The native service setup targets Intel macOS. Install Python 3.10, Git, CMake and
+a host C compiler. Firmware compilation and the router target also require GNU
+make and the ARM GNU toolchain; firmware upload additionally requires Nordic
+`nrfutil` compatible with the Contiki DFU targets. The launcher recognises the
+prepared ARM toolchain path; `ARM_TOOLCHAIN_BIN` and `NRFUTIL` can override it.
+
+From the extracted project directory:
 
 ```sh
-./scripts/demo.sh help
 ./scripts/demo.sh setup
+./scripts/demo.sh doctor
 ./scripts/demo.sh ports
 ```
 
-Per la demo, `./scripts/demo.sh router` resta attivo nel primo terminale; nel
-secondo eseguire `./scripts/demo.sh start adaptive`, poi `./scripts/demo.sh dashboard`
-e `./scripts/demo.sh` per aprire il menu. `watch` osserva MQTT da un terzo terminale
-senza dipendere da SQL. `show COMANDO`, anche nel menu, stampa i comandi sottostanti senza eseguirli
-(per esempio `show stress 3`). `--dry-run` rimane disponibile come alternativa.
+Setup creates `.venv`, installs runtime dependencies, downloads the pinned
+MySQL/Grafana releases and builds Mosquitto from its downloaded source. Downloads
+are checked against the hashes recorded in the setup scripts. Contiki-NG is
+fetched at the configured revision and the board patch is applied. Setup does
+not flash devices. The source archives, executables and environment created by
+setup remain local.
 
-Scenari: `pause`, `resume`, `buttons`, `check`, `stress` o `stress 3`, `physical`,
-`services`, `mysql-stop`/`mysql-start`, `broker-stop`/`broker-start`,
-`stop-cloud`/`start-cloud`, `sql`, `queue` e `tests`. Attendere READY prima di
-scollegare HAR in `physical`. Le interruzioni manuali richiedono il corrispondente
-comando di riavvio. `build` e `flash ROLE DFU_PORT` sono operazioni esplicite di
-manutenzione del firmware, non necessarie per avviare i dongle già programmati.
+Check the role-to-port assignments in `config/hardware.json` against the current
+USB enumeration. `config/devices.json` contains the static sensor/actuator roles.
+The launcher shows both files with `./scripts/demo.sh config`. Already flashed
+dongles boot when powered; they do not need a software launch command.
 
-## Contenuto
+## Run the application
 
-- `firmware/`: HAR con SVM locale, attuatore e configurazione applicativa.
-- `backend/`, `config/`, `infra/`: validazione, controllo da SQL e dashboard.
-- `ml/ActivityLink_SVM561_Reproduce.ipynb`: unico notebook della release, eseguito.
-- `ml/README.md`, `requirements-notebook.txt`: notebook setup and Colab instructions.
-- `models/`, `data/`: modello congelato, campioni e attribuzione UCI HAR.
-- `scripts/`, `tests/`: setup, build, controllo e riproduzione delle verifiche.
-- `results/`: misure e risultati essenziali citati nella relazione.
-- `MANIFEST.json`: dimensioni e SHA-256 dei file distribuiti.
-
-Guida: [riproduzione](docs/REPRODUCE.md), [stack Mac](docs/NATIVE_MAC_STACK.md).
-
-## Avvio dopo il setup
-
-La procedura usa il target originale Contiki `connect-router`.
-Sul Mac si usa `gmake` e una seriale `/dev/cu.usbmodem...` al posto di `/dev/ttyACM0`.
-Il compilatore ARM deve essere nel PATH anche per leggere questo Makefile.
-Sul Mac operativo il PATH è già configurato in `~/.zshrc`: basta aprire un nuovo
-terminale. Su un altro host, aggiungere una sola volta alla propria `~/.zshrc`
-la riga seguente, adattando il percorso all'installazione, poi aprire un nuovo terminale:
+Connect the three dongles. In terminal 1:
 
 ```sh
-export PATH="$HOME/opt/arm-toolchains/arm-gnu-toolchain-12.3.rel1-darwin-x86_64-arm-none-eabi/bin:$PATH"
+./scripts/demo.sh router
 ```
 
-Questa è preparazione dell'ambiente, non un comando da ripetere a ogni demo.
-Verificare con `command -v arm-none-eabi-gcc`.
-
-**Terminale 1**, dalla root del progetto, con ambiente già predisposto:
+Leave it running. Enter the host password in that terminal if requested to create
+the IPv6 interface. In terminal 2:
 
 ```sh
-source .venv/bin/activate
-python -m serial.tools.list_ports -v
+./scripts/demo.sh start adaptive
+./scripts/demo.sh dashboard
+./scripts/demo.sh
 ```
 
-Caricare i nomi dei ruoli nel terminale corrente, dalla root del progetto:
+The last command opens the control menu. `start baseline` selects control without
+adaptation. `show COMMAND` prints the underlying commands without executing them,
+including from the menu, for example `show stress 3` or `show pause`.
+
+`pause` and `resume` send HAR commands; `buttons` explains the physical SW1 actions.
+`watch`, in an optional third terminal, records actual MQTT telemetry independently
+of MySQL. Grafana may stop receiving metrics when SQL or the backend is stopped;
+MQTT observations remain available only while the broker is reachable. The
+Grafana account is `admin`; its locally generated password is in
+`runtime/native-stack/credentials.json`. Do not distribute this file.
+
+## Experimental scenarios
+
+Use `./scripts/demo.sh help` for the complete command list.
+
+- `stress` runs one adaptive/baseline pair; `stress 3` runs three alternating pairs.
+  Each run has 10 seconds of normal operation, 15 seconds withholding HAR messages
+  at application ingress and 15 seconds of recovery. This does not generate radio congestion.
+- `physical` records HAR unplug/replug. Start adaptive control, resume HAR and unmute
+  feedback first. Keep HAR connected until `READY`, then unplug only HAR for at
+  least 15 seconds and reconnect it.
+- `services` automatically stops/restarts MySQL and then the broker, checking recovery.
+- `mysql-stop`/`mysql-start`, `broker-stop`/`broker-start` and
+  `stop-cloud`/`start-cloud` provide manual service interruptions. Restore a manually
+  stopped service explicitly. Observe the feedback watchdog through MQTT or the physical LED;
+  while the broker is absent, its state cannot be received over MQTT.
+- `check` verifies pause/resume, fresh telemetry, SQL and Grafana queries. Run it with
+  active nodes and unmuted feedback after about 15 seconds of normal operation.
+- `sql`, `queue` and `tests` run the SQL data-contract checks, the software queue test
+  and the backend/protocol suite. Queue testing uses mocked MQTT and SQL.
+
+Scenarios create new directories under `results/demo/`; SQL and queue checks are
+distinct from radio-device experiments. The automatic stress/service helpers
+restore normal control, while manual stop commands require the matching start.
+
+To finish, run `./scripts/demo.sh stop-cloud`, stop `watch` if active, press Ctrl+C
+in the router terminal and disconnect the dongles. MySQL, Mosquitto and Grafana
+may remain running.
+
+## Firmware maintenance
+
+`./scripts/demo.sh build` compiles the three roles without flashing. To upload,
+put the selected board into DFU mode and use
+`./scripts/demo.sh flash har|feedback|router /dev/cu.DFU_PORT`, choosing one role
+and its observed bootloader port. A DFU port need not match the application port.
+Stop the router connection before flashing that board. Maintenance is unnecessary
+for a demonstration with firmware already installed.
+
+## Machine-learning workbook
+
+`ml/ActivityLink_SVM561_Reproduce.ipynb` contains the training procedure, results,
+plots and dataset reference. Use a separate Python 3.11+ environment:
 
 ```sh
-source <(python scripts/ports.py)
+python3.13 -m venv tools/ml-venv
+tools/ml-venv/bin/python -m pip install -r requirements-notebook.txt
 ```
 
-Il piccolo `scripts/ports.py` legge le porte osservate in `config/hardware.json`
-e stampa le assegnazioni di HAR, FEEDBACK e BORDER_ROUTER. `source` le applica
-alla shell corrente; `python scripts/ports.py` da solo permette di mostrarle.
-Non sono salvate in `~/.zshrc` e non si rilevano automaticamente nuovi dispositivi.
-Confrontare le porte con l'enumerazione attuale; aggiornare l'inventario e ricaricare
-lo script se un'associazione cambia. Poi, sempre dalla root:
+Select that environment as the Jupyter kernel and execute cells in order from the
+project root or `ml/`. A host C compiler accessible as `gcc` is needed for the
+C/Python comparison. The notebook downloads the UCI dataset unless an existing
+copy is specified with `ACTIVITYLINK_DATASET`. Its Colab setup accepts this source
+ZIP; complete local execution is verified, while hosted Colab execution remains
+unverified. Retraining saves a separate model without changing the firmware.
 
-```sh
-cd vendor/contiki-ng/examples/rpl-border-router
-gmake TARGET=nrf52840 BOARD=dongle PORT="$BORDER_ROUTER" connect-router
-```
+## Dataset source
 
-Lasciare il comando attivo. Il target avvia tunslip6; non carica firmware.
-Se manca l'eseguibile tunslip6 può compilarlo. I default locali sono 115200 baud,
-interfaccia utun10 e verbosità 2 (prima era esplicita a 3: cambiano solo i log).
-Non aprire contemporaneamente la stessa seriale con un altro programma.
-
-**Terminale 2**, aperto nella root del progetto:
-
-```sh
-source .venv/bin/activate
-python scripts/native_stack.py status
-python scripts/native_stack.py stop-cloud
-python scripts/native_stack.py start --adaptive 1 --run-id demo-esame
-open http://127.0.0.1:3000/d/activitylink
-```
-
-Gli script Python sono del progetto; non sono comandi forniti dalle slide.
-`start` riusa un backend già attivo: `stop-cloud` prima dell'avvio permette di
-applicare il run_id e la modalità scelti. Non serve esportare PYTHONPATH.
-
-Durante la demo, nel Terminale 2, eseguire separatamente pausa e ripresa:
-
-```sh
-python scripts/control.py pause --host ::1
-python scripts/control.py resume --host ::1
-```
-
-Al termine usare `python scripts/native_stack.py stop-cloud`, poi Ctrl+C nel
-Terminale 1 e scollegare i dongle. stop-cloud ferma solo il backend: broker,
-MySQL e Grafana possono restare attivi. Cambiare la procedura di lancio non
-modifica firmware o modello; è stata verificata la generazione del comando
-Contiki senza ripetere il collaudo sui dongle.
-
-## Comportamento
-
-HAR classifica sul microcontrollore 24 vettori UCI HAR incorporati nella flash:
-verde per movimento, blu per postura. Il sensing è simulato; muovere il dongle
-non cambia i campioni. SW1 sospende/riprende il monitoraggio.
-
-Il backend salva la telemetria in MySQL e legge SQL per comandare il feedback.
-Oltre 6 secondi senza misure valide adaptive segnala rosso; baseline mantiene
-l'ultima attività. Il feedback ha SW1 mute e watchdog locale oltre 8 secondi
-senza comandi. Non è un dispositivo medico.
-
-Contiki-NG v5.1 è fissato al commit
-`2b87baf3ebdde3c8e37ca791d2bc84bfd76c49a4`. Nodi applicativi:
-`TARGET=nrf BOARD=nrf52840/dongle`; router: `TARGET=nrf52840 BOARD=dongle`.
-La configurazione collaudata è mista, non una migrazione uniforme.
-
-Il notebook è eseguito sul Mac; l'hosting Colab non è verificato. Il retraining
-mantiene le predizioni sul test storico ma può differire nei coefficienti:
-l'export firmware usa esplicitamente `models/svm561.json` congelato.
-
-Il trainer legge soltanto il training: validazione GroupKFold per soggetto, scaler
-riappreso in ogni fold, ricetta fissa senza selezione sul test. Macro-F1 OOF
-93,66%; il 96,29% sul test resta un benchmark storico già consultato.
-Protocollo, limiti e riproduzione: [ML_VALIDATION.md](docs/ML_VALIDATION.md).
-
-Il pacchetto esclude notebook alternativi, diagnostica di sviluppo, copie della
-relazione, copione, screenshot personali, ambienti Python e credenziali locali.
+*Human Activity Recognition Using Smartphones*, Reyes-Ortiz J., Anguita D.,
+Ghio A., Oneto L. and Parra X.,
+[UCI Machine Learning Repository](https://doi.org/10.24432/C54S4K),
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Included samples are selected published features converted to float32;
+classifier weights are learned from the training split. Downloaded dependencies
+retain their original licence notices.
 
 ## Repository
 
@@ -147,20 +137,3 @@ Questa repository è stata creata il 3 novembre 2026 dallo stato completo del
 progetto. La cronologia è ricostruita per componenti con date convenzionali
 dal 20 ottobre al 3 novembre 2026. Le date dei commit non documentano quando
 le singole parti sono state effettivamente sviluppate o collaudate.
-
-## Relazione in inglese e LaTeX
-
-La relazione PDF è in inglese e deriva da [ActivityLink_Report.tex](docs/report/ActivityLink_Report.tex).
-Sorgente, figure e [istruzioni di compilazione](docs/report/README.md) sono inclusi nel progetto.
-Dalla root: `sh scripts/build_report.sh`. Il PDF compilato viene consegnato separatamente.
-
-## Dataset e componenti
-
-Il dataset *Human Activity Recognition Using Smartphones* è di Reyes-Ortiz J.,
-Anguita D., Ghio A., Oneto L. e Parra X., distribuito dalla
-[UCI Machine Learning Repository](https://doi.org/10.24432/C54S4K) con licenza
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Il progetto usa le
-feature pubblicate: i campioni inclusi sono selezionati e convertiti in float32;
-i pesi del classificatore sono ottenuti dall'addestramento. Non sono nuove
-registrazioni dei sensori. Le licenze originali di Mosquitto sono incluse in
-`third_party/mosquitto/`; le dipendenze scaricate conservano i propri avvisi.

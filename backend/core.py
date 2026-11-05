@@ -1,4 +1,4 @@
-"""Telemetry validation and feedback policy."""
+"""Wire validation and pure control policy (no I/O)."""
 
 import json
 import re

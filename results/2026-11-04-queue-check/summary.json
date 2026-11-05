@@ -1,9 +1,0 @@
-{
-  "passed": true,
-  "test_count": 10,
-  "queue_capacity": 1000,
-  "burst_messages": 1005,
-  "expected_queue_drops": 5,
-  "scope": "real backend callbacks and processing loop with mocked MQTT and SQL; no physical hardware execution",
-  "hardware_regression": "passed separately; see results/2026-11-04-hardware-regression/"
-}

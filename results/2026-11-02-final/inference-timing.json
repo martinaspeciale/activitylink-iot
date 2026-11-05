@@ -1,9 +1,0 @@
-{
-  "samples": 15,
-  "min_ticks": 72,
-  "max_ticks": 73,
-  "rtimer_hz": 62500,
-  "min_ms": 1.152,
-  "max_ms": 1.168,
-  "frequency_source": "vendor/contiki-ng/arch/cpu/nrf/nrf-def.h; matched application build"
-}

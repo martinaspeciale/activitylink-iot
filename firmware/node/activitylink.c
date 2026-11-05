@@ -62,7 +62,7 @@ static void event(struct mqtt_connection *m, mqtt_event_t ev, void *data) {
   if (ev == MQTT_EVENT_PUBLISH) {
     struct mqtt_message *msg = data;
 
-    /* Commands contain one ASCII byte */
+    /* Commands are exactly one ASCII byte: reject partial or oversized payloads */
     if (msg->payload_length == 1 && msg->payload_chunk_length == 1) {
       char c = msg->payload_chunk[0];
       printf("AL command node=%s byte=%u\n", NODE_NAME, (unsigned char)c);
@@ -105,7 +105,7 @@ PROCESS_THREAD(activitylink_process, ev, data) {
   while (1) {
     PROCESS_WAIT_EVENT();
 
-    /* Toggle on press; only log release */
+    /* AL button diagnostics v1: act on press, log release only */
     if (ev == button_hal_release_event) {
       printf("AL button node=%s event=release\n", NODE_NAME);
     }

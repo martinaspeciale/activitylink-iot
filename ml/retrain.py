@@ -1,4 +1,8 @@
-"""Train SVM561 and validate it with subject-grouped folds."""
+"""Train and validate a fixed recipe using ONLY the official training subjects.
+
+The historical test benchmark is deliberately a separate, read-only evaluation
+(ml/evaluate_historical.py). No test score selects or accepts this model.
+"""
 
 import argparse
 import hashlib
@@ -62,7 +66,7 @@ def prepare_dataset(out):
 
 
 def grouped_validation(X, y, subjects, folds=5):
-    """Validate the fixed pipeline on held-out training subjects."""
+    """No access to a dataset path or to official test arrays is possible here."""
     pipeline = make_pipeline(
         StandardScaler(),
         LinearSVC(
@@ -131,7 +135,7 @@ def grouped_validation(X, y, subjects, folds=5):
 def train_only(dataset, out):
     out.mkdir(parents=True, exist_ok=True)
 
-    # Save the fixed recipe before fitting
+    # The protocol is fixed and written BEFORE fitting or reporting any score
     (out / 'protocol.json').write_text(json.dumps(RECIPE, indent=2) + '\n')
     paths = [
         dataset / 'train' / name for name in ('X_train.txt', 'y_train.txt', 'subject_train.txt')
@@ -145,7 +149,7 @@ def train_only(dataset, out):
         raise ValueError('Invalid training values')
     pipeline, result, predictions = grouped_validation(X, y, subjects, RECIPE['folds'])
 
-    # Refit on all training subjects
+    # Refit the same fixed recipe on all training subjects, without reading test/
     fitted = pipeline.fit(X, y)
     scaler, svm = fitted.steps[0][1], fitted.steps[1][1]
 

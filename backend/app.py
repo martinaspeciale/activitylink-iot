@@ -1,4 +1,4 @@
-"""Store MQTT telemetry and control the feedback node from SQL."""
+"""MQTT telemetry -> validated SQL rows -> SQL-based feedback control."""
 
 import json
 import logging
@@ -47,7 +47,7 @@ def connect_database():
 
 
 def store(connection, message, received):
-    """Insert a new sample or classify a repeated sequence."""
+    """Retry the same identity after an uncertain SQL write."""
     with connection.cursor() as cursor:
 
         # Check ordering within one node and one boot session

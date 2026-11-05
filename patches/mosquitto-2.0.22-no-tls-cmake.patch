@@ -11,6 +11,9 @@
  # Check for getaddrinfo_a
  include(CheckLibraryExists)
  check_library_exists(anl getaddrinfo_a  "" HAVE_GETADDRINFO_A)
+@@ -221 +223 @@
+-		set_target_properties(mosquitto PROPERTIES LINK_FLAGS "-Wl,-exported_symbols_list -Wl,${mosquitto_SOURCE_DIR}/src/linker-macosx.syms")
++		set_target_properties(mosquitto PROPERTIES LINK_FLAGS "-Wl,-exported_symbols_list -Wl,\"${mosquitto_SOURCE_DIR}/src/linker-macosx.syms\"")
 --- a/lib/CMakeLists.txt
 +++ b/lib/CMakeLists.txt
 @@ -60,7 +60,9 @@

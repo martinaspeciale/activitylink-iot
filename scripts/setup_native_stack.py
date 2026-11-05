@@ -1,4 +1,4 @@
-"""Download and configure the pinned MySQL and Grafana releases."""
+"""Download the pinned native Mac services into this project; never use sudo."""
 
 import hashlib
 import json
@@ -28,7 +28,7 @@ PACKAGES = [
 ]
 if platform.system() != "Darwin" or platform.machine() != "x86_64":
     raise SystemExit(
-        "This setup is pinned to Intel macOS; see Compose for the separate Linux option"
+        "This native setup targets Intel macOS"
     )
 DOWNLOADS.mkdir(parents=True, exist_ok=True)
 for folder, url, expected, binary in PACKAGES:

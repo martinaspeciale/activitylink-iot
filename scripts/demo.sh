@@ -182,7 +182,7 @@ case "$COMMAND" in
         ;;
     doctor)
         echo "Project: $ROOT"
-        for tool in "$MAKE" arm-none-eabi-gcc arm-none-eabi-objcopy gcc; do
+        for tool in "$MAKE" arm-none-eabi-gcc arm-none-eabi-objcopy gcc cmake curl git nrfutil; do
             if ! run command -v "$tool"; then
                 echo "Missing tool: $tool"
             fi

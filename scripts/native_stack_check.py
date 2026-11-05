@@ -1,4 +1,4 @@
-"""Check SQL and Grafana using hardware telemetry and optional commands."""
+"""Verify native SQL/Grafana against actual hardware telemetry, without commands."""
 
 import argparse
 import base64

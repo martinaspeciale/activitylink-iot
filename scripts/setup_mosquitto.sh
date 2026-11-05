@@ -11,6 +11,20 @@ if [ -x "$BUILD_DIR/src/mosquitto" ]; then
 fi
 ARCHIVE=tools/local-broker/mosquitto-2.0.22.tar.gz
 EXPECTED=2f752589ef7db40260b633fbdb536e9a04b446a315138d64a7ff3c14e2de6b68
+
+# Fetch the dependency during setup instead of distributing its source archive or executable
+if [ ! -f "$ARCHIVE" ]; then
+  mkdir -p tools/local-broker
+  PARTIAL="$ARCHIVE.part"
+  trap 'rm -f "$PARTIAL"' 0 HUP INT TERM
+  curl -fL --retry 2 https://mosquitto.org/files/source/mosquitto-2.0.22.tar.gz -o "$PARTIAL"
+  DOWNLOADED=$(shasum -a 256 "$PARTIAL")
+  [ "${DOWNLOADED%% *}" = "$EXPECTED" ] || {
+    echo 'Downloaded Mosquitto source checksum mismatch' >&2
+    exit 1
+  }
+  mv "$PARTIAL" "$ARCHIVE"
+fi
 ACTUAL=$(shasum -a 256 "$ARCHIVE")
 [ "${ACTUAL%% *}" = "$EXPECTED" ] || {
   echo 'Mosquitto source checksum mismatch' >&2

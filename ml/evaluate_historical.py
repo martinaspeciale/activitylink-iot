@@ -1,4 +1,8 @@
-"""Evaluate a trained candidate on the historical UCI test split."""
+"""Read-only evaluation of a previously trained candidate on the ALREADY SEEN test.
+
+This module has no fit, feature selection, threshold tuning or acceptance gate.
+It never updates the candidate, the frozen model or the firmware.
+"""
 
 import argparse
 import json
