@@ -2,9 +2,12 @@
 
 # Run from any directory; every command below uses the same project root
 set -eu
+export PYTHONDONTWRITEBYTECODE=1
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 cd "$ROOT"
-PYTHON="$ROOT/.venv/bin/python"
+WORK="$ROOT"
+if [ -d "$ROOT/workspace" ]; then WORK="$ROOT/workspace"; fi
+PYTHON="$WORK/.venv/bin/python"
 MAKE=${MAKE:-gmake}
 DRY_RUN=0
 
@@ -55,13 +58,13 @@ need_python() {
 }
 
 new_result() {
-    OUT="$ROOT/results/demo/$(date +%Y%m%d-%H%M%S)-$1-$$"
+    OUT="$WORK/results/demo/$(date +%Y%m%d-%H%M%S)-$1-$$"
     echo "Results: $OUT"
 }
 
 stack() {
     need_python
-    run "$PYTHON" scripts/native_stack.py "$@"
+    run "$PYTHON" support/scripts/native_stack.py "$@"
 }
 
 # Display assignments without sourcing the user's shell configuration
@@ -73,47 +76,22 @@ ports() {
 
 help_text() {
     cat <<'HELP'
-Usage: ./scripts/demo.sh [--dry-run] COMMAND [ARGUMENTS]
-       ./scripts/demo.sh show COMMAND [ARGUMENTS]
+Usage: ./scripts/demo.sh [show] COMMAND [ARGUMENTS]
+       ./scripts/demo.sh
 
-Use show before any command to print its underlying commands without executing them
-Examples: show pause, show start adaptive, show stress 3, show services
+Preparation: setup | check-tools | ports | config | router | build
+Upload:      flash har|feedback|router DFU_PORT
+Operation:   start [adaptive|baseline] | status | dashboard | watch [a|b]
+             pause | resume | buttons | stop-cloud | start-cloud
+Comparison:  stress [PAIRS] (automatic; default 1 pair)
+Manual:      stress start baseline|adaptive
+             stress on | stress off | stress stop | stress status | stress cancel
+Services:    mysql-stop | mysql-start | broker-stop | broker-start
 
-Preparation
-  setup                   Create .venv, install runtime dependencies and prepare local services/Contiki
-  doctor                  Check tools and enumerate the observed USB ports
-  ports                   Show role assignments and current USB enumeration
-  config                  Display the device-role and USB inventory files
-  router                  Connect the border router; leave this terminal running (Ctrl+C to stop)
-  build                   Compile all three firmware roles without flashing
-  flash ROLE DFU_PORT     Explicit firmware upload; ROLE is har, feedback or router
-
-Normal operation
-  start [adaptive|baseline] Start services and a fresh control run (default: adaptive)
-  status                  Show project service status
-  dashboard               Open Grafana with the latest observed controller run selected
-  watch                   Observe/log actual MQTT telemetry without relying on MySQL (Ctrl+C to stop)
-  pause | resume          Send the HAR P/R command
-  buttons                 Show the physical HAR pause and feedback mute procedure
-  check                   Verify fresh nodes, pause/resume, SQL and Grafana queries
-  stop-cloud              Stop only the Python backend
-  start-cloud             Resume adaptive backend control
-
-Scenarios
-  stress [PAIRS]          Controlled HAR message withholding: 10s normal, 15s loss, 15s recovery
-                          One pair by default; use stress 3 for three alternating pairs
-  physical               Record manual HAR unplug/replug; act only after READY
-  services               Automatically stop/restart MySQL, then the broker, and verify recovery
-  mysql-stop | mysql-start    Manual database interruption/recovery
-  broker-stop | broker-start  Manual MQTT interruption/recovery
-  sql                     Real temporary-schema duplicate/order/freshness checks
-  queue                   Software queue overflow check with mocked MQTT and SQL
-  tests                   Run the backend/protocol unit suite
-
-Already flashed dongles boot when powered; router connects their network to the host
-Only flash rewrites a board; DFU mode and its USB port must be selected physically
-Router disconnection is not an experimentally verified scenario in the report
-The native service setup targets the prepared Intel macOS host
+show COMMAND prints its commands without executing them.
+Router stays in a separate terminal; Ctrl+C stops its connection.
+Setup targets Intel macOS. Build does not flash; flash requires DFU mode.
+Stress withholds HAR messages at cloud ingress, not on the radio.
 HELP
 }
 
@@ -129,8 +107,17 @@ menu() {
             'show '*) show_choice "${choice#show }" ;;
             'start adaptive') invoke start adaptive ;;
             'start baseline') invoke start baseline ;;
+            'watch a') invoke watch a ;;
+            'watch b') invoke watch b ;;
             'stress 3') invoke stress 3 ;;
-            setup|doctor|ports|config|router|build|start|status|dashboard|watch|pause|resume|buttons|check|stop-cloud|start-cloud|stress|physical|services|mysql-stop|mysql-start|broker-stop|broker-start|sql|queue|tests)
+            'stress start baseline') invoke stress start baseline ;;
+            'stress start adaptive') invoke stress start adaptive ;;
+            'stress on') invoke stress on ;;
+            'stress off') invoke stress off ;;
+            'stress stop') invoke stress stop ;;
+            'stress status') invoke stress status ;;
+            'stress cancel') invoke stress cancel ;;
+            setup|check-tools|ports|config|router|build|start|status|dashboard|watch|pause|resume|buttons|stop-cloud|start-cloud|stress|mysql-stop|mysql-start|broker-stop|broker-start)
                 invoke "$choice"
                 ;;
             *) echo 'Use a command shown above; flash ROLE DFU_PORT is available outside the menu' ;;
@@ -172,15 +159,15 @@ case "$COMMAND" in
     setup)
         BOOTSTRAP=${PYTHON_BOOTSTRAP:-python3.10}
         if [ ! -x "$PYTHON" ]; then
-            run "$BOOTSTRAP" -m venv .venv
+            run "$BOOTSTRAP" -m venv "$WORK/.venv"
         fi
-        run "$PYTHON" -m pip install -r requirements-native.txt
-        run "$PYTHON" scripts/setup_native_stack.py
-        run sh scripts/setup_mosquitto.sh
-        run sh scripts/setup_contiki.sh
+        run "$PYTHON" -m pip install -r requirements.txt
+        run "$PYTHON" support/scripts/setup_native_stack.py
+        run sh support/scripts/setup_mosquitto.sh
+        run sh support/scripts/setup_contiki.sh
         echo 'ARM GNU tools, GNU make and Nordic nrfutil are separate firmware-tool prerequisites'
         ;;
-    doctor)
+    check-tools)
         echo "Project: $ROOT"
         for tool in "$MAKE" arm-none-eabi-gcc arm-none-eabi-objcopy gcc cmake curl git nrfutil; do
             if ! run command -v "$tool"; then
@@ -209,7 +196,7 @@ case "$COMMAND" in
             fi
         fi
         echo 'Leave this terminal open; enter the sudo password here if requested'
-        run "$MAKE" -C vendor/contiki-ng/examples/rpl-border-router \
+        run "$MAKE" -C "$WORK/vendor/contiki-ng/examples/rpl-border-router" \
             TARGET=nrf52840 BOARD=dongle "PORT=$BORDER_ROUTER" connect-router
         ;;
     build)
@@ -233,7 +220,7 @@ case "$COMMAND" in
         NRFUTIL=${NRFUTIL:-nrfutil}
         echo 'Upload to the selected DFU port; the board must already be in bootloader mode'
         if [ "$ROLE" = router ]; then
-            run "$MAKE" -C vendor/contiki-ng/examples/rpl-border-router \
+            run "$MAKE" -C "$WORK/vendor/contiki-ng/examples/rpl-border-router" \
                 TARGET=nrf52840 BOARD=dongle "PORT=$DFU_PORT" "NRFUTIL=$NRFUTIL" border-router.dfu-upload
         else
             NODE_ROLE=1
@@ -265,9 +252,14 @@ case "$COMMAND" in
         run "$PYTHON" scripts/demo_status.py --dashboard
         ;;
     watch)
+        BROKER=${1:-a}
+        case "$BROKER" in
+            a|b) ;;
+            *) echo 'Use watch [a|b]' >&2; exit 2 ;;
+        esac
         need_python
-        new_result watch
-        run "$PYTHON" scripts/demo_status.py --watch "$OUT"
+        new_result "watch-$BROKER"
+        run "$PYTHON" scripts/demo_status.py --watch "$OUT" --broker "$BROKER"
         ;;
     pause|resume)
         need_python
@@ -283,27 +275,30 @@ Keep the router and services running; use watch in another terminal
 Do not use RESET; button presses are physical actions, not shell-generated input
 BUTTONS
         ;;
-    check)
-        need_python
-        new_result check
-        if [ "$DRY_RUN" -eq 1 ]; then
-            printf '+ RUN_ID=$('
-            format_arguments "$PYTHON" scripts/demo_status.py --run-id
-            printf ')\n'
-            printf '+'
-            format_arguments "$PYTHON" scripts/native_stack_check.py --out "$OUT" --run-id
-            printf ' "$RUN_ID" --commands\n'
-        else
-            RUN_ID=$("$PYTHON" scripts/demo_status.py --run-id)
-            run "$PYTHON" scripts/native_stack_check.py --out "$OUT" --run-id "$RUN_ID" --commands
-        fi
-        ;;
     stop-cloud) stack stop-cloud ;;
     start-cloud)
         stack stop-cloud
         stack start-cloud --adaptive 1 --run-id "demo-adaptive-$(date +%Y%m%d-%H%M%S)-$$"
         ;;
     stress)
+        case "${1:-}" in
+            start)
+                MODE=${2:-baseline}
+                case "$MODE" in
+                    baseline|adaptive) ;;
+                    *) echo 'Use stress start baseline|adaptive' >&2; exit 2 ;;
+                esac
+                need_python
+                new_result stress-manual
+                run "$PYTHON" scripts/hardware_stress.py --out "$OUT" --control start --mode "$MODE"
+                exit
+                ;;
+            on|off|stop|status|cancel)
+                need_python
+                run "$PYTHON" scripts/hardware_stress.py --control "$1"
+                exit
+                ;;
+        esac
         PAIRS=${1:-1}
         case "$PAIRS" in
             ''|*[!0-9]*|0)
@@ -316,37 +311,10 @@ BUTTONS
         echo 'Withhold HAR telemetry at application ingress; this does not generate radio congestion'
         run "$PYTHON" scripts/hardware_stress.py --out "$OUT" --repeats "$PAIRS"
         ;;
-    physical)
-        need_python
-        new_result physical
-        echo 'Keep all boards connected until READY; then unplug only HAR, wait at least 15s and replug'
-        run "$PYTHON" scripts/physical_failure_check.py --out "$OUT"
-        ;;
-    services)
-        need_python
-        new_result services
-        echo 'This automatically interrupts the project MySQL and broker; leave nodes/router connected'
-        run "$PYTHON" scripts/service_recovery_check.py --out "$OUT"
-        ;;
     mysql-stop) stack stop-mysql ;;
     mysql-start) stack start-mysql ;;
     broker-stop) stack stop-broker ;;
     broker-start) stack start-broker ;;
-    sql)
-        need_python
-        new_result sql
-        run mkdir -p "$OUT"
-        run "$PYTHON" tests/backend_sql_contract.py --output "$OUT/summary.json"
-        ;;
-    queue)
-        need_python
-        echo 'Software test: real callback/consumer, mocked MQTT and SQL; no dongle traffic flood'
-        run "$PYTHON" -m unittest discover -s tests -p test_backend_queue.py -v
-        ;;
-    tests)
-        need_python
-        run "$PYTHON" -m unittest discover -s tests -p 'test_*.py' -v
-        ;;
     *)
         help_text
         exit 2

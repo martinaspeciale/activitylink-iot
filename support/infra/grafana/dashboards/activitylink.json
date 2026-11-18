@@ -111,7 +111,8 @@
           "type": "mysql",
           "uid": "activitylink-mysql"
         },
-        "query": "SELECT DISTINCT run_id FROM metrics ORDER BY run_id",
+        "query": "SELECT run_id FROM metrics GROUP BY run_id ORDER BY MAX(time) DESC, run_id ASC",
+        "sort": 0,
         "refresh": 1
       }
     ]

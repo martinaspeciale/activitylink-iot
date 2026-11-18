@@ -1,6 +1,7 @@
 """Manage the local Cloud Application, Mosquitto, MySQL and Grafana; leave SLIP separate."""
 
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -14,30 +15,38 @@ import urllib.request
 
 import pymysql
 
-ROOT = Path(__file__).resolve().parents[1]
-STATE = ROOT / "runtime/native-stack"
-MYSQL = ROOT / "tools/native-stack/mysql-8.0.31-macos12-x86_64"
-GRAFANA = ROOT / "tools/native-stack/grafana-v11.6.0"
-PYTHON_DEPS = ROOT / "tools/python-deps"
+ROOT = Path(__file__).resolve().parents[2]
+# Local development files are kept outside the presentation tree.
+WORK = ROOT / "workspace" if (ROOT / "workspace").is_dir() else ROOT
+STATE = (WORK / "runtime/native-stack").resolve()
+# macOS limits Unix-domain socket paths; keep this independent of extraction depth.
+# The project-specific name avoids sharing a socket with another local deployment.
+MYSQL_SOCKET = Path("/tmp") / (
+    "activitylink-mysql-" + hashlib.sha256(str(STATE).encode()).hexdigest()[:16] + ".sock"
+)
+MYSQL = WORK / "tools/native-stack/mysql-8.0.31-macos12-x86_64"
+GRAFANA = WORK / "tools/native-stack/grafana-v11.6.0"
+PYTHON_DEPS = WORK / "tools/python-deps"
 
 # The Cloud Application runs locally as backend.app, matching the project specification
 SIGNATURES = {
     "mysql": str(MYSQL / "bin/mysqld"),
     "grafana": str(GRAFANA / "bin/grafana"),
     "cloud": "-m backend.app",
-    "broker": "tools/local-broker/build-no-tls/src/mosquitto",
+    "broker": str(WORK / "tools/local-broker/build-no-tls/src/mosquitto"),
 }
 
 
 def config():
     STATE.mkdir(parents=True, exist_ok=True, mode=0o700)
 
-    # Generate credentials only once and keep them outside the distributed source files
+    # Generate database credentials once; the demo dashboard uses admin/password
     path = STATE / "credentials.json"
     if not path.exists():
         data = {
-            name: secrets.token_hex(24) for name in ("root", "app", "grafana_db", "grafana_admin")
+            name: secrets.token_hex(24) for name in ("root", "app", "grafana_db")
         }
+        data["grafana_admin"] = "password"
         with open(path, "x", opener=lambda p, flags: os.open(p, flags, 0o600)) as stream:
             json.dump(data, stream, indent=2)
     return json.loads(path.read_text())
@@ -122,12 +131,12 @@ def start_broker():
             raise RuntimeError("Multiple owners of MQTT port")
         value = int(owners.pop())
         command = subprocess.check_output(["ps", "-p", str(value), "-o", "command="], text=True)
-        if SIGNATURES["broker"] not in command or "infra/mosquitto.conf" not in command:
+        if SIGNATURES["broker"] not in command or "support/infra/mosquitto.conf" not in command:
             raise RuntimeError("MQTT port belongs to an unmanaged broker")
         (STATE / "broker.pid").write_text(str(value))
         return
     launch(
-        "broker", [str(ROOT / SIGNATURES["broker"]), "-c", str(ROOT / "infra/mosquitto.conf"), "-v"]
+        "broker", [str(ROOT / SIGNATURES["broker"]), "-c", str(ROOT / "support/infra/mosquitto.conf"), "-v"]
     )
 
     def ready():
@@ -169,7 +178,7 @@ def start_mysql(credentials):
             "--bind-address=127.0.0.1",
             "--port=13306",
             "--mysqlx=OFF",
-            f"--socket={STATE / 'mysql.sock'}",
+            f"--socket={MYSQL_SOCKET}",
             f"--pid-file={STATE / 'mysqld-server.pid'}",
             "--innodb-buffer-pool-size=64M",
             "--max-connections=30",
@@ -248,7 +257,7 @@ def start_grafana(credentials):
             {
                 "name": "ActivityLink",
                 "type": "file",
-                "options": {"path": str(ROOT / "infra/grafana/dashboards")},
+                "options": {"path": str(ROOT / "support/infra/grafana/dashboards")},
             }
         ],
     }
@@ -326,7 +335,7 @@ def main():
             start_grafana(credentials)
     print(json.dumps({name: pid(name) for name in SIGNATURES}))
     print(
-        "Grafana: http://127.0.0.1:3000/d/activitylink — admin; password in runtime/native-stack/credentials.json"
+        "Grafana: http://127.0.0.1:3000/d/activitylink — admin / password"
     )
 
 

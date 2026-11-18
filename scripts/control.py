@@ -19,4 +19,9 @@ c.disconnect()
 c.loop_stop()
 
 # Publishing does not confirm execution; the next telemetry must report the requested state
-print('Command sent; verify the reported enabled field in MySQL/Grafana.')
+expected = 0 if a.action == 'pause' else 1
+state = 'paused' if a.action == 'pause' else 'running'
+print(
+    f'Command sent. Check telemetry with ./scripts/demo.sh watch. '
+    f'Expected on HAR (node1): enabled={expected} ({state}).'
+)

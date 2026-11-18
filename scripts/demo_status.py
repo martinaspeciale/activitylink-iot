@@ -3,15 +3,19 @@
 import argparse
 import json
 import os
+import sys
 from pathlib import Path
 import time
 import urllib.parse
 import webbrowser
 
+# Service management is kept with the platform support files.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "support/scripts"))
+
 from native_stack import STATE, config, db
 
 
-def watch_mqtt(out):
+def watch_mqtt(out, broker="a"):
     import paho.mqtt.client as mqtt
 
     out.mkdir(parents=True, exist_ok=False)
@@ -19,12 +23,13 @@ def watch_mqtt(out):
     client = mqtt.Client(
         mqtt.CallbackAPIVersion.VERSION2, client_id=f"activitylink-demo-watch-{os.getpid()}"
     )
+    host, port = ("127.0.0.1", 18884) if broker == "b" else ("::1", 1883)
 
     def connected(client, userdata, flags, reason, properties):
         if reason.is_failure:
             print("MQTT connection rejected", flush=True)
             return
-        print("MQTT connected; observing actual telemetry", flush=True)
+        print(f"MQTT connected; broker {broker.upper()} ({host}:{port}); observing telemetry", flush=True)
         client.subscribe("activitylink/+/telemetry")
 
     def disconnected(client, userdata, flags, reason, properties):
@@ -43,10 +48,13 @@ def watch_mqtt(out):
     client.on_disconnect = disconnected
     client.on_message = message
     try:
-        client.connect("::1", 1883, 15)
+        client.connect(host, port, 15)
         client.loop_forever()
     except KeyboardInterrupt:
         pass
+    except OSError as exc:
+        hint = " Avviare prima una prova stress: il broker B è temporaneo." if broker == "b" else ""
+        raise RuntimeError(f"Broker {broker.upper()} non raggiungibile.{hint}") from exc
     finally:
         client.disconnect()
         stream.close()
@@ -76,9 +84,10 @@ def main():
     group.add_argument("--run-id", action="store_true")
     group.add_argument("--dashboard", action="store_true")
     group.add_argument("--watch", type=Path, metavar="OUTPUT_DIRECTORY")
+    parser.add_argument("--broker", choices=("a", "b"), default="a", help="Broker for --watch")
     args = parser.parse_args()
     if args.watch:
-        watch_mqtt(args.watch)
+        watch_mqtt(args.watch, args.broker)
         return
     row = latest_run()
     if args.run_id:

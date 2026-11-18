@@ -9,8 +9,10 @@ import subprocess
 import tarfile
 import urllib.request
 
-ROOT = Path(__file__).resolve().parents[1]
-BASE = ROOT / "tools/native-stack"
+ROOT = Path(__file__).resolve().parents[2]
+# Local development files are kept outside the presentation tree.
+WORK = ROOT / "workspace" if (ROOT / "workspace").is_dir() else ROOT
+BASE = WORK / "tools/native-stack"
 DOWNLOADS = BASE / "downloads"
 PACKAGES = [
     (

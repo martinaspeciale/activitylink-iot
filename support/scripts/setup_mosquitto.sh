@@ -2,8 +2,10 @@
 
 # Local build only: no Homebrew installation, TLS, sudo or system service
 set -eu
-ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
-cd "$ROOT"
+ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
+WORK="$ROOT"
+if [ -d "$ROOT/workspace" ]; then WORK="$ROOT/workspace"; fi
+cd "$WORK"
 BUILD_DIR=${BUILD_DIR:-tools/local-broker/build-no-tls}
 if [ -x "$BUILD_DIR/src/mosquitto" ]; then
   echo "Local broker already available: $BUILD_DIR/src/mosquitto"
@@ -34,7 +36,7 @@ SOURCE=tools/local-broker/mosquitto-2.0.22
 if [ ! -d "$SOURCE" ]; then
   tar -xzf "$ARCHIVE" -C tools/local-broker
 fi
-PATCH="$ROOT/patches/mosquitto-2.0.22-no-tls-cmake.patch"
+PATCH="$ROOT/support/patches/mosquitto-2.0.22-no-tls-cmake.patch"
 if patch -d "$SOURCE" -p1 --dry-run -R <"$PATCH" >/dev/null 2>&1; then
   echo 'No-TLS CMake patch already applied'
 else

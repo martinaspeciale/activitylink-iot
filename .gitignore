@@ -1,9 +1,33 @@
+# Local working material is included in the full backup, not in Git.
+/workspace/
+/demo.md
+
+# Secrets and machine settings
+.env
+.env.*
+!.env.example
 .DS_Store
+._*
+.vscode/
+.idea/
+
+# Virtual environments, dependencies and caches
+.venv/
+venv/
+env/
+node_modules/
 __pycache__/
 *.py[cod]
-.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.egg-info/
+
+# Generated directories, including standalone setups
+build/
+dist/
 runtime/
+results/
+tools/
 vendor/
-tools/ml-venv/
-tools/python-deps/
-tools/native-stack/
